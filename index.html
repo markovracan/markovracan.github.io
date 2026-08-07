@@ -8,14 +8,12 @@
 <title>Marko Vračan | Parastolnotenisač</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syncopate:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@700;800;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Novi brutalni, asimetrični dizajn - agresivna crvena i totalna crnina */
   --primary: #ff1e38; 
-  --primary-glow: rgba(255, 30, 56, 0.4);
   --bg: #030303;
   --bg-surface: #0a0a0a;
   --bg-elevated: #111111;
@@ -24,7 +22,8 @@
   --text-faint: #444444;
   --border: #222222;
   
-  --font-head: 'Syncopate', sans-serif;
+  --font-head: 'Outfit', sans-serif; /* Vraćeno na Outfit za glavne naslove */
+  --font-accent: 'Syncopate', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
 
@@ -47,7 +46,6 @@ body {
   pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%);
   transition: transform 0.1s, width 0.2s, height 0.2s;
-  will-change: transform;
 }
 #cursor-ring {
   position: fixed; width: 30px; height: 30px;
@@ -55,26 +53,18 @@ body {
   pointer-events: none; z-index: 9998;
   transform: translate(-50%, -50%);
   transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background 0.2s;
-  will-change: transform;
 }
 body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { 
-  width: 50px; height: 50px; 
-  background: rgba(255, 30, 56, 0.1); 
-  border-width: 2px;
+  width: 50px; height: 50px; background: rgba(255, 30, 56, 0.1); border-width: 2px;
 }
-@media (pointer: coarse) {
-  #cursor, #cursor-ring { display: none !important; }
-  *, *::before, *::after { cursor: auto !important; }
-}
+@media (pointer: coarse) { #cursor, #cursor-ring { display: none !important; } *, *::before, *::after { cursor: auto !important; } }
 
-/* ── PARTICLES (Kose crvene munje) ── */
+/* ── PARTICLES ── */
 #particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
 .particle {
   position: absolute; width: 1px; height: 30px;
   background: linear-gradient(to bottom, transparent, var(--primary));
-  animation: rain-up linear infinite;
-  opacity: 0;
-  transform: rotate(25deg);
+  animation: rain-up linear infinite; opacity: 0; transform: rotate(25deg);
 }
 @keyframes rain-up {
   0% { opacity: 0; transform: translateY(100vh) translateX(0) rotate(25deg); }
@@ -87,254 +77,158 @@ body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring {
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1.5rem 4%;
-  background: rgba(3, 3, 3, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid transparent;
-  transition: all 0.3s ease;
+  padding: 1.5rem 4%; background: rgba(3, 3, 3, 0.8); backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent; transition: all 0.3s ease;
 }
-nav.scrolled {
-  background: rgba(3, 3, 3, 0.98);
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 4%;
-}
-.nav-logo {
-  font-family: var(--font-head); font-size: 1.2rem; font-weight: 800;
-  color: var(--text); text-decoration: none; text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
+nav.scrolled { background: rgba(3, 3, 3, 0.98); border-bottom: 1px solid var(--border); padding: 1rem 4%; }
+.nav-logo { font-family: var(--font-head); font-size: 1.5rem; font-weight: 900; color: var(--text); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
 .nav-logo span { color: var(--primary); }
 .nav-links { display: flex; gap: 3rem; list-style: none; align-items: center; }
-.nav-links a {
-  color: var(--text-muted); text-decoration: none; font-size: 0.75rem;
-  font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em;
-  transition: color 0.2s; position: relative;
-}
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; transition: color 0.2s; position: relative; }
 .nav-links a:hover { color: var(--text); }
-.nav-links a::after {
-  content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px;
-  background: var(--primary); transform: scaleX(0); transform-origin: right;
-  transition: transform 0.3s ease;
-}
+.nav-links a::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease; }
 .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
-
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 5px; z-index: 101;}
 .hamburger span { display: block; width: 28px; height: 2px; background: var(--text); transition: 0.3s;}
 
-/* ── HERO (Brutalizam) ── */
-#hero {
-  min-height: 100vh;
-  display: flex; align-items: center;
-  padding: 150px 5% 60px;
-  position: relative; overflow: hidden;
-}
-.hero-bg {
-  position: absolute; right: -20%; top: -10%; width: 70vw; height: 100vh;
-  background: radial-gradient(circle at center, rgba(255,30,56,0.15) 0%, transparent 70%);
-  z-index: 0; filter: blur(50px);
-}
-.hero-lines {
-  position: absolute; inset: 0; z-index: 0;
-  background: repeating-linear-gradient(90deg, var(--border) 0, var(--border) 1px, transparent 1px, transparent 10vw);
-  opacity: 0.3;
-}
-.hero-content {
-  position: relative; z-index: 2; width: 100%; max-width: 1400px; margin: 0 auto;
-}
-.hero-eyebrow {
-  display: flex; align-items: center; gap: 1rem;
-  color: var(--primary); font-family: var(--font-head); font-weight: 700;
-  font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
-  margin-bottom: 2rem; opacity: 0; animation: fade-in-left 0.8s 0.2s forwards;
-}
+/* ── HERO ── */
+#hero { min-height: 100vh; display: flex; align-items: center; padding: 150px 5% 60px; position: relative; overflow: hidden; }
+.hero-bg { position: absolute; right: -20%; top: -10%; width: 70vw; height: 100vh; background: radial-gradient(circle at center, rgba(255,30,56,0.15) 0%, transparent 70%); z-index: 0; filter: blur(50px); }
+.hero-lines { position: absolute; inset: 0; z-index: 0; background: repeating-linear-gradient(90deg, var(--border) 0, var(--border) 1px, transparent 1px, transparent 10vw); opacity: 0.3; }
+.hero-content { position: relative; z-index: 2; width: 100%; max-width: 1400px; margin: 0 auto; }
+.hero-eyebrow { display: flex; align-items: center; gap: 1rem; color: var(--primary); font-family: var(--font-accent); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; animation: fade-in-left 0.8s 0.2s forwards; }
 .hero-eyebrow::before { content: ''; display: block; width: 60px; height: 2px; background: var(--primary); }
 
-.hero-title {
-  font-family: var(--font-head); font-size: clamp(4rem, 10vw, 9rem);
-  font-weight: 800; line-height: 0.85; text-transform: uppercase;
-  margin-bottom: 2rem; letter-spacing: -0.05em; display: flex; flex-direction: column;
-}
+/* Vraćen stari font (Outfit) za Hero naslov + smanjena veličina + asimetrija ostaje */
+.hero-title { font-family: var(--font-head); font-size: clamp(3.5rem, 8vw, 7.5rem); font-weight: 900; line-height: 0.9; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: -0.02em; display: flex; flex-direction: column; }
 .hero-title span:first-child { opacity: 0; animation: fade-in-up 0.8s 0.4s forwards; }
-.hero-title span.outline {
-  -webkit-text-stroke: 2px var(--text); color: transparent; padding-left: 5vw;
-  opacity: 0; animation: fade-in-up 0.8s 0.5s forwards;
-}
+.hero-title span.outline { -webkit-text-stroke: 2px var(--text); color: transparent; padding-left: 5vw; opacity: 0; animation: fade-in-up 0.8s 0.5s forwards; }
 
-.hero-sub {
-  font-size: 1.1rem; color: var(--text-muted); max-width: 600px;
-  margin-bottom: 3.5rem; font-weight: 400; line-height: 1.7; padding-left: 5vw;
-  opacity: 0; animation: fade-in-up 0.8s 0.6s forwards; border-left: 2px solid var(--border); padding-left: 2rem; margin-left: 5vw;
-}
-
-.hero-btns {
-  display: flex; gap: 1.5rem; padding-left: 5vw; opacity: 0; animation: fade-in-up 0.8s 0.8s forwards; margin-left: 5vw;
-}
-.btn-primary {
-  background: var(--primary); color: white; padding: 1.2rem 3rem;
-  font-family: var(--font-head); font-weight: 700; font-size: 0.8rem;
-  text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em;
-  transition: all 0.3s; position: relative; overflow: hidden;
-  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
-}
-.btn-primary:hover { background: white; color: var(--bg); transform: translateX(10px); }
-.btn-outline {
-  background: transparent; color: var(--text); padding: 1.2rem 3rem;
-  border: 1px solid var(--border); font-family: var(--font-head); font-weight: 700; 
-  font-size: 0.8rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em;
-  transition: all 0.3s; clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
-}
+.hero-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 550px; margin-bottom: 3rem; font-weight: 400; line-height: 1.7; padding-left: 5vw; opacity: 0; animation: fade-in-up 0.8s 0.6s forwards; border-left: 2px solid var(--border); padding-left: 1.5rem; margin-left: 5vw; }
+.hero-btns { display: flex; gap: 1.2rem; padding-left: 5vw; opacity: 0; animation: fade-in-up 0.8s 0.8s forwards; margin-left: 5vw; }
+.btn-primary { background: var(--primary); color: white; padding: 1rem 2.5rem; font-family: var(--font-accent); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em; transition: all 0.3s; clip-path: polygon(0 0, 100% 0, 92% 100%, 0% 100%); }
+.btn-primary:hover { background: white; color: var(--bg); transform: translateX(5px); }
+.btn-outline { background: transparent; color: var(--text); padding: 1rem 2.5rem; border: 1px solid var(--border); font-family: var(--font-accent); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em; transition: all 0.3s; clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%); }
 .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
 
 @keyframes fade-in-left { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes fade-in-up { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ── MARQUEE ── */
+/* ── MARQUEE (Ukošeno, crveno, smanjeno) ── */
 .marquee-wrapper {
-  background: var(--text); padding: 1.5rem 0; overflow: hidden; position: relative; z-index: 10;
+  background: var(--primary);
+  transform: rotate(-2deg) scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 30, 56, 0.2);
+  padding: 0.8rem 0; overflow: hidden; position: relative; z-index: 10; margin-top: -20px; border: none;
 }
-.marquee-track {
-  display: flex; gap: 4rem; animation: marquee-fast 15s linear infinite; width: max-content;
-}
-.marquee-item {
-  font-family: var(--font-head); font-size: 2rem; font-weight: 800;
-  text-transform: uppercase; color: var(--bg); letter-spacing: -0.02em; display: flex; align-items: center; gap: 4rem;
-}
-.marquee-item::after { content: 'X'; color: var(--primary); font-size: 1rem; }
+.marquee-track { display: flex; gap: 3rem; animation: marquee-fast 18s linear infinite; width: max-content; }
+.marquee-item { font-family: var(--font-accent); font-size: 1.1rem; font-weight: 800; text-transform: uppercase; color: #000; letter-spacing: 0.05em; display: flex; align-items: center; gap: 3rem; }
+.marquee-item::after { content: '///'; color: rgba(0,0,0,0.3); font-size: 1rem; }
 @keyframes marquee-fast { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* ── ZAJEDNIČKI NASLOVI (Asimetrični) ── */
-section { padding: 10rem 5%; position: relative; z-index: 2; border-bottom: 1px solid var(--border); }
-.section-header { display: flex; flex-direction: column; align-items: flex-end; text-align: right; margin-bottom: 6rem; }
-.section-label {
-  color: var(--primary); font-family: var(--font-head); font-size: 0.8rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1rem;
-}
-.section-title {
-  font-family: var(--font-head); font-size: clamp(3rem, 6vw, 6rem);
-  font-weight: 800; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.04em; color: var(--border);
-}
+/* ── ZAJEDNIČKI NASLOVI ── */
+section { padding: 8rem 5%; position: relative; z-index: 2; border-bottom: 1px solid var(--border); }
+.section-header { display: flex; flex-direction: column; align-items: flex-end; text-align: right; margin-bottom: 4rem; }
+.section-label { color: var(--primary); font-family: var(--font-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.8rem; }
+/* Smanjeni naslovi sekcija, povratak na Outfit */
+.section-title { font-family: var(--font-head); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; text-transform: uppercase; line-height: 0.95; letter-spacing: -0.02em; color: var(--border); }
 .section-title span { color: var(--text); display: block; }
 
-/* ── O MENI (Novi tech/sports box dizajn) ── */
+/* ── O MENI ── */
 #o-meni { background: var(--bg-surface); }
 .omeni-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1400px; margin: 0 auto; }
 .omeni-photo-container { position: relative; }
-.omeni-photo-box {
-  width: 100%; aspect-ratio: 3/4; background: var(--bg-elevated); border: 1px solid var(--border);
-  position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;
-  overflow: hidden; clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
-}
-.omeni-photo-box img {
-    width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2); transition: filter 0.5s;
-}
+.omeni-photo-box { width: 100%; aspect-ratio: 3/4; background: var(--bg-elevated); border: 1px solid var(--border); position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; overflow: hidden; clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%); }
+.omeni-photo-box img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2); transition: filter 0.5s; }
 .omeni-photo-box:hover img { filter: grayscale(0%) contrast(1.1); }
+.photo-accent-1 { position: absolute; top: -15px; left: -15px; width: 80px; height: 80px; border-top: 2px solid var(--primary); border-left: 2px solid var(--primary); z-index: 3; }
+.photo-accent-2 { position: absolute; bottom: -15px; right: -15px; width: 80px; height: 80px; border-bottom: 2px solid var(--primary); border-right: 2px solid var(--primary); z-index: 1; }
 
-/* Glitch/Tech akcenti oko slike */
-.photo-accent-1 { position: absolute; top: -20px; left: -20px; width: 100px; height: 100px; border-top: 3px solid var(--primary); border-left: 3px solid var(--primary); z-index: 3; }
-.photo-accent-2 { position: absolute; bottom: -20px; right: -20px; width: 100px; height: 100px; border-bottom: 3px solid var(--primary); border-right: 3px solid var(--primary); z-index: 1; }
-
-.omeni-content p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8; }
+.omeni-content p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.8; }
 .omeni-content p strong { color: var(--text); font-weight: 600; }
 
-.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 4rem; }
-.stat-item { padding-left: 1.5rem; border-left: 3px solid var(--primary); }
-.stat-item-num { font-family: var(--font-head); font-size: 3rem; font-weight: 800; color: var(--text); line-height: 1; margin-bottom: 0.5rem; }
-.stat-item-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-faint); font-weight: 700; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+.stat-item { padding-left: 1.2rem; border-left: 2px solid var(--primary); }
+.stat-item-num { font-family: var(--font-head); font-size: 2.5rem; font-weight: 900; color: var(--text); line-height: 1; margin-bottom: 0.3rem; }
+.stat-item-label { font-size: 0.7rem; font-family: var(--font-accent); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); font-weight: 700; }
 
-
-/* ── KARIJERA & REZULTATI (Ukošeni boxovi) ── */
+/* ── KARIJERA ── */
 #karijera { background: var(--bg); }
-.career-list { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; }
-.career-card {
-  background: var(--bg-surface); border: 1px solid var(--border); padding: 3rem;
-  display: grid; grid-template-columns: auto 1fr auto; gap: 3rem; align-items: center;
-  transition: all 0.3s; position: relative; overflow: hidden;
-}
-.career-card::before {
-  content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--primary);
-  transform: scaleY(0); transform-origin: bottom; transition: transform 0.3s;
-}
-.career-card:hover { border-color: var(--primary); transform: translateX(10px); }
+.career-list { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
+.career-card { background: var(--bg-surface); border: 1px solid var(--border); padding: 2.5rem; display: grid; grid-template-columns: auto 1fr auto; gap: 2.5rem; align-items: center; transition: all 0.3s; position: relative; overflow: hidden; }
+.career-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--primary); transform: scaleY(0); transform-origin: bottom; transition: transform 0.3s; }
+.career-card:hover { border-color: var(--primary); transform: translateX(8px); }
 .career-card:hover::before { transform: scaleY(1); }
+.career-year { font-family: var(--font-head); font-size: 1.3rem; font-weight: 900; color: var(--text-faint); writing-mode: vertical-rl; transform: rotate(180deg); }
+.career-details h3 { font-family: var(--font-head); font-size: 1.6rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.4rem; color: var(--text); }
+.career-details p { color: var(--text-muted); font-size: 0.95rem; }
+.career-badge { background: var(--bg-elevated); border: 1px solid var(--border); padding: 0.8rem 1.5rem; font-family: var(--font-accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); text-align: center; }
 
-.career-year { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; color: var(--text-faint); writing-mode: vertical-rl; transform: rotate(180deg); }
-.career-details h3 { font-family: var(--font-head); font-size: 2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.5rem; color: var(--text); }
-.career-details p { color: var(--text-muted); font-size: 1rem; }
-.career-badge { background: var(--bg-elevated); border: 1px solid var(--border); padding: 1rem 2rem; font-family: var(--font-head); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); text-align: center; }
-
-
-/* ── GALERIJA (Grid s preklapanjem) ── */
+/* ── TURNIRI (MINI GALERIJA LINK) ── */
 #galerija { background: var(--bg-surface); }
-.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); max-width: 1400px; margin: 0 auto; }
-.gallery-item { background: var(--bg); padding: 4rem 2.5rem; text-align: center; transition: all 0.3s; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); max-width: 1400px; margin: 0 auto; margin-bottom: 3rem;}
+.gallery-item { background: var(--bg); padding: 3rem 2rem; text-align: center; transition: all 0.3s; }
 .gallery-item:hover { background: var(--bg-elevated); }
-.gallery-item h3 { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 1rem; color: var(--text); }
-.gallery-item p { color: var(--text-muted); font-size: 0.95rem; }
-.gallery-tag { display: inline-block; padding: 0.4rem 1rem; border: 1px solid var(--primary); color: var(--primary); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2rem; border-radius: 50px; }
-
+.gallery-item h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.8rem; color: var(--text); }
+.gallery-item p { color: var(--text-muted); font-size: 0.9rem; }
+.gallery-tag { display: inline-block; padding: 0.3rem 0.8rem; border: 1px solid var(--primary); color: var(--primary); font-size: 0.65rem; font-family: var(--font-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; border-radius: 50px; }
 
 /* ── FAQ ── */
 #faq { background: var(--bg); }
-.faq-container { max-width: 900px; margin: 0 auto; }
+.faq-container { max-width: 800px; margin: 0 auto; }
 .faq-item { border-bottom: 1px solid var(--border); }
-.faq-question {
-  width: 100%; background: none; border: none; text-align: left; padding: 2.5rem 0;
-  font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: var(--text);
-  cursor: pointer !important; display: flex; justify-content: space-between; align-items: center;
-  transition: color 0.2s; text-transform: uppercase; letter-spacing: 0.05em;
-}
+.faq-question { width: 100%; background: none; border: none; text-align: left; padding: 2rem 0; font-family: var(--font-head); font-size: 1.1rem; font-weight: 800; color: var(--text); cursor: pointer !important; display: flex; justify-content: space-between; align-items: center; transition: color 0.2s; text-transform: uppercase; }
 .faq-question:hover, .faq-question.active { color: var(--primary); }
-.faq-icon { font-size: 1.5rem; font-weight: 400; transition: transform 0.3s; color: var(--primary); }
+.faq-icon { font-size: 1.4rem; font-weight: 400; transition: transform 0.3s; color: var(--primary); }
 .faq-question.active .faq-icon { transform: rotate(45deg); }
 .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-.faq-answer-inner { padding-bottom: 2.5rem; color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; }
+.faq-answer-inner { padding-bottom: 2rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
 
-
-/* ── KONTAKT (Tvoj obrazac u novom ruhu) ── */
+/* ── KONTAKT I SOCIAL GUMBI ── */
 #kontakt { background: var(--bg-surface); }
-.contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 8rem; max-width: 1400px; margin: 0 auto; align-items: start; }
-.contact-info .section-header { align-items: flex-start; text-align: left; margin-bottom: 4rem; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto; align-items: start; }
+.contact-info .section-header { align-items: flex-start; text-align: left; margin-bottom: 2.5rem; }
 
-.contact-details-list { display: flex; flex-direction: column; gap: 2.5rem; }
-.contact-box { border-left: 2px solid var(--border); padding-left: 1.5rem; transition: border-color 0.3s; }
+.contact-details-list { display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem;}
+.contact-box { border-left: 2px solid var(--border); padding-left: 1.2rem; transition: border-color 0.3s; }
 .contact-box:hover { border-color: var(--primary); }
-.contact-box label { display: block; font-family: var(--font-head); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-faint); margin-bottom: 0.5rem; letter-spacing: 0.15em; }
-.contact-box span, .contact-box a { font-size: 1.25rem; font-weight: 500; color: var(--text); text-decoration: none; transition: color 0.2s; }
+.contact-box label { display: block; font-family: var(--font-accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-faint); margin-bottom: 0.3rem; letter-spacing: 0.1em; }
+.contact-box span, .contact-box a { font-family: var(--font-head); font-size: 1.1rem; font-weight: 800; color: var(--text); text-decoration: none; transition: color 0.2s; }
 .contact-box a:hover { color: var(--primary); }
 
-.contact-form { background: var(--bg); padding: 4rem; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 2rem; position: relative; }
-.contact-form::before { content: ''; position: absolute; top: -1px; left: -1px; width: 30%; height: 3px; background: var(--primary); }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.form-group { display: flex; flex-direction: column; gap: 0.8rem; }
-.form-group label { font-family: var(--font-head); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.1em; }
-.form-group input, .form-group textarea, .form-group select {
-  background: var(--bg-surface); border: 1px solid var(--border); color: white;
-  font-family: var(--font-body); font-size: 1rem; padding: 1.2rem; outline: none; transition: all 0.3s;
-}
-.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--primary); background: var(--bg); }
-.form-group textarea { min-height: 150px; resize: vertical; }
-.submit-btn {
-  background: var(--text); color: var(--bg); padding: 1.5rem; border: none; font-family: var(--font-head); font-weight: 800;
-  font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer !important; transition: all 0.3s;
-  align-self: flex-start;
-}
-.submit-btn:hover { background: var(--primary); color: white; }
-#form-success { display: none; margin-top: 1rem; padding: 1rem; border-left: 3px solid var(--primary); color: white; background: var(--bg-surface); }
+/* GUMBI ZA CHAT */
+.social-chat-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.chat-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.2rem; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; color: var(--text); text-decoration: none; font-family: var(--font-accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; transition: all 0.3s; }
+.chat-btn svg { width: 18px; height: 18px; fill: currentColor; }
+.chat-btn.wa:hover { background: #25D366; border-color: #25D366; color: #000; }
+.chat-btn.vi:hover { background: #7360f2; border-color: #7360f2; color: #fff; }
+.chat-btn.ms:hover { background: #00B2FF; border-color: #00B2FF; color: #fff; }
 
+/* KOMPAKTNIJA KONTAKT FORMA */
+.contact-form { background: var(--bg); padding: 2.5rem; border: 1px solid var(--border); border-radius: 12px; display: flex; flex-direction: column; gap: 1.2rem; position: relative; }
+.contact-form::before { content: ''; position: absolute; top: -1px; left: -1px; width: 30%; height: 3px; background: var(--primary); border-top-left-radius: 12px; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group label { font-family: var(--font-accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; }
+.form-group input, .form-group textarea { background: var(--bg-surface); border: 1px solid var(--border); color: white; font-family: var(--font-body); font-size: 0.9rem; padding: 0.8rem 1rem; border-radius: 6px; outline: none; transition: all 0.3s; }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--primary); background: var(--bg); }
+.form-group textarea { min-height: 100px; resize: vertical; }
+.submit-btn { background: var(--text); color: var(--bg); padding: 1rem; border: none; border-radius: 6px; font-family: var(--font-accent); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer !important; transition: all 0.3s; margin-top: 0.5rem;}
+.submit-btn:hover { background: var(--primary); color: white; }
+#form-success { display: none; margin-top: 0.5rem; padding: 0.8rem; border-radius: 6px; border-left: 3px solid var(--primary); color: white; background: var(--bg-surface); font-size: 0.85rem;}
 
 /* ── FOOTER ── */
-footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; }
-.footer-logo { font-family: var(--font-head); font-size: 2.5rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 3rem; text-transform: uppercase; }
+footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; }
+.footer-logo { font-family: var(--font-head); font-size: 2rem; font-weight: 900; margin-bottom: 2rem; text-transform: uppercase; }
 .footer-logo span { color: var(--primary); }
-.footer-links { display: flex; gap: 3rem; margin-bottom: 4rem; flex-wrap: wrap; justify-content: center; }
-.footer-links a { color: var(--text-faint); text-decoration: none; font-family: var(--font-head); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.15em; transition: color 0.2s; }
+.footer-links { display: flex; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; justify-content: center; }
+.footer-links a { color: var(--text-faint); text-decoration: none; font-family: var(--font-accent); font-weight: 700; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em; transition: color 0.2s; }
 .footer-links a:hover { color: var(--text); }
-.footer-bottom { width: 100%; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-faint); font-size: 0.8rem; text-align: center; }
+.footer-bottom { width: 100%; border-top: 1px solid var(--border); padding-top: 1.5rem; color: var(--text-faint); font-size: 0.75rem; text-align: center; }
 
 /* ── REVEAL KLASA ── */
-.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .reveal-left.visible { opacity: 1; transform: translateX(0); }
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
@@ -348,24 +242,16 @@ footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--bo
   nav { padding: 1rem 5%; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  .nav-links.open {
-    display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
-    background: #000; padding: 2rem; border-bottom: 1px solid var(--border); gap: 1.5rem;
-  }
-  
-  .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #000; padding: 2rem; border-bottom: 1px solid var(--border); gap: 1.5rem; }
+  .hero-title { font-size: clamp(3rem, 12vw, 4.5rem); }
   .hero-title span.outline { padding-left: 0; }
   .hero-sub, .hero-btns { padding-left: 0; margin-left: 0; border-left: none; }
   .hero-btns { flex-direction: column; }
-  
-  .section-header { align-items: flex-start; text-align: left; }
-  
+  .section-header { align-items: flex-start; text-align: left; margin-bottom: 2.5rem;}
   .career-card { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem; }
   .career-year { writing-mode: horizontal-tb; transform: none; }
-  
   .gallery-grid { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
-  .contact-form { padding: 2rem; }
+  .contact-form { padding: 1.5rem; }
 }
 </style>
 </head>
@@ -382,7 +268,7 @@ footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--bo
     <ul class="nav-links" id="nav-links">
       <li><a href="#o-meni">O meni</a></li>
       <li><a href="#karijera">Rezultati</a></li>
-      <li><a href="#galerija">Turniri</a></li>
+      <li><a href="galerija.html">Foto Galerija</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
@@ -402,12 +288,12 @@ footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--bo
       </p>
       <div class="hero-btns">
         <a href="#karijera" class="btn-primary">Rezultati i klubovi</a>
-        <a href="#kontakt" class="btn-outline">Surađujmo</a>
+        <a href="galerija.html" class="btn-outline">Otvori Galeriju</a>
       </div>
     </div>
   </header>
 
-  <!-- MARQUEE STRIP -->
+  <!-- MARQUEE STRIP (Ukošeno, Crveno, Manje) -->
   <div class="marquee-wrapper">
     <div class="marquee-track">
       <div class="marquee-item">Državni Prvak 2023</div>
@@ -433,7 +319,7 @@ footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--bo
       <div class="omeni-photo-container reveal-left">
         <div class="photo-accent-1"></div>
         <div class="omeni-photo-box">
-            <!-- PLACEHOLDER SLIKA ZA MARKA (Možeš ju zamijeniti s pravim img tagom) -->
+            <!-- PLACEHOLDER SLIKA ZA MARKA -->
             <span style="font-family: var(--font-head); font-size: 2rem; color: var(--text-faint); font-weight: 800;">FOTO OVDJE</span>
         </div>
         <div class="photo-accent-2"></div>
@@ -496,7 +382,7 @@ footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--bo
     </div>
   </section>
 
-  <!-- TURNIRI (Galerija) -->
+  <!-- TURNIRI PREVIEW -->
   <section id="galerija">
     <div class="section-header reveal">
       <div class="section-label">Pregled natjecanja</div>
@@ -504,43 +390,25 @@ footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--bo
     </div>
     
     <div class="gallery-grid reveal">
-      
       <div class="gallery-item">
         <div class="gallery-tag">Prelog 2026.</div>
         <h3>Srebrna medalja (PH)</h3>
-        <p>Na Prvenstvu Hrvatske u Prelogu 2026. godine osigurao sam drugo mjesto i srebrnu medalju za klub "Uspon", u izrazito jakoj domaćoj konkurenciji.</p>
+        <p>Na Prvenstvu Hrvatske u Prelogu 2026. godine osigurao sam drugo mjesto i srebrnu medalju za klub "Uspon".</p>
       </div>
-
       <div class="gallery-item">
         <div class="gallery-tag">Podgorica 2026.</div>
         <h3>Prolazak skupine</h3>
-        <p>Na nedavnom jakom međunarodnom turniru u Podgorici (svibanj 2026.) uspješan prolazak grupne faze i nastup protiv elitnih europskih igrača.</p>
+        <p>Na nedavnom jakom međunarodnom turniru u Podgorici (svibanj 2026.) uspješan prolazak grupne faze.</p>
       </div>
-
       <div class="gallery-item">
         <div class="gallery-tag">Laško 2025.</div>
         <h3>Challenger Turnir</h3>
-        <p>Nastup na jednom od najcjenjenijih parasportskih turnira, "Laško Challenger", gdje sam se natjecao pojedinačno i u igri mješovitih parova.</p>
+        <p>Nastup na cijenjenom parasportskom turniru, natjecanje pojedinačno i u igri mješovitih parova.</p>
       </div>
-
-      <div class="gallery-item">
-        <div class="gallery-tag">Sardinija 2024.</div>
-        <h3>Međunarodni transfer</h3>
-        <p>Potpis ugovora s talijanskim klubom Santa Tecla Nulvi i redoviti nastupi u njihovoj nacionalnoj ligi.</p>
-      </div>
-
-      <div class="gallery-item">
-        <div class="gallery-tag">Slavonski Brod 2023.</div>
-        <h3>Državni prvak (Zlato)</h3>
-        <p>Kruna dotadašnjeg rada - osvajanje prvog mjesta na 29. Prvenstvu Hrvatske u parastolnom tenisu u Klasi 8.</p>
-      </div>
-
-      <div class="gallery-item">
-        <div class="gallery-tag">Podgorica 2023.</div>
-        <h3>Bronca u parovima</h3>
-        <p>Osvajanje brončane medalje u igri parova s kolegom Bornom Zohilom, braneći boje hrvatske reprezentacije.</p>
-      </div>
-
+    </div>
+    
+    <div class="reveal" style="text-align: center; margin-top: 3rem;">
+        <a href="galerija.html" class="btn-outline">Pogledaj sve fotografije u galeriji</a>
     </div>
   </section>
 
@@ -560,21 +428,11 @@ footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--bo
           </div>
         </div>
       </div>
-
       <div class="faq-item">
         <button class="faq-question">Kako izgleda tvoj dnevni ritam treninga? <span class="faq-icon">+</span></button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            Sportski režim je strog. U dvorani sam često i dva puta dnevno. Trening se sastoji od taktičkog rada za stolom, sparinga, ali i neophodnih kondicijskih i fizičkih priprema u teretani kako bih bio spreman za međunarodnu konkurenciju.
-          </div>
-        </div>
-      </div>
-      
-      <div class="faq-item">
-        <button class="faq-question">Kako se može postati moj sponzor? <span class="faq-icon">+</span></button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Putovanja na europske turnire i nabava kvalitetne sportske opreme iziskuju znatna sredstva. Otvoren sam za sve oblike sponzorstava, a partnerima nudim vidljivost na opremi, društvenim mrežama i webu, uz promociju kroz moje sportske rezultate. Javite se putem kontakta ispod.
+            Sportski režim je strog. U dvorani sam često i dva puta dnevno. Trening se sastoji od taktičkog rada za stolom, sparinga, ali i neophodnih kondicijskih i fizičkih priprema u teretani.
           </div>
         </div>
       </div>
@@ -585,9 +443,9 @@ footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--bo
   <section id="kontakt">
     <div class="contact-grid">
       <div class="contact-info reveal-left">
-        <div class="section-header" style="margin-bottom: 3rem;">
+        <div class="section-header">
           <div class="section-label">Podrška</div>
-          <h2 class="section-title" style="font-size: clamp(2.5rem, 5vw, 4rem);">Kontakt</h2>
+          <h2 class="section-title">Kontakt</h2>
         </div>
         
         <div class="contact-details-list">
@@ -600,38 +458,43 @@ footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--bo
             <span><a href="tel:+385992190445">099 2190 445</a></span>
           </div>
           <div class="contact-box">
-            <label>Društvene mreže</label>
+            <label>Službena Stranica</label>
             <a href="https://www.facebook.com/profile.php?id=100090668830331" target="_blank" rel="noopener">Facebook Profil ↗</a>
           </div>
+        </div>
+
+        <!-- Social Chat Gumbi -->
+        <div class="social-chat-btns">
+            <a href="https://wa.me/385992190445" target="_blank" class="chat-btn wa" title="WhatsApp">
+                <svg viewBox="0 0 24 24"><path d="M12.031 21.033c-1.895 0-3.753-.509-5.385-1.474l-5.961 1.564 1.593-5.811c-1.061-1.666-1.62-3.6-1.62-5.59 0-5.908 4.81-10.718 10.72-10.718 2.868 0 5.56 1.117 7.585 3.143 2.026 2.026 3.14 4.718 3.14 7.586 0 5.908-4.81 10.718-10.72 10.718zm-5.783-3.238c1.644.975 3.526 1.487 5.435 1.487 5.068 0 9.198-4.129 9.198-9.198 0-2.456-.957-4.767-2.694-6.505-1.737-1.737-4.05-2.694-6.505-2.694-5.068 0-9.198 4.129-9.198 9.198 0 1.983.535 3.916 1.549 5.617l-1.042 3.805 3.896-1.022zm9.117-6.57c-.255-.128-1.51-.746-1.744-.831-.234-.085-.404-.128-.575.128-.17.255-.659.831-.809 1.002-.149.17-.3.192-.554.064-2.18-.946-3.52-2.316-4.526-4.04-.106-.192.095-.16.34-.648.085-.17.042-.319-.021-.447-.064-.128-.575-1.385-.788-1.896-.208-.498-.421-.431-.575-.438-.149-.007-.319-.007-.489-.007-.17 0-.447.064-.681.319-.234.255-.894.873-.894 2.129 0 1.256.915 2.47 1.043 2.64.128.17 1.8 2.747 4.364 3.85.597.257 1.062.41 1.425.525.599.19 1.144.163 1.575.1.483-.071 1.51-.618 1.724-1.214.213-.596.213-1.107.149-1.214-.064-.106-.234-.17-.489-.298z"/></svg>
+                WhatsApp
+            </a>
+            <a href="viber://chat?number=%2B385992190445" class="chat-btn vi" title="Viber">
+                <svg viewBox="0 0 24 24"><path d="M19.463 6.953c-.352-2.228-2.072-4-4.298-4.464-1.232-.258-3.418-.258-4.664 0-2.226.464-3.946 2.236-4.298 4.464-.236 1.488-.236 4.148 0 5.636.352 2.228 2.072 4 4.298 4.464 1.11.232 2.946.25 4.17.054l2.808 1.838c.552.36 1.258-.04 1.258-.718v-2.01c1.554-.83 2.658-2.316 2.952-4.048.236-1.488.236-3.722-.226-5.216zm-3.056 6.586c-.198.376-.566.604-1.042.604h-.234c-1.396 0-3.328-1.026-4.576-2.274-1.248-1.248-2.274-3.18-2.274-4.576v-.234c0-.476.228-.844.604-1.042.458-.242 1.054-.158 1.408.286l.666.834c.264.33.284.81.044 1.168l-.442.662c-.172.258-.12.61.12.85 1.114 1.114 1.704 1.704 2.818 2.818.24.24.592.292.85.12l.662-.442c.358-.24.838-.22 1.168.044l.834.666c.444.354.528.95.286 1.408z"/></svg>
+                Viber
+            </a>
+            <a href="https://m.me/100090668830331" target="_blank" class="chat-btn ms" title="Messenger">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.9 1.42 5.485 3.66 7.155v3.666c0 .416.48.643.806.38l3.312-2.67c.723.2 1.468.303 2.222.303 5.523 0 10-4.145 10-9.259S17.523 2 12 2zm1.037 12.35l-2.66-2.846-5.187 2.846 5.674-6.02 2.7 2.846 5.143-2.846-5.67 6.02z"/></svg>
+                Messenger
+            </a>
         </div>
       </div>
 
       <div class="reveal-right">
-        <!-- Zadržan tvoj formspree kod za obrazac -->
         <form class="contact-form" action="#" method="POST" id="contact-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Ime ili Tvrtka</label>
-              <input type="text" name="name" required>
-            </div>
-            <div class="form-group">
-              <label>Vaš Email</label>
-              <input type="email" name="email" required>
-            </div>
+          <div class="form-group">
+            <label>Ime ili Tvrtka</label>
+            <input type="text" name="name" required>
           </div>
           <div class="form-group">
-            <label>Vrsta Upita</label>
-            <select name="subject">
-              <option>Sponzorstvo / Suradnja</option>
-              <option>Medijski upit</option>
-              <option>Ostalo</option>
-            </select>
+            <label>Vaš Email</label>
+            <input type="email" name="email" required>
           </div>
           <div class="form-group">
             <label>Poruka</label>
             <textarea name="message" required></textarea>
           </div>
-          <button type="submit" class="submit-btn">Pošalji poruku</button>
+          <button type="submit" class="submit-btn">Pošalji Email</button>
           <div id="form-success">Vaša poruka je uspješno poslana!</div>
         </form>
       </div>
@@ -644,7 +507,7 @@ footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--bo
       <a href="#hero">Početna</a>
       <a href="#o-meni">Tko sam ja</a>
       <a href="#karijera">Klubovi</a>
-      <a href="#galerija">Turniri</a>
+      <a href="galerija.html">Galerija</a>
       <a href="#kontakt">Sponzorstva</a>
     </div>
     <div class="footer-bottom">
@@ -733,14 +596,14 @@ footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--bo
       });
     });
 
-    // ── Form (Ovdje u bazi ostaje fejk submit dok ga ti ne spojiš na formspree) ──
+    // ── Form (Ovdje u bazi ostaje fejk submit) ──
     document.getElementById('contact-form').addEventListener('submit', (e) => {
       e.preventDefault();
       const btn = e.target.querySelector('button');
       btn.textContent = 'Slanje...';
       setTimeout(() => {
         e.target.reset();
-        btn.textContent = 'Pošalji poruku';
+        btn.textContent = 'Pošalji Email';
         document.getElementById('form-success').style.display = 'block';
         setTimeout(() => { document.getElementById('form-success').style.display = 'none'; }, 3000);
       }, 1000);
