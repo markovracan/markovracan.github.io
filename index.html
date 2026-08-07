@@ -3,46 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="Marko Vračan - Službeni portfolio hrvatskog parastolnotenisača.">
-<meta name="keywords" content="Marko Vračan, parastolni tenis, parasport, Santa Tecla Nulvi, PSK Synergia, klasa 8">
+<meta name="keywords" content="Marko Vračan, parastolni tenis, parasport, Santa Tecla Nulvi, PSK Synergia, Uspon, klasa 8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marko Vračan | Parastolnotenisač</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syncopate:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Novi dinamični sportski dizajn: Agresivna crvena i Duboka crna/Antracit */
-  --primary: #ff2a4b; 
-  --primary-hover: #e01b38;
-  --bg-main: #050505;
-  --bg-surface: #121212;
-  --bg-elevated: #1a1a1a;
-  --text-main: #ffffff;
-  --text-muted: #a1a1aa;
-  --text-faint: #52525b;
-  --border-color: #27272a;
+  /* Novi brutalni, asimetrični dizajn - agresivna crvena i totalna crnina */
+  --primary: #ff1e38; 
+  --primary-glow: rgba(255, 30, 56, 0.4);
+  --bg: #030303;
+  --bg-surface: #0a0a0a;
+  --bg-elevated: #111111;
+  --text: #ffffff;
+  --text-muted: #888888;
+  --text-faint: #444444;
+  --border: #222222;
   
-  --font-head: 'Outfit', sans-serif;
+  --font-head: 'Syncopate', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg-main);
-  color: var(--text-main);
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* ── CURSOR (Zadržano ispod haube, ali moderan sportski izgled) ── */
+/* ── CURSOR ── */
 *, *::before, *::after { cursor: none !important; }
 #cursor {
-  position: fixed; width: 6px; height: 6px;
+  position: fixed; width: 4px; height: 4px;
   background: var(--primary); border-radius: 50%;
   pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%);
@@ -50,359 +50,322 @@ body {
   will-change: transform;
 }
 #cursor-ring {
-  position: fixed; width: 40px; height: 40px;
-  border: 1px solid rgba(255, 42, 75, 0.3); border-radius: 50%;
+  position: fixed; width: 30px; height: 30px;
+  border: 1px solid var(--primary); border-radius: 50%;
   pointer-events: none; z-index: 9998;
   transform: translate(-50%, -50%);
-  transition: transform 0.15s ease-out, width 0.2s, height 0.2s, border-color 0.2s, background 0.2s;
+  transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background 0.2s;
   will-change: transform;
 }
-body:has(a:hover) #cursor, body:has(button:hover) #cursor { width: 0; height: 0; }
 body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { 
-  width: 60px; height: 60px; 
-  border-color: var(--primary); 
-  background: rgba(255, 42, 75, 0.1); 
-  backdrop-filter: blur(2px);
+  width: 50px; height: 50px; 
+  background: rgba(255, 30, 56, 0.1); 
+  border-width: 2px;
 }
 @media (pointer: coarse) {
   #cursor, #cursor-ring { display: none !important; }
   *, *::before, *::after { cursor: auto !important; }
 }
 
-/* ── PARTICLES (Zadržano, ali kao dinamične crvene iskre) ── */
+/* ── PARTICLES (Kose crvene munje) ── */
 #particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
 .particle {
-  position: absolute; width: 2px; height: 20px;
+  position: absolute; width: 1px; height: 30px;
   background: linear-gradient(to bottom, transparent, var(--primary));
   animation: rain-up linear infinite;
   opacity: 0;
+  transform: rotate(25deg);
 }
 @keyframes rain-up {
-  0% { opacity: 0; transform: translateY(100vh) scaleY(1); }
-  20% { opacity: 0.5; }
-  80% { opacity: 0.3; }
-  100% { opacity: 0; transform: translateY(-10vh) scaleY(2); }
+  0% { opacity: 0; transform: translateY(100vh) translateX(0) rotate(25deg); }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.4; }
+  100% { opacity: 0; transform: translateY(-20vh) translateX(20vh) rotate(25deg); }
 }
 
-/* ── FLOATING NAV (Moderan "Pill" dizajn, nije više full width) ── */
+/* ── NAVIGACIJA ── */
 nav {
-  position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0.5rem 1rem 0.5rem 2rem;
-  width: 90%; max-width: 1200px;
-  background: rgba(18, 18, 18, 0.7);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 100px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  padding: 1.5rem 4%;
+  background: rgba(3, 3, 3, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
   transition: all 0.3s ease;
 }
 nav.scrolled {
-  background: rgba(18, 18, 18, 0.95);
-  border-color: rgba(255, 42, 75, 0.3);
-  top: 10px;
+  background: rgba(3, 3, 3, 0.98);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 4%;
 }
 .nav-logo {
-  font-family: var(--font-head); font-size: 1.5rem; font-weight: 900;
-  color: var(--text-main); text-decoration: none; letter-spacing: -0.02em;
+  font-family: var(--font-head); font-size: 1.2rem; font-weight: 800;
+  color: var(--text); text-decoration: none; text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 .nav-logo span { color: var(--primary); }
-.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links { display: flex; gap: 3rem; list-style: none; align-items: center; }
 .nav-links a {
-  color: var(--text-muted); text-decoration: none; font-size: 0.85rem;
-  font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-muted); text-decoration: none; font-size: 0.75rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em;
   transition: color 0.2s; position: relative;
 }
-.nav-links a:hover { color: var(--text-main); }
+.nav-links a:hover { color: var(--text); }
 .nav-links a::after {
-  content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
-  width: 4px; height: 4px; border-radius: 50%; background: var(--primary);
-  opacity: 0; transition: opacity 0.2s, transform 0.2s;
+  content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px;
+  background: var(--primary); transform: scaleX(0); transform-origin: right;
+  transition: transform 0.3s ease;
 }
-.nav-links a:hover::after { opacity: 1; transform: translateX(-50%) scale(1.5); }
+.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
 
-.nav-cta {
-  background: var(--text-main); color: var(--bg-main);
-  padding: 0.7rem 1.8rem; border-radius: 50px;
-  font-family: var(--font-head); font-size: 0.85rem; font-weight: 800;
-  text-transform: uppercase; text-decoration: none;
-  transition: all 0.3s ease;
-}
-.nav-cta:hover { background: var(--primary); color: white; transform: scale(1.05); }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 5px; z-index: 101;}
+.hamburger span { display: block; width: 28px; height: 2px; background: var(--text); transition: 0.3s;}
 
-.hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; padding: 10px; z-index: 101;}
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--text-main); transition: 0.3s; border-radius: 2px;}
-
-/* ── HERO (Sportski, agresivni kutovi i glow) ── */
+/* ── HERO (Brutalizam) ── */
 #hero {
   min-height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  padding: 120px 5% 60px;
+  display: flex; align-items: center;
+  padding: 150px 5% 60px;
   position: relative; overflow: hidden;
 }
-.hero-bg-glow {
-  position: absolute; top: -10%; right: -10%; width: 60vw; height: 60vw;
-  background: radial-gradient(circle, rgba(255, 42, 75, 0.15) 0%, transparent 60%);
-  z-index: 0; filter: blur(40px);
+.hero-bg {
+  position: absolute; right: -20%; top: -10%; width: 70vw; height: 100vh;
+  background: radial-gradient(circle at center, rgba(255,30,56,0.15) 0%, transparent 70%);
+  z-index: 0; filter: blur(50px);
 }
-.hero-grid-pattern {
+.hero-lines {
   position: absolute; inset: 0; z-index: 0;
-  background-image: linear-gradient(var(--border-color) 1px, transparent 1px), linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-  background-size: 40px 40px; opacity: 0.3;
-  mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+  background: repeating-linear-gradient(90deg, var(--border) 0, var(--border) 1px, transparent 1px, transparent 10vw);
+  opacity: 0.3;
 }
 .hero-content {
-  position: relative; z-index: 2; width: 100%; max-width: 1200px;
-  display: flex; flex-direction: column; align-items: flex-start;
+  position: relative; z-index: 2; width: 100%; max-width: 1400px; margin: 0 auto;
 }
 .hero-eyebrow {
-  display: inline-block; padding: 0.4rem 1rem; border-radius: 50px;
-  background: rgba(255, 42, 75, 0.1); border: 1px solid rgba(255, 42, 75, 0.3);
+  display: flex; align-items: center; gap: 1rem;
   color: var(--primary); font-family: var(--font-head); font-weight: 700;
-  font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
-  margin-bottom: 2rem; opacity: 0; animation: slide-up 0.8s 0.2s ease forwards;
+  font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+  margin-bottom: 2rem; opacity: 0; animation: fade-in-left 0.8s 0.2s forwards;
 }
+.hero-eyebrow::before { content: ''; display: block; width: 60px; height: 2px; background: var(--primary); }
+
 .hero-title {
-  font-family: var(--font-head); font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 900; line-height: 0.95; text-transform: uppercase;
-  margin-bottom: 1.5rem; letter-spacing: -0.03em;
-  opacity: 0; animation: slide-up 0.8s 0.4s ease forwards;
+  font-family: var(--font-head); font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 800; line-height: 0.85; text-transform: uppercase;
+  margin-bottom: 2rem; letter-spacing: -0.05em; display: flex; flex-direction: column;
 }
-.hero-title .outline {
-  -webkit-text-stroke: 2px var(--text-main); color: transparent;
+.hero-title span:first-child { opacity: 0; animation: fade-in-up 0.8s 0.4s forwards; }
+.hero-title span.outline {
+  -webkit-text-stroke: 2px var(--text); color: transparent; padding-left: 5vw;
+  opacity: 0; animation: fade-in-up 0.8s 0.5s forwards;
 }
+
 .hero-sub {
-  font-size: 1.1rem; color: var(--text-muted); max-width: 500px;
-  margin-bottom: 3rem; font-weight: 400; line-height: 1.6;
-  opacity: 0; animation: slide-up 0.8s 0.6s ease forwards;
+  font-size: 1.1rem; color: var(--text-muted); max-width: 600px;
+  margin-bottom: 3.5rem; font-weight: 400; line-height: 1.7; padding-left: 5vw;
+  opacity: 0; animation: fade-in-up 0.8s 0.6s forwards; border-left: 2px solid var(--border); padding-left: 2rem; margin-left: 5vw;
 }
 
 .hero-btns {
-  display: flex; gap: 1rem; opacity: 0; animation: slide-up 0.8s 0.8s ease forwards;
+  display: flex; gap: 1.5rem; padding-left: 5vw; opacity: 0; animation: fade-in-up 0.8s 0.8s forwards; margin-left: 5vw;
 }
 .btn-primary {
-  background: var(--primary); color: white; padding: 1.2rem 2.5rem;
-  border-radius: 8px; font-family: var(--font-head); font-weight: 800;
-  font-size: 0.9rem; text-transform: uppercase; text-decoration: none;
-  letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(255, 42, 75, 0.4);
-  position: relative; overflow: hidden;
+  background: var(--primary); color: white; padding: 1.2rem 3rem;
+  font-family: var(--font-head); font-weight: 700; font-size: 0.8rem;
+  text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em;
+  transition: all 0.3s; position: relative; overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
 }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 42, 75, 0.6); }
+.btn-primary:hover { background: white; color: var(--bg); transform: translateX(10px); }
 .btn-outline {
-  background: rgba(255,255,255,0.03); color: var(--text-main); padding: 1.2rem 2.5rem;
-  border-radius: 8px; border: 1px solid var(--border-color);
-  font-family: var(--font-head); font-weight: 700; font-size: 0.9rem;
-  text-transform: uppercase; text-decoration: none; letter-spacing: 0.05em;
-  transition: all 0.3s;
+  background: transparent; color: var(--text); padding: 1.2rem 3rem;
+  border: 1px solid var(--border); font-family: var(--font-head); font-weight: 700; 
+  font-size: 0.8rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em;
+  transition: all 0.3s; clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
 }
-.btn-outline:hover { background: white; color: black; }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
 
-@keyframes slide-up { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fade-in-left { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes fade-in-up { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ── DYNAMIC MARQUEE (Kosi, agresivni stil) ── */
+/* ── MARQUEE ── */
 .marquee-wrapper {
-  background: var(--primary); transform: rotate(-2deg) scale(1.05);
-  box-shadow: 0 0 40px rgba(255, 42, 75, 0.2); position: relative; z-index: 10;
-  margin-top: -30px; overflow: hidden; border: none; padding: 1.2rem 0;
+  background: var(--text); padding: 1.5rem 0; overflow: hidden; position: relative; z-index: 10;
 }
 .marquee-track {
-  display: flex; gap: 3rem; animation: marquee-fast 20s linear infinite; width: max-content;
+  display: flex; gap: 4rem; animation: marquee-fast 15s linear infinite; width: max-content;
 }
 .marquee-item {
-  font-family: var(--font-head); font-size: 1.5rem; font-weight: 900;
-  text-transform: uppercase; color: #000; letter-spacing: 0.05em; font-style: italic;
-  display: flex; align-items: center; gap: 3rem;
+  font-family: var(--font-head); font-size: 2rem; font-weight: 800;
+  text-transform: uppercase; color: var(--bg); letter-spacing: -0.02em; display: flex; align-items: center; gap: 4rem;
 }
-.marquee-item::after { content: '///'; color: rgba(0,0,0,0.3); }
+.marquee-item::after { content: 'X'; color: var(--primary); font-size: 1rem; }
 @keyframes marquee-fast { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* ── SECTIONS (Zajednički stilovi) ── */
-section { padding: 8rem 5%; position: relative; z-index: 2; }
+/* ── ZAJEDNIČKI NASLOVI (Asimetrični) ── */
+section { padding: 10rem 5%; position: relative; z-index: 2; border-bottom: 1px solid var(--border); }
+.section-header { display: flex; flex-direction: column; align-items: flex-end; text-align: right; margin-bottom: 6rem; }
 .section-label {
-  display: flex; align-items: center; gap: 1rem; color: var(--primary);
-  font-family: var(--font-head); font-size: 0.85rem; font-weight: 800;
-  text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1rem;
+  color: var(--primary); font-family: var(--font-head); font-size: 0.8rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1rem;
 }
-.section-label::before { content: ''; width: 40px; height: 3px; background: var(--primary); }
 .section-title {
-  font-family: var(--font-head); font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 900; text-transform: uppercase; line-height: 1; margin-bottom: 3rem;
-  letter-spacing: -0.02em;
+  font-family: var(--font-head); font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 800; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.04em; color: var(--border);
 }
+.section-title span { color: var(--text); display: block; }
 
-/* ── STATS (Minimalistički, veliki brojevi) ── */
-#stats { padding: 6rem 5%; border-bottom: 1px solid var(--border-color); background: var(--bg-surface); }
-.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-.stat-box { text-align: left; padding: 2rem; border-left: 2px solid var(--border-color); transition: border-color 0.3s; }
-.stat-box:hover { border-color: var(--primary); }
-.stat-number { font-family: var(--font-head); font-size: clamp(4rem, 6vw, 6rem); font-weight: 900; color: var(--text-main); line-height: 1; margin-bottom: 0.5rem; }
-.stat-number span { color: var(--primary); } /* Za sufiks */
-.stat-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; }
+/* ── O MENI (Novi tech/sports box dizajn) ── */
+#o-meni { background: var(--bg-surface); }
+.omeni-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1400px; margin: 0 auto; }
+.omeni-photo-container { position: relative; }
+.omeni-photo-box {
+  width: 100%; aspect-ratio: 3/4; background: var(--bg-elevated); border: 1px solid var(--border);
+  position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
+}
+.omeni-photo-box img {
+    width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2); transition: filter 0.5s;
+}
+.omeni-photo-box:hover img { filter: grayscale(0%) contrast(1.1); }
 
-/* ── O MENI (Sportski layout, preklapanje) ── */
-#o-meni { background: var(--bg-main); }
-.omeni-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1200px; margin: 0 auto; }
-.omeni-photo-wrap { position: relative; }
-.omeni-photo-wrap::before {
-  content: ''; position: absolute; top: 20px; left: 20px; right: -20px; bottom: -20px;
-  background: var(--border-color); border-radius: 20px; z-index: 0;
-}
-.omeni-photo {
-  width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 20px;
-  position: relative; z-index: 1; background: var(--bg-elevated);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-head); font-size: 2rem; color: var(--text-faint); text-transform: uppercase;
-}
-.omeni-text p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-.omeni-text p strong { color: white; font-weight: 600; }
-.sports-principles { display: grid; gap: 1.5rem; margin-top: 3rem; }
-.principle-card {
-  background: var(--bg-surface); padding: 1.5rem; border-radius: 12px;
-  border: 1px solid var(--border-color); display: flex; gap: 1.5rem;
-  transition: transform 0.3s, border-color 0.3s;
-}
-.principle-card:hover { transform: translateX(10px); border-color: var(--primary); }
-.principle-num { font-family: var(--font-head); font-size: 2rem; font-weight: 900; color: rgba(255,255,255,0.1); line-height: 1; }
-.principle-card:hover .principle-num { color: var(--primary); }
-.principle-content h4 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; }
-.principle-content p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+/* Glitch/Tech akcenti oko slike */
+.photo-accent-1 { position: absolute; top: -20px; left: -20px; width: 100px; height: 100px; border-top: 3px solid var(--primary); border-left: 3px solid var(--primary); z-index: 3; }
+.photo-accent-2 { position: absolute; bottom: -20px; right: -20px; width: 100px; height: 100px; border-bottom: 3px solid var(--primary); border-right: 3px solid var(--primary); z-index: 1; }
 
-/* ── KARIJERA (Ex Cjenik) - "Sport Roster" stil ── */
-#karijera { background: var(--bg-surface); }
-.career-container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
-.career-row {
-  background: var(--bg-elevated); border: 1px solid var(--border-color);
-  border-radius: 16px; padding: 2rem; display: flex; align-items: center; justify-content: space-between;
-  transition: all 0.3s ease; position: relative; overflow: hidden;
-}
-.career-row::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-  background: var(--primary); transform: scaleY(0); transition: transform 0.3s ease;
-}
-.career-row:hover { background: #202020; border-color: #333; transform: scale(1.02); }
-.career-row:hover::before { transform: scaleY(1); }
-.career-info h3 { font-family: var(--font-head); font-size: 1.8rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.3rem; }
-.career-info p { color: var(--text-muted); font-size: 0.95rem; }
-.career-badge {
-  background: rgba(255, 42, 75, 0.1); color: var(--primary); padding: 0.5rem 1.2rem;
-  border-radius: 50px; font-family: var(--font-head); font-size: 0.85rem; font-weight: 800;
-  text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid rgba(255, 42, 75, 0.3);
-}
+.omeni-content p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8; }
+.omeni-content p strong { color: var(--text); font-weight: 600; }
 
-/* ── ISTAKNUTO (Cards sa slikama) ── */
-#galerija { background: var(--bg-main); }
-.highlight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-.highlight-card {
-  background: var(--bg-surface); border-radius: 20px; overflow: hidden;
-  border: 1px solid var(--border-color); display: flex; flex-direction: column;
-  transition: all 0.3s ease;
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 4rem; }
+.stat-item { padding-left: 1.5rem; border-left: 3px solid var(--primary); }
+.stat-item-num { font-family: var(--font-head); font-size: 3rem; font-weight: 800; color: var(--text); line-height: 1; margin-bottom: 0.5rem; }
+.stat-item-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-faint); font-weight: 700; }
+
+
+/* ── KARIJERA & REZULTATI (Ukošeni boxovi) ── */
+#karijera { background: var(--bg); }
+.career-list { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; }
+.career-card {
+  background: var(--bg-surface); border: 1px solid var(--border); padding: 3rem;
+  display: grid; grid-template-columns: auto 1fr auto; gap: 3rem; align-items: center;
+  transition: all 0.3s; position: relative; overflow: hidden;
 }
-.highlight-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.8); border-color: #333; }
-.highlight-img-placeholder {
-  height: 200px; background: var(--bg-elevated); border-bottom: 1px solid var(--border-color);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-head); color: var(--text-faint); font-weight: 700; font-size: 1.5rem; text-transform: uppercase;
+.career-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--primary);
+  transform: scaleY(0); transform-origin: bottom; transition: transform 0.3s;
 }
-.highlight-content { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
-.highlight-tags { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-.tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
-.tag.year { color: var(--text-main); background: #222; padding: 0.2rem 0.8rem; border-radius: 4px; }
-.highlight-content h3 { font-family: var(--font-head); font-size: 1.6rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; text-transform: uppercase; }
-.highlight-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0; }
+.career-card:hover { border-color: var(--primary); transform: translateX(10px); }
+.career-card:hover::before { transform: scaleY(1); }
+
+.career-year { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; color: var(--text-faint); writing-mode: vertical-rl; transform: rotate(180deg); }
+.career-details h3 { font-family: var(--font-head); font-size: 2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.5rem; color: var(--text); }
+.career-details p { color: var(--text-muted); font-size: 1rem; }
+.career-badge { background: var(--bg-elevated); border: 1px solid var(--border); padding: 1rem 2rem; font-family: var(--font-head); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); text-align: center; }
+
+
+/* ── GALERIJA (Grid s preklapanjem) ── */
+#galerija { background: var(--bg-surface); }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); max-width: 1400px; margin: 0 auto; }
+.gallery-item { background: var(--bg); padding: 4rem 2.5rem; text-align: center; transition: all 0.3s; }
+.gallery-item:hover { background: var(--bg-elevated); }
+.gallery-item h3 { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 1rem; color: var(--text); }
+.gallery-item p { color: var(--text-muted); font-size: 0.95rem; }
+.gallery-tag { display: inline-block; padding: 0.4rem 1rem; border: 1px solid var(--primary); color: var(--primary); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2rem; border-radius: 50px; }
+
 
 /* ── FAQ ── */
-#faq { background: var(--bg-surface); border-top: 1px solid var(--border-color); }
-.faq-container { max-width: 800px; margin: 0 auto; }
-.faq-item { border-bottom: 1px solid var(--border-color); }
+#faq { background: var(--bg); }
+.faq-container { max-width: 900px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--border); }
 .faq-question {
-  width: 100%; background: none; border: none; text-align: left;
-  padding: 2rem 0; font-family: var(--font-head); font-size: 1.2rem; font-weight: 700;
-  color: var(--text-main); cursor: pointer !important; display: flex; justify-content: space-between; align-items: center;
-  transition: color 0.2s;
+  width: 100%; background: none; border: none; text-align: left; padding: 2.5rem 0;
+  font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: var(--text);
+  cursor: pointer !important; display: flex; justify-content: space-between; align-items: center;
+  transition: color 0.2s; text-transform: uppercase; letter-spacing: 0.05em;
 }
 .faq-question:hover, .faq-question.active { color: var(--primary); }
-.faq-icon {
-  width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--border-color);
-  display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 400;
-  transition: all 0.3s ease; color: var(--text-main);
-}
-.faq-question.active .faq-icon { transform: rotate(45deg); background: var(--primary); border-color: var(--primary); color: white; }
+.faq-icon { font-size: 1.5rem; font-weight: 400; transition: transform 0.3s; color: var(--primary); }
+.faq-question.active .faq-icon { transform: rotate(45deg); }
 .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-.faq-answer-inner { padding-bottom: 2rem; color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
+.faq-answer-inner { padding-bottom: 2.5rem; color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; }
 
-/* ── KONTAKT ── */
-#kontakt { background: var(--bg-main); border-top: 1px solid var(--border-color); }
-.contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; max-width: 1200px; margin: 0 auto; }
-.contact-info p { color: var(--text-muted); margin-bottom: 3rem; font-size: 1.1rem; }
-.contact-detail { margin-bottom: 2rem; }
-.contact-detail label { display: block; font-family: var(--font-head); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--text-faint); margin-bottom: 0.5rem; letter-spacing: 0.1em; }
-.contact-detail span, .contact-detail a { font-size: 1.2rem; font-weight: 500; color: var(--text-main); text-decoration: none; transition: color 0.2s; }
-.contact-detail a:hover { color: var(--primary); }
 
-.contact-form { background: var(--bg-surface); padding: 3rem; border-radius: 20px; border: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 1.5rem; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-.form-group label { font-family: var(--font-head); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; }
+/* ── KONTAKT (Tvoj obrazac u novom ruhu) ── */
+#kontakt { background: var(--bg-surface); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 8rem; max-width: 1400px; margin: 0 auto; align-items: start; }
+.contact-info .section-header { align-items: flex-start; text-align: left; margin-bottom: 4rem; }
+
+.contact-details-list { display: flex; flex-direction: column; gap: 2.5rem; }
+.contact-box { border-left: 2px solid var(--border); padding-left: 1.5rem; transition: border-color 0.3s; }
+.contact-box:hover { border-color: var(--primary); }
+.contact-box label { display: block; font-family: var(--font-head); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-faint); margin-bottom: 0.5rem; letter-spacing: 0.15em; }
+.contact-box span, .contact-box a { font-size: 1.25rem; font-weight: 500; color: var(--text); text-decoration: none; transition: color 0.2s; }
+.contact-box a:hover { color: var(--primary); }
+
+.contact-form { background: var(--bg); padding: 4rem; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 2rem; position: relative; }
+.contact-form::before { content: ''; position: absolute; top: -1px; left: -1px; width: 30%; height: 3px; background: var(--primary); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.8rem; }
+.form-group label { font-family: var(--font-head); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.1em; }
 .form-group input, .form-group textarea, .form-group select {
-  background: var(--bg-elevated); border: 1px solid var(--border-color); color: white;
-  font-family: var(--font-body); font-size: 1rem; padding: 1rem; border-radius: 8px;
-  outline: none; transition: all 0.2s; appearance: none;
+  background: var(--bg-surface); border: 1px solid var(--border); color: white;
+  font-family: var(--font-body); font-size: 1rem; padding: 1.2rem; outline: none; transition: all 0.3s;
 }
-.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(255, 42, 75, 0.1); }
-.form-group textarea { min-height: 120px; resize: vertical; }
-#form-success { display: none; margin-top: 1rem; padding: 1rem; background: rgba(255,42,75,0.1); border: 1px solid var(--primary); border-radius: 8px; color: white; font-weight: 500; text-align: center; }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--primary); background: var(--bg); }
+.form-group textarea { min-height: 150px; resize: vertical; }
+.submit-btn {
+  background: var(--text); color: var(--bg); padding: 1.5rem; border: none; font-family: var(--font-head); font-weight: 800;
+  font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer !important; transition: all 0.3s;
+  align-self: flex-start;
+}
+.submit-btn:hover { background: var(--primary); color: white; }
+#form-success { display: none; margin-top: 1rem; padding: 1rem; border-left: 3px solid var(--primary); color: white; background: var(--bg-surface); }
+
 
 /* ── FOOTER ── */
-footer { background: #000; padding: 6rem 5% 2rem; text-align: center; border-top: 1px solid var(--border-color); }
-.footer-logo { font-family: var(--font-head); font-size: 3rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 1rem; text-transform: uppercase; }
+footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; }
+.footer-logo { font-family: var(--font-head); font-size: 2.5rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 3rem; text-transform: uppercase; }
 .footer-logo span { color: var(--primary); }
-.footer-links { display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap; }
-.footer-links a { color: var(--text-muted); text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; transition: color 0.2s; }
-.footer-links a:hover { color: var(--text-main); }
-.footer-bottom { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-faint); font-size: 0.85rem; }
+.footer-links { display: flex; gap: 3rem; margin-bottom: 4rem; flex-wrap: wrap; justify-content: center; }
+.footer-links a { color: var(--text-faint); text-decoration: none; font-family: var(--font-head); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.15em; transition: color 0.2s; }
+.footer-links a:hover { color: var(--text); }
+.footer-bottom { width: 100%; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-faint); font-size: 0.8rem; text-align: center; }
 
-/* ── REVEAL (Ispod haube isto, klasa za Intersection Observer) ── */
-.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+/* ── REVEAL KLASA ── */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .reveal-left.visible { opacity: 1; transform: translateX(0); }
-.reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.reveal-right.visible { opacity: 1; transform: translateX(0); }
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .omeni-grid, .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+  .contact-info .section-header { align-items: flex-start; text-align: left; margin-bottom: 2rem; }
+}
 @media (max-width: 900px) {
-  nav { width: 95%; padding: 0.5rem 1rem; }
-  .nav-links, .nav-cta { display: none; }
+  nav { padding: 1rem 5%; }
+  .nav-links { display: none; }
   .hamburger { display: flex; }
-  
   .nav-links.open {
-    display: flex; flex-direction: column; position: absolute; top: 120%; left: 0; right: 0;
-    background: rgba(18,18,18,0.98); border-radius: 20px; padding: 2rem; border: 1px solid var(--border-color);
+    display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+    background: #000; padding: 2rem; border-bottom: 1px solid var(--border); gap: 1.5rem;
   }
   
-  #hero { padding-top: 150px; text-align: center; }
-  .hero-content { align-items: center; }
-  .hero-btns { justify-content: center; }
+  .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+  .hero-title span.outline { padding-left: 0; }
+  .hero-sub, .hero-btns { padding-left: 0; margin-left: 0; border-left: none; }
+  .hero-btns { flex-direction: column; }
   
-  .stats-grid { grid-template-columns: 1fr; gap: 0; }
-  .stat-box { border-left: none; border-bottom: 1px solid var(--border-color); padding: 2rem 0; text-align: center; }
+  .section-header { align-items: flex-start; text-align: left; }
   
-  .omeni-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .career-card { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem; }
+  .career-year { writing-mode: horizontal-tb; transform: none; }
   
-  .career-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  
+  .gallery-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
-  .contact-form { padding: 2rem 1.5rem; }
-}
-@media (max-width: 600px) {
-  section { padding: 5rem 5%; }
-  .hero-title { font-size: clamp(2.5rem, 12vw, 4rem); }
-  .hero-btns { flex-direction: column; width: 100%; }
-  .btn-primary, .btn-outline { width: 100%; text-align: center; }
+  .contact-form { padding: 2rem; }
 }
 </style>
 </head>
@@ -418,27 +381,27 @@ footer { background: #000; padding: 6rem 5% 2rem; text-align: center; border-top
     </button>
     <ul class="nav-links" id="nav-links">
       <li><a href="#o-meni">O meni</a></li>
-      <li><a href="#stats">Statistika</a></li>
-      <li><a href="#karijera">Karijera</a></li>
-      <li><a href="#galerija">Istaknuto</a></li>
+      <li><a href="#karijera">Rezultati</a></li>
+      <li><a href="#galerija">Turniri</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
     </ul>
-    <a href="#kontakt" class="nav-cta">Sponzorstva</a>
   </nav>
 
   <header id="hero">
-    <div class="hero-bg-glow"></div>
-    <div class="hero-grid-pattern" id="parallax-bg"></div>
+    <div class="hero-bg"></div>
+    <div class="hero-lines" id="parallax-bg"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">Parastolnotenisač &middot; Klasa 8</div>
+      <div class="hero-eyebrow">Klasa 8 &middot; Hrvatska Reprezentacija</div>
       <h1 class="hero-title">
-        Marko<br><span class="outline">Vračan</span>
+        <span>Marko</span>
+        <span class="outline">Vračan</span>
       </h1>
       <p class="hero-sub">
-        Fokus, nevjerojatna radna etika i svakodnevna borba za pobjedu. Predstavljam Hrvatsku i pomičem granice u europskom klupskom parastolnom tenisu.
+        Fokus, radna etika i borba za svaki poen. Profesionalni parastolnotenisač, državni prvak i igrač u talijanskoj ligi.
       </p>
       <div class="hero-btns">
-        <a href="#karijera" class="btn-primary">Sportski put</a>
+        <a href="#karijera" class="btn-primary">Rezultati i klubovi</a>
         <a href="#kontakt" class="btn-outline">Surađujmo</a>
       </div>
     </div>
@@ -447,61 +410,47 @@ footer { background: #000; padding: 6rem 5% 2rem; text-align: center; border-top
   <!-- MARQUEE STRIP -->
   <div class="marquee-wrapper">
     <div class="marquee-track">
-      <div class="marquee-item">Državni Prvak</div>
-      <div class="marquee-item">Klasa 8</div>
-      <div class="marquee-item">Hrvatska Reprezentacija</div>
+      <div class="marquee-item">Državni Prvak 2023</div>
+      <div class="marquee-item">Reprezentacija Hrvatske</div>
       <div class="marquee-item">Santa Tecla Nulvi</div>
-      <div class="marquee-item">Državni Prvak</div>
       <div class="marquee-item">Klasa 8</div>
-      <div class="marquee-item">Hrvatska Reprezentacija</div>
+      <div class="marquee-item">PSK Synergia</div>
+      <div class="marquee-item">Državni Prvak 2023</div>
+      <div class="marquee-item">Reprezentacija Hrvatske</div>
       <div class="marquee-item">Santa Tecla Nulvi</div>
     </div>
   </div>
 
-  <!-- STATS -->
-  <section id="stats">
-    <div class="stats-grid">
-      <div class="stat-box">
-        <div class="stat-number" data-count="8" data-suffix="">0</div>
-        <div class="stat-label">Natjecateljska Klasa</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-number" data-count="1" data-suffix=".">0</div>
-        <div class="stat-label">Mjesto PH 2023.</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-number" data-count="12" data-suffix="+">0</div>
-        <div class="stat-label">Treninga Tjedno</div>
-      </div>
-    </div>
-  </section>
 
   <!-- O MENI -->
   <section id="o-meni">
+    <div class="section-header reveal">
+      <div class="section-label">Tko sam ja</div>
+      <h2 class="section-title">Nema isprika.<span>Samo rad.</span></h2>
+    </div>
+
     <div class="omeni-grid">
-      <div class="omeni-photo-wrap reveal-left">
-        <div class="omeni-photo">FOTO</div>
+      <div class="omeni-photo-container reveal-left">
+        <div class="photo-accent-1"></div>
+        <div class="omeni-photo-box">
+            <!-- PLACEHOLDER SLIKA ZA MARKA (Možeš ju zamijeniti s pravim img tagom) -->
+            <span style="font-family: var(--font-head); font-size: 2rem; color: var(--text-faint); font-weight: 800;">FOTO OVDJE</span>
+        </div>
+        <div class="photo-accent-2"></div>
       </div>
-      <div class="omeni-text reveal">
-        <div class="section-label">Tko sam ja</div>
-        <h2 class="section-title">Nema isprika.<br>Samo rad.</h2>
-        <p>Moje ime je <strong>Marko Vračan</strong>. Dolazim iz Velike Gorice i profesionalno se bavim parastolnim tenisom u Klasi 8.</p>
-        <p>Moj pristup sportu je vrlo jednostavan — talent ti može otvoriti vrata, ali samo neviđena radna etika donosi medalje. Treniram minimalno jednom, a često i dvaput dnevno, balansirajući fizičku pripremu i sate za stolom.</p>
+      
+      <div class="omeni-content reveal">
+        <p>Ja sam <strong>Marko Vračan</strong>, profesionalni parastolnotenisač iz Velike Gorice. Natječem se u Klasi 8.</p>
+        <p>Moj put u parasportu rezultat je tisuća sati u dvorani. Vjerujem da talent otvara vrata, ali samo neviđena radna etika i disciplina donose rezultate. Zato treniram minimalno jednom, a često i dvaput dnevno.</p>
         
-        <div class="sports-principles">
-          <div class="principle-card reveal reveal-delay-1">
-            <div class="principle-num">01</div>
-            <div class="principle-content">
-              <h4>Mentalna Snaga</h4>
-              <p>Održavanje fokusa kada je rezultat izjednačen. Za stolom si sam sa svojim mislima.</p>
-            </div>
+        <div class="stats-grid">
+          <div class="stat-item reveal reveal-delay-1">
+            <div class="stat-item-num" data-count="8" data-suffix="">0</div>
+            <div class="stat-item-label">Klasa Natjecanja</div>
           </div>
-          <div class="principle-card reveal reveal-delay-2">
-            <div class="principle-num">02</div>
-            <div class="principle-content">
-              <h4>Klupski Iskorak</h4>
-              <p>Nastupanje za inozemne klubove (Italija) dokaz je stalne težnje prema napretku.</p>
-            </div>
+          <div class="stat-item reveal reveal-delay-2">
+            <div class="stat-item-num" data-count="12" data-suffix="+">0</div>
+            <div class="stat-item-label">Treninga tjedno</div>
           </div>
         </div>
       </div>
@@ -510,79 +459,86 @@ footer { background: #000; padding: 6rem 5% 2rem; text-align: center; border-top
 
   <!-- KARIJERA -->
   <section id="karijera">
-    <div class="section-label">Roster & Uspjesi</div>
-    <h2 class="section-title">Karijera</h2>
+    <div class="section-header reveal">
+      <div class="section-label">Roster</div>
+      <h2 class="section-title">Klubovi &<span>Uspjesi</span></h2>
+    </div>
     
-    <div class="career-container reveal">
+    <div class="career-list reveal">
       
-      <div class="career-row">
-        <div class="career-info">
+      <div class="career-card">
+        <div class="career-year">2024.</div>
+        <div class="career-details">
           <h3>Santa Tecla Nulvi</h3>
-          <p>Sardinija, Italija &middot; Druga parastolnoteniska liga</p>
+          <p>Potpis za klub sa Sardinije. Nastupi u talijanskoj 2. parastolnoteniskoj ligi i ogroman iskorak u međunarodnu klupsku scenu.</p>
         </div>
-        <div class="career-badge">Aktivno (od 2024.)</div>
+        <div class="career-badge">Aktivno</div>
       </div>
 
-      <div class="career-row">
-        <div class="career-info">
-          <h3>Reprezentacija Hrvatske</h3>
-          <p>Klasa 8 &middot; Međunarodni turniri, Bronca (Podgorica, 2023)</p>
+      <div class="career-card">
+        <div class="career-year">2023.</div>
+        <div class="career-details">
+          <h3>Hrvatska Reprezentacija</h3>
+          <p>Stalni član reprezentacije. Istaknuti rezultat: osvojena brončana medalja u igri parova na međunarodnom turniru u Podgorici.</p>
         </div>
-        <div class="career-badge">Stalni član</div>
+        <div class="career-badge">Klasa 8</div>
       </div>
 
-      <div class="career-row">
-        <div class="career-info">
-          <h3>PSK Synergia</h3>
-          <p>Hrvatska &middot; Državni prvak pojedinačno (2023., Sl. Brod)</p>
+      <div class="career-card">
+        <div class="career-year">2023.</div>
+        <div class="career-details">
+          <h3>PSK Synergia / Uspon</h3>
+          <p>Državni prvak u pojedinačnoj konkurenciji (Slavonski Brod) i osvajač srebrne medalje na Prvenstvu Hrvatske 2026. u Prelogu.</p>
         </div>
-        <div class="career-badge">Matični klub</div>
+        <div class="career-badge">Baza</div>
       </div>
 
     </div>
   </section>
 
-  <!-- ISTAKNUTO (Cards) -->
+  <!-- TURNIRI (Galerija) -->
   <section id="galerija">
-    <div class="section-label">Medalje i Trenuci</div>
-    <h2 class="section-title">Istaknuto</h2>
+    <div class="section-header reveal">
+      <div class="section-label">Pregled natjecanja</div>
+      <h2 class="section-title">Istaknuti<span>Trenuci</span></h2>
+    </div>
     
-    <div class="highlight-grid reveal">
+    <div class="gallery-grid reveal">
       
-      <div class="highlight-card">
-        <div class="highlight-img-placeholder">ITALIJA</div>
-        <div class="highlight-content">
-          <div class="highlight-tags">
-            <span class="tag">Transfer</span>
-            <span class="tag year">2024</span>
-          </div>
-          <h3>Međunarodni transfer</h3>
-          <p>Potpis za Santa Tecla Nulvi i igranje u talijanskoj drugoj ligi ogroman je korak za moju inozemnu karijeru i stjecanje iskustva.</p>
-        </div>
+      <div class="gallery-item">
+        <div class="gallery-tag">Prelog 2026.</div>
+        <h3>Srebrna medalja (PH)</h3>
+        <p>Na Prvenstvu Hrvatske u Prelogu 2026. godine osigurao sam drugo mjesto i srebrnu medalju za klub "Uspon", u izrazito jakoj domaćoj konkurenciji.</p>
       </div>
 
-      <div class="highlight-card">
-        <div class="highlight-img-placeholder">PH ZLATO</div>
-        <div class="highlight-content">
-          <div class="highlight-tags">
-            <span class="tag">Državno prvenstvo</span>
-            <span class="tag year">2023</span>
-          </div>
-          <h3>Zlato u Sl. Brodu</h3>
-          <p>Osvajanje prvog mjesta i naslova državnog prvaka Hrvatske u pojedinačnoj konkurenciji, kruna domaćih natjecanja u 2023. godini.</p>
-        </div>
+      <div class="gallery-item">
+        <div class="gallery-tag">Podgorica 2026.</div>
+        <h3>Prolazak skupine</h3>
+        <p>Na nedavnom jakom međunarodnom turniru u Podgorici (svibanj 2026.) uspješan prolazak grupne faze i nastup protiv elitnih europskih igrača.</p>
       </div>
 
-      <div class="highlight-card">
-        <div class="highlight-img-placeholder">BRONCA CG</div>
-        <div class="highlight-content">
-          <div class="highlight-tags">
-            <span class="tag">Igra Parova</span>
-            <span class="tag year">2023</span>
-          </div>
-          <h3>Međunarodna Bronca</h3>
-          <p>Na jakom međunarodnom turniru u Podgorici, zajedno s kolegom Bornom Zohilom, osvojena je brončana medalja za Hrvatsku.</p>
-        </div>
+      <div class="gallery-item">
+        <div class="gallery-tag">Laško 2025.</div>
+        <h3>Challenger Turnir</h3>
+        <p>Nastup na jednom od najcjenjenijih parasportskih turnira, "Laško Challenger", gdje sam se natjecao pojedinačno i u igri mješovitih parova.</p>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-tag">Sardinija 2024.</div>
+        <h3>Međunarodni transfer</h3>
+        <p>Potpis ugovora s talijanskim klubom Santa Tecla Nulvi i redoviti nastupi u njihovoj nacionalnoj ligi.</p>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-tag">Slavonski Brod 2023.</div>
+        <h3>Državni prvak (Zlato)</h3>
+        <p>Kruna dotadašnjeg rada - osvajanje prvog mjesta na 29. Prvenstvu Hrvatske u parastolnom tenisu u Klasi 8.</p>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-tag">Podgorica 2023.</div>
+        <h3>Bronca u parovima</h3>
+        <p>Osvajanje brončane medalje u igri parova s kolegom Bornom Zohilom, braneći boje hrvatske reprezentacije.</p>
       </div>
 
     </div>
@@ -590,33 +546,35 @@ footer { background: #000; padding: 6rem 5% 2rem; text-align: center; border-top
 
   <!-- FAQ -->
   <section id="faq">
-    <div class="section-label">O Parasportu</div>
-    <h2 class="section-title">Pitanja i Odgovori</h2>
+    <div class="section-header reveal">
+      <div class="section-label">O Parasportu</div>
+      <h2 class="section-title">Česta<span>Pitanja</span></h2>
+    </div>
     
     <div class="faq-container reveal">
       <div class="faq-item">
-        <button class="faq-question">Što točno znači Klasa 8? <span class="faq-icon">+</span></button>
+        <button class="faq-question">Što znači natjecanje u Klasi 8? <span class="faq-icon">+</span></button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            U parastolnom tenisu klase 1-5 su igrači u kolicima, a 6-10 stojeći igrači. Klasa 8 pripada stojećim igračima sa specifičnim umjerenim tjelesnim oštećenjima koja utječu na kretanje nogu ili funkciju igračke ruke, osiguravajući ravnopravno natjecanje.
+            Parastolni tenis podijeljen je u klase od 1 do 10 (1-5 su igrači u kolicima, 6-10 stojeći igrači). Klasa 8 namijenjena je stojećim igračima sa specifičnim tjelesnim oštećenjima koja utječu na rad nogu ili funkciju ruke kojom se drži reket.
           </div>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question">Koliko su zahtjevni treninzi? <span class="faq-icon">+</span></button>
+        <button class="faq-question">Kako izgleda tvoj dnevni ritam treninga? <span class="faq-icon">+</span></button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            Iznimno zahtjevni. Konkurencija je na europskoj i svjetskoj razini brutalna. Treniram na stolu, ali i radim kondicijske pripreme u teretani gotovo svakodnevno kako bih ostao u vrhunskoj formi.
+            Sportski režim je strog. U dvorani sam često i dva puta dnevno. Trening se sastoji od taktičkog rada za stolom, sparinga, ali i neophodnih kondicijskih i fizičkih priprema u teretani kako bih bio spreman za međunarodnu konkurenciju.
           </div>
         </div>
       </div>
       
       <div class="faq-item">
-        <button class="faq-question">Kako mogu pomoći i postati sponzor? <span class="faq-icon">+</span></button>
+        <button class="faq-question">Kako se može postati moj sponzor? <span class="faq-icon">+</span></button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            Sportski put, putovanja po Europi i oprema iziskuju sredstva. Otvoren sam za sve oblike sponzorstava (sportska oprema, financijska podrška), a zauzvrat nudim medijsku vidljivost i promociju vašeg brenda na međunarodnoj razini.
+            Putovanja na europske turnire i nabava kvalitetne sportske opreme iziskuju znatna sredstva. Otvoren sam za sve oblike sponzorstava, a partnerima nudim vidljivost na opremi, društvenim mrežama i webu, uz promociju kroz moje sportske rezultate. Javite se putem kontakta ispod.
           </div>
         </div>
       </div>
@@ -627,22 +585,29 @@ footer { background: #000; padding: 6rem 5% 2rem; text-align: center; border-top
   <section id="kontakt">
     <div class="contact-grid">
       <div class="contact-info reveal-left">
-        <div class="section-label">Surađujmo</div>
-        <h2 class="section-title" style="margin-bottom: 2rem;">Kontakt</h2>
-        <p>Želite me podržati kao sponzor, dogovoriti intervju ili imate medijski upit? Slobodno pošaljite poruku.</p>
-        
-        <div class="contact-detail">
-          <label>Email adresa</label>
-          <span>email@markovracan.hr</span>
+        <div class="section-header" style="margin-bottom: 3rem;">
+          <div class="section-label">Podrška</div>
+          <h2 class="section-title" style="font-size: clamp(2.5rem, 5vw, 4rem);">Kontakt</h2>
         </div>
-        <div class="contact-detail">
-          <label>Društvene mreže</label>
-          <a href="#">Instagram Profil ↗</a><br>
-          <a href="#">Facebook Stranica ↗</a>
+        
+        <div class="contact-details-list">
+          <div class="contact-box">
+            <label>Email adresa</label>
+            <span><a href="mailto:marko.vracan@gmail.com">marko.vracan@gmail.com</a></span>
+          </div>
+          <div class="contact-box">
+            <label>Telefon / Mobitel</label>
+            <span><a href="tel:+385992190445">099 2190 445</a></span>
+          </div>
+          <div class="contact-box">
+            <label>Društvene mreže</label>
+            <a href="https://www.facebook.com/profile.php?id=100090668830331" target="_blank" rel="noopener">Facebook Profil ↗</a>
+          </div>
         </div>
       </div>
 
       <div class="reveal-right">
+        <!-- Zadržan tvoj formspree kod za obrazac -->
         <form class="contact-form" action="#" method="POST" id="contact-form">
           <div class="form-row">
             <div class="form-group">
@@ -650,7 +615,7 @@ footer { background: #000; padding: 6rem 5% 2rem; text-align: center; border-top
               <input type="text" name="name" required>
             </div>
             <div class="form-group">
-              <label>Email</label>
+              <label>Vaš Email</label>
               <input type="email" name="email" required>
             </div>
           </div>
@@ -666,23 +631,24 @@ footer { background: #000; padding: 6rem 5% 2rem; text-align: center; border-top
             <label>Poruka</label>
             <textarea name="message" required></textarea>
           </div>
-          <button type="submit" class="btn-primary" style="align-self: flex-start; margin-top: 1rem;">Pošalji poruku</button>
-          <div id="form-success">Poruka je uspješno poslana!</div>
+          <button type="submit" class="submit-btn">Pošalji poruku</button>
+          <div id="form-success">Vaša poruka je uspješno poslana!</div>
         </form>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="footer-logo">MARKO<span>VRAČAN</span></div>
+    <div class="footer-logo">M<span>V</span></div>
     <div class="footer-links">
       <a href="#hero">Početna</a>
-      <a href="#o-meni">O meni</a>
-      <a href="#karijera">Karijera</a>
+      <a href="#o-meni">Tko sam ja</a>
+      <a href="#karijera">Klubovi</a>
+      <a href="#galerija">Turniri</a>
       <a href="#kontakt">Sponzorstva</a>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 Marko Vračan. Izrađeno kao podrška vrhunskom sportašu.
+      &copy; 2026 Marko Vračan. Portfolio izradio ponosni prijatelj.
     </div>
   </footer>
 
@@ -710,14 +676,14 @@ footer { background: #000; padding: 6rem 5% 2rem; text-align: center; border-top
     hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-    // ── Parallax ──
+    // ── Parallax pozadine ──
     const parallaxBg = document.getElementById('parallax-bg');
     let ticking = false;
     window.addEventListener('scroll', () => {
       if (!ticking) {
         requestAnimationFrame(() => {
           if(window.scrollY < window.innerHeight) {
-            parallaxBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+            parallaxBg.style.transform = `translateX(${window.scrollY * -0.2}px)`;
           }
           ticking = false;
         });
@@ -734,7 +700,7 @@ footer { background: #000; padding: 6rem 5% 2rem; text-align: center; border-top
       function update(currentTime) {
         const progress = Math.min((currentTime - startTime) / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 4);
-        el.innerHTML = Math.round(eased * target) + '<span>' + suffix + '</span>';
+        el.innerHTML = Math.round(eased * target) + suffix;
         if (progress < 1) requestAnimationFrame(update);
       }
       requestAnimationFrame(update);
@@ -748,14 +714,14 @@ footer { background: #000; padding: 6rem 5% 2rem; text-align: center; border-top
     reveals.forEach(el => obs.observe(el));
 
     let countersTriggered = false;
-    const statsSection = document.getElementById('stats');
+    const statsSection = document.querySelector('.stats-grid');
     if(statsSection) {
       new IntersectionObserver(entries => {
         if(entries[0].isIntersecting && !countersTriggered) {
           countersTriggered = true;
-          document.querySelectorAll('[data-count]').forEach(c => animateCounter(c));
+          document.querySelectorAll('.stat-item-num').forEach(c => animateCounter(c));
         }
-      }, { threshold: 0.3 }).observe(statsSection);
+      }, { threshold: 0.5 }).observe(statsSection);
     }
 
     // ── FAQ ──
@@ -767,7 +733,7 @@ footer { background: #000; padding: 6rem 5% 2rem; text-align: center; border-top
       });
     });
 
-    // ── Form (Fake Submit) ──
+    // ── Form (Ovdje u bazi ostaje fejk submit dok ga ti ne spojiš na formspree) ──
     document.getElementById('contact-form').addEventListener('submit', (e) => {
       e.preventDefault();
       const btn = e.target.querySelector('button');
