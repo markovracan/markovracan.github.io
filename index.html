@@ -2,8 +2,8 @@
 <html lang="hr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Marko Vračan - Službeni portfolio hrvatskog parastolnotenisača. Pratite novosti, rezultate i galerije s natjecanja.">
-<meta name="keywords" content="Marko Vračan, parastolni tenis, parasport, Santa Tecla Nulvi, PSK Synergia, Uspon, klasa 8, novosti">
+<meta name="description" content="Marko Vračan, službeni portfolio hrvatskog parastolnotenisača. Pratite novosti, rezultate i galerije s natjecanja.">
+<meta name="keywords" content="Marko Vračan, parastolni tenis, parasport, Santa Tecla Nulvi, PSK Synergia, Uspon, klasa 8, novosti, rezultati">
 <meta name="author" content="Kezić Vizuali">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marko Vračan | Službena Stranica Parastolnotenisača</title>
@@ -12,112 +12,35 @@
 <meta property="og:title" content="Marko Vračan | Parastolnotenisač">
 <meta property="og:description" content="Službeni portfolio i novosti hrvatskog reprezentativca u parastolnom tenisu.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="slika.jpg"> 
-<meta property="og:url" content="https://www.markovracan.com"> 
+<meta property="og:image" content="slika.jpg">
+<meta property="og:url" content="https://www.markovracan.com">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@700;800;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --primary: #ff1e38; 
-  --bg: #030303;
-  --bg-surface: #0a0a0a;
-  --bg-elevated: #111111;
-  --text: #ffffff;
-  --text-muted: #a3a3a3;
-  --text-faint: #555555;
-  --border: #222222;
-  
-  --font-head: 'Outfit', sans-serif;
-  --font-accent: 'Syncopate', sans-serif;
-  --font-body: 'Montserrat', sans-serif;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.8;
-  overflow-x: hidden;
-}
-
-/* ── CURSOR ── */
-*, *::before, *::after { cursor: none !important; }
-#cursor {
-  position: fixed; width: 4px; height: 4px;
-  background: var(--primary); border-radius: 50%;
-  pointer-events: none; z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s, width 0.2s, height 0.2s;
-}
-#cursor-ring {
-  position: fixed; width: 30px; height: 30px;
-  border: 1px solid var(--primary); border-radius: 50%;
-  pointer-events: none; z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background 0.2s;
-}
-body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { 
-  width: 50px; height: 50px; background: rgba(255, 30, 56, 0.1); border-width: 2px;
-}
-@media (pointer: coarse) { #cursor, #cursor-ring { display: none !important; } *, *::before, *::after { cursor: auto !important; } }
-
-/* ── PARTICLES (Užarene iskre) ── */
-#particles { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
-.particle {
-  position: absolute; width: 2px; height: 2px; border-radius:50%;
-  background: var(--primary); box-shadow: 0 0 10px 2px rgba(255,30,56,0.4);
-  animation: float-up linear infinite; opacity: 0; 
-}
-@keyframes float-up {
-  0% { opacity: 0; transform: translateY(100vh) scale(0.5); }
-  20% { opacity: 0.8; }
-  80% { opacity: 0.4; }
-  100% { opacity: 0; transform: translateY(-20vh) scale(1.5); }
-}
-
-/* ── NAVIGACIJA ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.5rem 4%; background: rgba(3, 3, 3, 0.8); backdrop-filter: blur(10px);
-  border-bottom: 1px solid transparent; transition: all 0.3s ease;
-}
-nav.scrolled { background: rgba(3, 3, 3, 0.98); border-bottom: 1px solid var(--border); padding: 1rem 4%; }
-.nav-logo { font-family: var(--font-head); font-size: 1.5rem; font-weight: 900; color: var(--text); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
-.nav-logo span { color: var(--primary); }
-.nav-links { display: flex; gap: 3rem; list-style: none; align-items: center; }
-.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; transition: color 0.2s; position: relative; }
-.nav-links a:hover { color: var(--text); }
-.nav-links a::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease; }
-.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
-.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 5px; z-index: 101;}
-.hamburger span { display: block; width: 28px; height: 2px; background: var(--text); transition: 0.3s;}
-
 /* ── HERO ── */
 #hero { min-height: 100vh; display: flex; align-items: center; padding: 150px 5% 60px; position: relative; overflow: hidden; }
 .hero-bg { position: absolute; right: -20%; top: -10%; width: 70vw; height: 100vh; background: radial-gradient(circle at center, rgba(255,30,56,0.15) 0%, transparent 70%); z-index: 0; filter: blur(50px); }
-.hero-lines { position: absolute; inset: 0; z-index: 0; background: repeating-linear-gradient(90deg, var(--border) 0, var(--border) 1px, transparent 1px, transparent 10vw); opacity: 0.3; }
+.hero-lines { position: absolute; inset: 0; z-index: 0; background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0); background-size: 26px 26px; -webkit-mask-image: radial-gradient(ellipse 80% 60% at 70% 40%, black 30%, transparent 85%); mask-image: radial-gradient(ellipse 80% 60% at 70% 40%, black 30%, transparent 85%); }
+.hero-orbit { position: absolute; top: 8%; right: 3%; width: 620px; height: 620px; border: 1px dashed rgba(255,30,56,0.25); border-radius: 50%; z-index: 0; animation: spin-slow 46s linear infinite; }
+.hero-orbit::before { content: ''; position: absolute; width: 11px; height: 11px; background: var(--primary); border-radius: 50%; top: -5px; left: 50%; margin-left: -5px; box-shadow: 0 0 16px 4px rgba(255,30,56,0.6); }
+.hero-orbit.small { width: 400px; height: 400px; top: 28%; right: 14%; animation-duration: 30s; animation-direction: reverse; border-color: rgba(255,255,255,0.09); }
+.hero-orbit.small::before { width: 6px; height: 6px; background: var(--text); box-shadow: 0 0 10px 2px rgba(255,255,255,0.4); }
+@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@media (max-width: 900px) { .hero-orbit { display: none; } }
+
 .kinetic-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font-head); font-size: 15vw; font-weight: 900; color: rgba(255,255,255,0.03); white-space: nowrap; z-index: 1; pointer-events: none; text-transform: uppercase; }
 .hero-content { position: relative; z-index: 2; width: 100%; max-width: 1400px; margin: 0 auto; }
 .hero-eyebrow { display: flex; align-items: center; gap: 1rem; color: var(--primary); font-family: var(--font-accent); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; animation: fade-in-left 0.8s 0.2s forwards; }
 .hero-eyebrow::before { content: ''; display: block; width: 60px; height: 2px; background: var(--primary); }
-.hero-title { font-family: var(--font-head); font-size: clamp(3.5rem, 8vw, 7.5rem); font-weight: 900; line-height: 0.9; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: -0.02em; display: flex; flex-direction: column; position: relative; z-index: 3;}
+.hero-title { font-family: var(--font-head); font-size: clamp(3.5rem, 8vw, 7.5rem); font-weight: 900; line-height: 0.9; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: -0.02em; display: flex; flex-direction: column; position: relative; z-index: 3; }
 .hero-title span:first-child { opacity: 0; animation: fade-in-up 0.8s 0.4s forwards; }
 .hero-title span.outline { -webkit-text-stroke: 2px var(--text); color: transparent; padding-left: 5vw; opacity: 0; animation: fade-in-up 0.8s 0.5s forwards; }
-.hero-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 550px; margin-bottom: 3rem; font-weight: 400; line-height: 1.7; padding-left: 5vw; opacity: 0; animation: fade-in-up 0.8s 0.6s forwards; border-left: 2px solid var(--border); padding-left: 1.5rem; margin-left: 5vw; position: relative; z-index: 3;}
-.hero-btns { display: flex; gap: 1.2rem; padding-left: 5vw; opacity: 0; animation: fade-in-up 0.8s 0.8s forwards; margin-left: 5vw; position: relative; z-index: 3;}
-.btn-primary { background: var(--primary); color: white; padding: 1rem 2.5rem; font-family: var(--font-accent); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em; transition: all 0.3s; clip-path: polygon(0 0, 100% 0, 92% 100%, 0% 100%); }
-.btn-primary:hover { background: white; color: var(--bg); transform: translateX(5px); }
-.btn-outline { background: transparent; color: var(--text); padding: 1rem 2.5rem; border: 1px solid var(--border); font-family: var(--font-accent); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em; transition: all 0.3s; clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%); }
-.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.hero-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 550px; margin-bottom: 3rem; font-weight: 400; line-height: 1.7; opacity: 0; animation: fade-in-up 0.8s 0.6s forwards; border-left: 2px solid var(--border); padding-left: 1.5rem; margin-left: 5vw; position: relative; z-index: 3; }
+.hero-btns { display: flex; gap: 1.2rem; opacity: 0; animation: fade-in-up 0.8s 0.8s forwards; margin-left: 5vw; position: relative; z-index: 3; }
 
 @keyframes fade-in-left { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes fade-in-up { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
@@ -129,19 +52,12 @@ nav.scrolled { background: rgba(3, 3, 3, 0.98); border-bottom: 1px solid var(--b
 .marquee-item::after { content: '///'; color: rgba(0,0,0,0.3); font-size: 1rem; }
 @keyframes marquee-fast { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* ── ZAJEDNIČKI NASLOVI ── */
-section { padding: 8rem 5%; position: relative; z-index: 2; border-bottom: 1px solid var(--border); }
-.section-header { display: flex; flex-direction: column; align-items: flex-end; text-align: right; margin-bottom: 4rem; }
-.section-label { color: var(--primary); font-family: var(--font-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.8rem; }
-.section-title { font-family: var(--font-head); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; text-transform: uppercase; line-height: 0.95; letter-spacing: -0.02em; color: var(--border); }
-.section-title span { color: var(--text); display: block; }
-
 /* ── O MENI ── */
 #o-meni { background: var(--bg-surface); }
 .omeni-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 6rem; align-items: center; max-width: 1400px; margin: 0 auto; }
 .omeni-content p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.8rem; font-weight: 300; }
 .omeni-content p strong { color: var(--text); font-weight: 600; }
-.omeni-content h3 { font-family: var(--font-head); font-size: 1.8rem; color: var(--text); margin-bottom: 1rem; margin-top: 2.5rem; text-transform: uppercase; letter-spacing: -0.01em;}
+.omeni-content h3 { font-family: var(--font-head); font-size: 1.8rem; color: var(--text); margin-bottom: 1rem; margin-top: 2.5rem; text-transform: uppercase; letter-spacing: -0.01em; }
 .quote-box { border-left: 2px solid var(--primary); padding: 1.5rem 2rem; background: linear-gradient(90deg, rgba(255,30,56,0.05) 0%, transparent 100%); margin: 2rem 0; font-style: italic; font-size: 1.15rem; color: var(--text); }
 .omeni-image-wrapper { position: relative; display: flex; justify-content: center; perspective: 1000px; }
 .omeni-image-card { width: 100%; border-radius: 12px; overflow: hidden; position: relative; z-index: 2; box-shadow: 0 30px 60px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.05); transition: transform 0.2s ease-out; }
@@ -152,100 +68,71 @@ section { padding: 8rem 5%; position: relative; z-index: 2; border-bottom: 1px s
 /* ── KARIJERA ── */
 #karijera { background: var(--bg); }
 .career-list { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
-.career-card { background: var(--bg-surface); border: 1px solid var(--border); padding: 2.5rem; display: grid; grid-template-columns: auto 1fr auto; gap: 2.5rem; align-items: center; transition: all 0.3s; position: relative; overflow: hidden; border-radius: 8px;}
+.career-card { background: var(--bg-surface); border: 1px solid var(--border); padding: 2.5rem; display: grid; grid-template-columns: auto 1fr auto; gap: 2.5rem; align-items: center; transition: all 0.3s; position: relative; overflow: hidden; border-radius: 8px; }
 .career-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--primary); transform: scaleY(0); transform-origin: bottom; transition: transform 0.3s; }
-.career-card:hover { border-color: var(--primary); transform: translateX(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+.career-card:hover { border-color: var(--primary); transform: translateX(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 .career-card:hover::before { transform: scaleY(1); }
 .career-year { font-family: var(--font-head); font-size: 1.3rem; font-weight: 900; color: var(--text-faint); writing-mode: vertical-rl; transform: rotate(180deg); }
 .career-details h3 { font-family: var(--font-head); font-size: 1.6rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.4rem; color: var(--text); }
-.career-details p { color: var(--text-muted); font-size: 0.95rem; font-weight: 300;}
-.career-badge { background: var(--bg-elevated); border: 1px solid var(--border); padding: 0.8rem 1.5rem; font-family: var(--font-accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); text-align: center; border-radius: 4px;}
+.career-details p { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; }
+.career-badge { background: var(--bg-elevated); border: 1px solid var(--border); padding: 0.8rem 1.5rem; font-family: var(--font-accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); text-align: center; border-radius: 4px; }
+.karijera-cta { text-align: center; margin-top: 3rem; }
 
 /* ── NOVOSTI PREVIEW ── */
 #novosti-preview { background: var(--bg-elevated); }
-.news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1400px; margin: 0 auto; }
-.news-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; display: flex; flex-direction: column;}
-.news-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-.news-img { width: 100%; height: 220px; background: var(--bg-surface); object-fit: cover; border-bottom: 1px solid var(--border);}
-.news-content { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1;}
-.news-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-.news-date { font-family: var(--font-accent); font-size: 0.65rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.1em; }
-.news-title { font-family: var(--font-head); font-size: 1.4rem; color: var(--text); margin-bottom: 1rem; line-height: 1.3; }
-.news-excerpt { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; margin-bottom: 1.5rem; flex-grow: 1; }
-.news-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: auto;}
-.read-more { color: var(--text); font-family: var(--font-accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s; }
-.read-more:hover { color: var(--primary); }
-.share-links { display: flex; gap: 0.8rem; }
-.share-links a { color: var(--text-faint); transition: color 0.2s; display: flex; align-items: center; justify-content: center;}
-.share-links a svg { width: 16px; height: 16px; fill: currentColor; }
-.share-links a:hover { color: var(--primary); }
 
 /* ── TURNIRI (MINI GALERIJA) ── */
 #galerija { background: var(--bg-surface); }
-.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); max-width: 1400px; margin: 0 auto; margin-bottom: 3rem; border-radius: 8px; overflow: hidden;}
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); max-width: 1400px; margin: 0 auto; margin-bottom: 3rem; border-radius: 8px; overflow: hidden; }
 .gallery-item { background: var(--bg); padding: 3rem 2rem; text-align: center; transition: all 0.3s; }
 .gallery-item:hover { background: var(--bg-elevated); }
 .gallery-item h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.8rem; color: var(--text); }
-.gallery-item p { color: var(--text-muted); font-size: 0.9rem; font-weight: 300;}
-.gallery-tag { display: inline-block; padding: 0.3rem 0.8rem; border: 1px solid rgba(255,30,56,0.3); color: var(--primary); font-size: 0.65rem; font-family: var(--font-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; border-radius: 50px; background: rgba(255,30,56,0.05);}
+.gallery-item p { color: var(--text-muted); font-size: 0.9rem; font-weight: 300; }
+.gallery-tag { display: inline-block; padding: 0.3rem 0.8rem; border: 1px solid rgba(255,30,56,0.3); color: var(--primary); font-size: 0.65rem; font-family: var(--font-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; border-radius: 50px; background: rgba(255,30,56,0.05); }
 
-/* ── FAQ (VRAĆENO) ── */
+/* ── FAQ ── */
 #faq { background: var(--bg); }
 .faq-container { max-width: 800px; margin: 0 auto; }
 .faq-item { border-bottom: 1px solid var(--border); }
-.faq-question { width: 100%; background: none; border: none; text-align: left; padding: 2rem 0; font-family: var(--font-head); font-size: 1.1rem; font-weight: 800; color: var(--text); cursor: pointer !important; display: flex; justify-content: space-between; align-items: center; transition: color 0.2s; text-transform: uppercase; }
+.faq-question { width: 100%; background: none; border: none; text-align: left; padding: 2rem 0; font-family: var(--font-head); font-size: 1.1rem; font-weight: 800; color: var(--text); cursor: pointer !important; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; transition: color 0.2s; text-transform: uppercase; }
 .faq-question:hover, .faq-question.active { color: var(--primary); }
-.faq-icon { font-size: 1.4rem; font-weight: 400; transition: transform 0.3s; color: var(--primary); }
+.faq-icon { font-size: 1.4rem; font-weight: 400; transition: transform 0.3s; color: var(--primary); flex-shrink: 0; }
 .faq-question.active .faq-icon { transform: rotate(45deg); }
 .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-.faq-answer-inner { padding-bottom: 2rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; font-weight: 300;}
+.faq-answer-inner { padding-bottom: 2rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; font-weight: 300; }
 
-/* ── KONTAKT I MINIMALNA FORMA ── */
+/* ── KONTAKT ── */
 #kontakt { background: var(--bg-surface); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; max-width: 1200px; margin: 0 auto; align-items: start; }
 .contact-info .section-header { align-items: flex-start; text-align: left; margin-bottom: 2.5rem; }
-.contact-details-list { display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem;}
+.contact-details-list { display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem; }
 .contact-box { border-left: 2px solid var(--border); padding-left: 1.2rem; transition: border-color 0.3s; }
 .contact-box:hover { border-color: var(--primary); }
 .contact-box label { display: block; font-family: var(--font-accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-faint); margin-bottom: 0.3rem; letter-spacing: 0.1em; }
 .contact-box span, .contact-box a { font-family: var(--font-body); font-size: 1.1rem; font-weight: 500; color: var(--text); text-decoration: none; transition: color 0.2s; }
 .contact-box a:hover { color: var(--primary); }
-.social-chat-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-.chat-icon-btn { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; border-radius: 50%; background: var(--bg-surface); border: 1px solid var(--border); color: var(--text); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none; }
+
+.social-chat-btns { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 1rem; }
+.chat-icon-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; width: 76px; padding: 1rem 0.5rem; border-radius: 16px; background: linear-gradient(160deg, var(--bg-elevated) 0%, var(--bg-surface) 100%); border: 1px solid var(--border); color: var(--text); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none; position: relative; }
+.chat-icon-btn .icon-wrap { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); transition: all 0.3s; }
 .chat-icon-btn svg { width: 20px; height: 20px; fill: currentColor; transition: all 0.3s; }
-.chat-icon-btn:hover { transform: translateY(-5px); }
-.chat-icon-btn.wa:hover { border-color: #25D366; color: #25D366; background: rgba(37, 211, 102, 0.1); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2); }
-.chat-icon-btn.vi:hover { border-color: #7360f2; color: #7360f2; background: rgba(115, 96, 242, 0.1); box-shadow: 0 10px 20px rgba(115, 96, 242, 0.2); }
-.chat-icon-btn.ms:hover { border-color: #00B2FF; color: #00B2FF; background: rgba(0, 178, 255, 0.1); box-shadow: 0 10px 20px rgba(0, 178, 255, 0.2); }
-.contact-form-minimal { display: flex; flex-direction: column; gap: 2rem; padding-top: 2rem;}
+.chat-icon-btn .chat-label { font-family: var(--font-accent); font-size: 0.55rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); transition: color 0.3s; }
+.chat-icon-btn:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+.chat-icon-btn.wa:hover { border-color: #25D366; color: #25D366; } .chat-icon-btn.wa:hover .icon-wrap { background: rgba(37, 211, 102, 0.12); box-shadow: 0 0 20px rgba(37, 211, 102, 0.25); } .chat-icon-btn.wa:hover .chat-label { color: #25D366; }
+.chat-icon-btn.vi:hover { border-color: #7360f2; color: #7360f2; } .chat-icon-btn.vi:hover .icon-wrap { background: rgba(115, 96, 242, 0.12); box-shadow: 0 0 20px rgba(115, 96, 242, 0.25); } .chat-icon-btn.vi:hover .chat-label { color: #7360f2; }
+.chat-icon-btn.ms:hover { border-color: #00B2FF; color: #00B2FF; } .chat-icon-btn.ms:hover .icon-wrap { background: rgba(0, 178, 255, 0.12); box-shadow: 0 0 20px rgba(0, 178, 255, 0.25); } .chat-icon-btn.ms:hover .chat-label { color: #00B2FF; }
+.chat-icon-btn.fb:hover { border-color: #1877F2; color: #1877F2; } .chat-icon-btn.fb:hover .icon-wrap { background: rgba(24, 119, 242, 0.12); box-shadow: 0 0 20px rgba(24, 119, 242, 0.25); } .chat-icon-btn.fb:hover .chat-label { color: #1877F2; }
+
+.contact-form-minimal { display: flex; flex-direction: column; gap: 2rem; padding-top: 2rem; }
 .form-group-line { position: relative; }
 .form-group-line input, .form-group-line textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); font-family: var(--font-body); font-size: 1rem; padding: 0.5rem 0; outline: none; transition: border-color 0.3s; font-weight: 300; }
-.form-group-line textarea { min-height: 80px; resize: none; overflow: hidden;}
+.form-group-line textarea { min-height: 80px; resize: none; overflow: hidden; }
 .form-group-line label { position: absolute; top: 0.5rem; left: 0; color: var(--text-faint); font-family: var(--font-accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; pointer-events: none; transition: all 0.3s ease; }
 .form-group-line input:focus, .form-group-line textarea:focus { border-bottom-color: var(--primary); }
-.form-group-line input:focus ~ label, .form-group-line input:valid ~ label, .form-group-line textarea:focus ~ label, .form-group-line textarea:valid ~ label { top: -15px; font-size: 0.6rem; color: var(--primary); }
-.submit-btn-line { align-self: flex-start; background: transparent; color: var(--text); padding: 0.8rem 0; border: none; border-bottom: 2px solid var(--text); font-family: var(--font-accent); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer !important; transition: all 0.3s; margin-top: 1rem;}
-.submit-btn-line:hover { color: var(--primary); border-bottom-color: var(--primary); letter-spacing: 0.2em;}
-#form-success { display: none; margin-top: 1rem; color: var(--primary); font-size: 0.9rem; font-weight: 500;}
-
-/* ── FOOTER ── */
-footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; }
-.footer-logo { font-family: var(--font-head); font-size: 2rem; font-weight: 900; margin-bottom: 2rem; text-transform: uppercase; }
-.footer-logo span { color: var(--primary); }
-.footer-links { display: flex; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; justify-content: center; }
-.footer-links a { color: var(--text-faint); text-decoration: none; font-family: var(--font-accent); font-weight: 700; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em; transition: color 0.2s; }
-.footer-links a:hover { color: var(--text); }
-.footer-bottom { width: 100%; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-faint); font-size: 0.8rem; text-align: center; display: flex; flex-direction: column; gap: 0.5rem;}
-.footer-bottom a { color: var(--primary); text-decoration: none; font-weight: 600; transition: color 0.2s;}
-.footer-bottom a:hover { color: white; }
-
-/* ── REVEAL KLASA ── */
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.reveal-left.visible { opacity: 1; transform: translateX(0); }
-.reveal-right { opacity: 0; transform: translateX(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.reveal-right.visible { opacity: 1; transform: translateX(0); }
+.form-group-line input:focus ~ label, .form-group-line input:not(:placeholder-shown) ~ label, .form-group-line textarea:focus ~ label, .form-group-line textarea:not(:placeholder-shown) ~ label { top: -1rem; font-size: 0.65rem; color: var(--primary); }
+.submit-btn-line { align-self: flex-start; background: transparent; color: var(--text); padding: 0.8rem 0; border: none; border-bottom: 2px solid var(--text); font-family: var(--font-accent); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer !important; transition: all 0.3s; margin-top: 1rem; }
+.submit-btn-line:hover { color: var(--primary); border-bottom-color: var(--primary); letter-spacing: 0.2em; }
+#form-success { display: none; margin-top: 1rem; color: var(--primary); font-size: 0.9rem; font-weight: 500; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
@@ -255,16 +142,11 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
   .contact-info .section-header { align-items: flex-start; text-align: left; margin-bottom: 2rem; }
 }
 @media (max-width: 900px) {
-  nav { padding: 1rem 5%; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #000; padding: 2rem; border-bottom: 1px solid var(--border); gap: 1.5rem; }
   .kinetic-text { font-size: 25vw; }
   .hero-title { font-size: clamp(3rem, 12vw, 4.5rem); }
   .hero-title span.outline { padding-left: 0; }
   .hero-sub, .hero-btns { padding-left: 0; margin-left: 0; border-left: none; }
   .hero-btns { flex-direction: column; }
-  .section-header { align-items: flex-start; text-align: left; margin-bottom: 2.5rem;}
   .career-card { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem; }
   .career-year { writing-mode: horizontal-tb; transform: none; }
   .gallery-grid { grid-template-columns: 1fr; }
@@ -276,16 +158,21 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
   <div id="cursor-ring"></div>
   <div id="particles"></div>
 
-  <!-- AŽURIRANA NAVIGACIJA (Linkovi idu na index.html) -->
   <nav id="navbar">
-    <a href="index.html" class="nav-logo">M<span>V</span></a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <a href="index.html" class="brand-mark">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20L14 10" stroke="white" stroke-width="2.4" stroke-linecap="round"/><circle cx="17.5" cy="6.5" r="3" fill="white"/><path d="M4 15L9 20" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-text"><b>Marko Vračan</b><small>Parastolni tenis</small></span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Izbornik">
       <span></span><span></span>
     </button>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html#o-meni">O meni</a></li>
       <li><a href="index.html#karijera">Klubovi</a></li>
-      <li><a href="novosti.html">Novosti</a></li> 
+      <li><a href="rezultati.html">Rezultati</a></li>
+      <li><a href="novosti.html">Novosti</a></li>
       <li><a href="galerija.html">Galerija</a></li>
       <li><a href="index.html#kontakt">Kontakt</a></li>
     </ul>
@@ -293,7 +180,9 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
 
   <header id="hero">
     <div class="hero-bg"></div>
-    <div class="hero-lines" id="parallax-bg"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-orbit"></div>
+    <div class="hero-orbit small"></div>
     <div class="kinetic-text">FOKUS I RAD</div>
     <div class="hero-content">
       <div class="hero-eyebrow">Klasa 8 &middot; Hrvatska Reprezentacija</div>
@@ -305,7 +194,7 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
         Fokus, radna etika i borba za svaki poen. Profesionalni parastolnotenisač, državni prvak i igrač u talijanskoj ligi.
       </p>
       <div class="hero-btns">
-        <a href="#karijera" class="btn-primary">Rezultati i klubovi</a>
+        <a href="rezultati.html" class="btn-primary">Rezultati i klubovi</a>
         <a href="novosti.html" class="btn-outline">Zadnje Novosti</a>
       </div>
     </div>
@@ -332,18 +221,17 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
 
     <div class="omeni-grid">
       <div class="omeni-content reveal-left">
-        <!-- VRAĆEN CIJELI TEKST -->
-        <p>Zovem se <strong>Marko Vračan</strong> i parastolni tenis nije samo moj sport – to je moj način života. Natječem se u Klasi 8, kategoriji koja okuplja stojeće igrače sa specifičnim oštećenjima, no za mene granice postoje samo kako bih ih svakodnevno rušio.</p>
-        
+        <p>Zovem se <strong>Marko Vračan</strong> i parastolni tenis nije samo moj sport, to je moj način života. Natječem se u Klasi 8, kategoriji koja okuplja stojeće igrače sa specifičnim oštećenjima, no za mene granice postoje samo kako bih ih svakodnevno rušio.</p>
+
         <h3>Počeci i motivacija</h3>
-        <p>Svaki udarac za stolom zahtijeva nevjerojatnu fokusiranost i tehničku preciznost. U ovaj sport uložio sam tisuće sati u dvorani, žrtvujući slobodno vrijeme radi usavršavanja svakog pokreta. Treniram minimalno jednom, a vrlo često i po dva puta dnevno – jer talent otvara vrata, ali samo nepopustljiva disciplina donosi medalje na postolju.</p>
-        
+        <p>Svaki udarac za stolom zahtijeva nevjerojatnu fokusiranost i tehničku preciznost. U ovaj sport uložio sam tisuće sati u dvorani, žrtvujući slobodno vrijeme radi usavršavanja svakog pokreta. Treniram minimalno jednom, a vrlo često i po dva puta dnevno, jer talent otvara vrata, ali samo nepopustljiva disciplina donosi medalje na postolju.</p>
+
         <div class="quote-box">
             "Za stolom nema mjesta za izgovore. Tu smo samo protivnik, loptica i moja odluka da pobijedim."
         </div>
 
         <h3>Reprezentacija i klupski ponos</h3>
-        <p>Od mojih početaka i brušenja forme u matičnim klubovima <em>PSK Synergia</em> i velikogoričkom <em>Usponu</em>, pa sve do onog neopisivog ponosa kada sam prvi put obukao dres hrvatske reprezentacije – svaki meč bio je lekcija. Kruna mog dosadašnjeg domaćeg rada svakako je osvajanje naslova Državnog prvaka 2023. godine.</p>
+        <p>Od mojih početaka i brušenja forme u matičnim klubovima <em>PSK Synergia</em> i velikogoričkom <em>Usponu</em>, pa sve do onog neopisivog ponosa kada sam prvi put obukao dres hrvatske reprezentacije, svaki meč bio je lekcija. Kruna mog dosadašnjeg domaćeg rada svakako je osvajanje naslova Državnog prvaka 2023. godine.</p>
 
         <h3>Gledajući naprijed</h3>
         <p>Nisam netko tko se zadovoljava postignutim. Moj nedavni prelazak u talijanski klub <em>Santa Tecla Nulvi</em> sa Sardinije jasan je dokaz moje ambicije. Želim se natjecati s najboljima u Europi, skupljati međunarodno iskustvo i dokazati da se trud itekako isplati.</p>
@@ -352,7 +240,7 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
       <div class="omeni-image-wrapper reveal-right">
         <div class="image-backdrop-glow"></div>
         <div class="omeni-image-card" id="parallax-card">
-            <img src="slika.jpg" alt="Marko Vračan - Parastolni tenis">
+            <img src="slika.jpg" alt="Marko Vračan, parastolni tenis">
         </div>
       </div>
     </div>
@@ -363,7 +251,7 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
       <div class="section-label">Roster</div>
       <h2 class="section-title">Klubovi &<span>Uspjesi</span></h2>
     </div>
-    
+
     <div class="career-list reveal">
       <div class="career-card">
         <div class="career-year">2024.</div>
@@ -377,11 +265,10 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
         <div class="career-year">2023.</div>
         <div class="career-details">
           <h3>Hrvatska Reprezentacija</h3>
-          <p>Kao stalni član nacionalne vrste u Klasi 8, branim boje Hrvatske na brojnim međunarodnim turnirima (bronca u igri parova, Podgorica).</p>
+          <p>Kao stalni član nacionalne vrste u Klasi 8, branim boje Hrvatske na brojnim međunarodnim turnirima, uz brončano odličje u igri parova osvojeno u Podgorici.</p>
         </div>
         <div class="career-badge">Nacionalni tim</div>
       </div>
-      <!-- VRAĆENA TREĆA KARTICA -->
       <div class="career-card">
         <div class="career-year">2023.</div>
         <div class="career-details">
@@ -391,60 +278,34 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
         <div class="career-badge">Hrvatska</div>
       </div>
     </div>
+
+    <div class="karijera-cta reveal">
+      <a href="rezultati.html" class="btn-outline">Pogledaj sve rezultate</a>
+    </div>
   </section>
 
-  <!-- NOVOSTI PREVIEW NA NASLOVNICI -->
   <section id="novosti-preview">
     <div class="section-header reveal">
       <div class="section-label">Novosti i Blog</div>
       <h2 class="section-title">Zadnje<span>Vijesti</span></h2>
     </div>
-    
-    <div class="news-grid reveal">
-      <article class="news-card">
-        <div class="news-img"></div>
-        <div class="news-content">
-            <div class="news-meta">
-                <span class="news-date">12. Svibnja 2026.</span>
-            </div>
-            <h3 class="news-title">Uspješan nastup na turniru u Podgorici</h3>
-            <p class="news-excerpt">Završen je jak međunarodni turnir na kojem smo ostvarili zapažene rezultate, prolazak grupne faze i odličan nastup u igri parova...</p>
-            <div class="news-footer">
-                <a href="novosti.html" class="read-more">Pročitaj cijeli članak &rarr;</a>
-            </div>
-        </div>
-      </article>
 
-      <article class="news-card">
-        <div class="news-img"></div>
-        <div class="news-content">
-            <div class="news-meta">
-                <span class="news-date">3. Ožujka 2026.</span>
-            </div>
-            <h3 class="news-title">Srebro s Prvenstva Hrvatske u Prelogu</h3>
-            <p class="news-excerpt">Nakon napetih mečeva i odlične atmosfere u Prelogu, osigurao sam drugo mjesto i srebrnu medalju. Forma se diže pred nadolazeća prvenstva...</p>
-            <div class="news-footer">
-                <a href="novosti.html" class="read-more">Pročitaj cijeli članak &rarr;</a>
-            </div>
-        </div>
-      </article>
+    <div class="news-grid reveal" id="news-preview-grid">
+      <!-- Kartice se automatski generiraju iz js/novosti-data.js -->
     </div>
 
-    <!-- GUMB ZA ODLAYAK NA STRANICU SA SVIM NOVOSTIMA -->
     <div class="reveal" style="text-align: center; margin-top: 4rem;">
-        <a href="novosti.html" class="btn-outline">Pogledaj Sve Novosti i Rezultate</a>
+        <a href="novosti.html" class="btn-outline">Pogledaj Sve Novosti</a>
     </div>
   </section>
 
-  <!-- GALERIJA PREVIEW -->
   <section id="galerija">
     <div class="section-header reveal">
       <div class="section-label">Pregled natjecanja</div>
       <h2 class="section-title">Istaknuti<span>Trenuci</span></h2>
     </div>
-    
+
     <div class="gallery-grid reveal">
-      <!-- VRAĆENE KARTICE ZA GALERIJU -->
       <div class="gallery-item">
         <div class="gallery-tag">Prelog 2026.</div>
         <h3>Srebrna medalja (PH)</h3>
@@ -456,30 +317,29 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
         <p>Na nedavnom jakom međunarodnom turniru u Podgorici (svibanj 2026.) uspješan prolazak grupne faze.</p>
       </div>
       <div class="gallery-item">
-        <div class="gallery-tag">Laško 2025.</div>
-        <h3>Challenger Turnir</h3>
-        <p>Nastup na cijenjenom parasportskom turniru, natjecanje pojedinačno i u igri mješovitih parova.</p>
+        <div class="gallery-tag">Lignano 2026.</div>
+        <h3>Brončano odličje</h3>
+        <p>Na ITTF World Para Challengeru u Lignanu, u paru s Bornom Zohilom, osvojena brončana medalja.</p>
       </div>
     </div>
-    
+
     <div class="reveal" style="text-align: center; margin-top: 3rem;">
         <a href="galerija.html" class="btn-outline">Pogledaj sve fotografije u galeriji</a>
     </div>
   </section>
 
-  <!-- VRAĆEN FAQ -->
   <section id="faq">
     <div class="section-header reveal">
       <div class="section-label">O Parasportu</div>
       <h2 class="section-title">Česta<span>Pitanja</span></h2>
     </div>
-    
+
     <div class="faq-container reveal">
       <div class="faq-item">
         <button class="faq-question">Što znači natjecanje u Klasi 8? <span class="faq-icon">+</span></button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            Parastolni tenis podijeljen je u klase od 1 do 10 (1-5 su igrači u kolicima, 6-10 stojeći igrači). Klasa 8 namijenjena je stojećim igračima sa specifičnim tjelesnim oštećenjima koja utječu na rad nogu ili funkciju ruke kojom se drži reket.
+            Parastolni tenis podijeljen je u klase od 1 do 10 (1 do 5 su igrači u kolicima, 6 do 10 stojeći igrači). Klasa 8 namijenjena je stojećim igračima sa specifičnim tjelesnim oštećenjima koja utječu na rad nogu ili funkciju ruke kojom se drži reket.
           </div>
         </div>
       </div>
@@ -488,6 +348,38 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
         <div class="faq-answer">
           <div class="faq-answer-inner">
             Sportski režim je strog. U dvorani sam često i dva puta dnevno. Trening se sastoji od taktičkog rada za stolom, sparinga, ali i neophodnih kondicijskih i fizičkih priprema u teretani.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Po čemu se parastolni tenis razlikuje od klasičnog stolnog tenisa? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Pravila igre, veličina stola i visina mreže gotovo su identični olimpijskom stolnom tenisu. Razlika je u sustavu klasifikacije sportaša prema vrsti i stupnju oštećenja, čime se osigurava ravnopravno natjecanje unutar iste kategorije.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Kako netko može krenuti trenirati parastolni tenis? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Najbolji način je javiti se nekom od parastolnoteniskih klubova ili obratiti se Hrvatskom parastolnoteniskom savezu, koji povezuje zainteresirane s najbližim klubom i organizira službenu klasifikaciju sportaša.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Gdje mogu pratiti tvoje nastupe i rezultate uživo? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Sve najnovije rezultate i vijesti redovito objavljujem na stranicama <a href="rezultati.html" style="color: var(--primary);">Rezultati</a> i <a href="novosti.html" style="color: var(--primary);">Novosti</a>, a najave turnira dijelim i putem kontaktnih kanala navedenih u nastavku.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Mogu li podržati tvoju sportsku karijeru kao sponzor ili donator? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Apsolutno, svaki oblik podrške, od opreme do pokrivanja troškova putovanja na turnire, uvelike pomaže u pripremama i nastupima. Javite se putem kontakt forme ili izravno na email i mobitel u nastavku.
           </div>
         </div>
       </div>
@@ -501,7 +393,7 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
           <div class="section-label">Podrška i Upiti</div>
           <h2 class="section-title">Kontakt</h2>
         </div>
-        
+
         <div class="contact-details-list">
           <div class="contact-box">
             <label>Email adresa</label>
@@ -515,16 +407,20 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
 
         <div class="social-chat-btns">
             <a href="https://wa.me/385992190445" target="_blank" class="chat-icon-btn wa" title="Javi se na WhatsApp">
-                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.101 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.101 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
+                <span class="chat-label">WhatsApp</span>
             </a>
             <a href="viber://chat?number=%2B385992190445" class="chat-icon-btn vi" title="Javi se na Viber">
-                <svg viewBox="0 0 24 24"><path d="M20.67 6.06c-1.35-2.73-3.6-4.57-6.52-5.48-1.59-.49-4.53-.49-6.3 0C4.93 1.49 2.68 3.33 1.33 6.06c-.49 1.59-.49 4.88 0 6.47 1.35 2.73 3.6 4.57 6.52 5.48 1.4.43 3.48.51 4.95.24l4.03 2.53c.69.43 1.62.15 1.62-.68v-3.03c1.78-.9 3.12-2.31 3.73-4.06.49-1.59.49-5.36 0-6.95zM17.43 14c-.21.36-.61.64-1.07.64h-.23.01c-1.46 0-3.5-1.11-4.83-2.36-1.33-1.33-2.44-3.37-2.44-4.83v-.23c0-.46.28-.86.64-1.07.48-.28 1.12-.17 1.51.31l.73.91c.26.33.29.83.05 1.21l-.51.78c-.18.28-.13.66.13.92 1.24 1.24 1.9 1.9 3.14 3.14.26.26.64.31.92.13l.78-.51c.38-.24.88-.21 1.21.05l.91.73c.48.39.59 1.03.31 1.51z"/></svg>
+                <span class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.67 6.06c-1.35-2.73-3.6-4.57-6.52-5.48-1.59-.49-4.53-.49-6.3 0C4.93 1.49 2.68 3.33 1.33 6.06c-.49 1.59-.49 4.88 0 6.47 1.35 2.73 3.6 4.57 6.52 5.48 1.4.43 3.48.51 4.95.24l4.03 2.53c.69.43 1.62.15 1.62-.68v-3.03c1.78-.9 3.12-2.31 3.73-4.06.49-1.59.49-5.36 0-6.95zM17.43 14c-.21.36-.61.64-1.07.64h-.23.01c-1.46 0-3.5-1.11-4.83-2.36-1.33-1.33-2.44-3.37-2.44-4.83v-.23c0-.46.28-.86.64-1.07.48-.28 1.12-.17 1.51.31l.73.91c.26.33.29.83.05 1.21l-.51.78c-.18.28-.13.66.13.92 1.24 1.24 1.9 1.9 3.14 3.14.26.26.64.31.92.13l.78-.51c.38-.24.88-.21 1.21.05l.91.73c.48.39.59 1.03.31 1.51z"/></svg></span>
+                <span class="chat-label">Viber</span>
             </a>
             <a href="https://m.me/100090668830331" target="_blank" class="chat-icon-btn ms" title="Javi se na Messenger">
-                <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.044 0 11.258c0 3.518 1.838 6.642 4.73 8.665v4.077l4.288-2.348c.954.265 1.956.406 2.982.406 6.627 0 12-5.044 12-11.258C24 5.044 18.627 0 12 0zm1.254 14.966l-3.218-3.447-6.273 3.447 6.864-7.288 3.267 3.447 6.223-3.447-6.863 7.288z"/></svg>
+                <span class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.044 0 11.258c0 3.518 1.838 6.642 4.73 8.665v4.077l4.288-2.348c.954.265 1.956.406 2.982.406 6.627 0 12-5.044 12-11.258C24 5.044 18.627 0 12 0zm1.254 14.966l-3.218-3.447-6.273 3.447 6.864-7.288 3.267 3.447 6.223-3.447-6.863 7.288z"/></svg></span>
+                <span class="chat-label">Messenger</span>
             </a>
-            <a href="https://www.facebook.com/profile.php?id=100090668830331" target="_blank" rel="noopener" class="chat-icon-btn" title="Facebook Profil">
-                <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+            <a href="https://www.facebook.com/profile.php?id=100090668830331" target="_blank" rel="noopener" class="chat-icon-btn fb" title="Facebook Profil">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></span>
+                <span class="chat-label">Facebook</span>
             </a>
         </div>
       </div>
@@ -532,15 +428,15 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
       <div class="reveal-right">
         <form class="contact-form-minimal" action="#" method="POST" id="contact-form">
           <div class="form-group-line">
-            <input type="text" name="name" required>
+            <input type="text" name="name" required placeholder=" ">
             <label>Ime ili Tvrtka</label>
           </div>
           <div class="form-group-line">
-            <input type="email" name="email" required>
+            <input type="email" name="email" required placeholder=" ">
             <label>Vaša Email adresa</label>
           </div>
           <div class="form-group-line">
-            <textarea name="message" required></textarea>
+            <textarea name="message" required placeholder=" "></textarea>
             <label>Poruka / Upit</label>
           </div>
           <button type="submit" class="submit-btn-line">Pošalji Poruku &rarr;</button>
@@ -551,12 +447,19 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
   </section>
 
   <footer>
-    <div class="footer-logo">M<span>V</span></div>
+    <a href="index.html" class="brand-mark footer-brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20L14 10" stroke="white" stroke-width="2.4" stroke-linecap="round"/><circle cx="17.5" cy="6.5" r="3" fill="white"/><path d="M4 15L9 20" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-text"><b>Marko Vračan</b><small>Parastolni tenis</small></span>
+    </a>
     <div class="footer-links">
       <a href="#hero">Početna</a>
       <a href="#o-meni">Tko sam ja</a>
       <a href="#karijera">Klubovi</a>
+      <a href="rezultati.html">Rezultati</a>
       <a href="novosti.html">Novosti</a>
+      <a href="galerija.html">Galerija</a>
       <a href="#kontakt">Kontakt</a>
     </div>
     <div class="footer-bottom">
@@ -565,28 +468,28 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
     </div>
   </footer>
 
+  <script src="js/novosti-data.js"></script>
   <script>
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursor-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    function animateCursor() {
-      if (cursor && ring) {
-        cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-        rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
-        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-      }
-      requestAnimationFrame(animateCursor);
+    // Generiranje pregleda zadnjih novosti na naslovnici (iz js/novosti-data.js)
+    const previewGrid = document.getElementById('news-preview-grid');
+    if (previewGrid) {
+      NOVOSTI.slice(0, 3).forEach(n => {
+        const card = document.createElement('a');
+        card.href = `clanak.html?slug=${n.slug}`;
+        card.className = 'news-card';
+        card.innerHTML = `
+          <div class="news-img" data-tag="${n.tag}"></div>
+          <div class="news-content">
+            <div class="news-meta"><span class="news-date">${n.date}</span></div>
+            <h3 class="news-title">${n.title}</h3>
+            <p class="news-excerpt">${n.excerpt}</p>
+            <div class="news-footer"><span class="read-more">Pročitaj cijeli članak &rarr;</span></div>
+          </div>`;
+        previewGrid.appendChild(card);
+      });
     }
-    animateCursor();
 
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
+    // Parallax efekt za sliku u "O meni" sekciji
     const card = document.getElementById('parallax-card');
     if (window.matchMedia("(hover: hover)").matches && card) {
         card.parentElement.addEventListener('mousemove', (e) => {
@@ -604,45 +507,23 @@ footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--bo
         });
     }
 
-    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    reveals.forEach(el => obs.observe(el));
-
-    // Skripta za otvaranje i zatvaranje FAQ pitanja
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', function() {
-        this.classList.toggle('active');
-        const answer = this.nextElementSibling;
-        answer.style.maxHeight = answer.style.maxHeight ? null : answer.scrollHeight + "px";
+    // Kontakt forma (demo slanje)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        const originalText = btn.innerHTML;
+        btn.textContent = 'Slanje...';
+        setTimeout(() => {
+          e.target.reset();
+          btn.innerHTML = originalText;
+          document.getElementById('form-success').style.display = 'block';
+          setTimeout(() => { document.getElementById('form-success').style.display = 'none'; }, 3000);
+        }, 1000);
       });
-    });
-
-    document.getElementById('contact-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      const originalText = btn.innerHTML;
-      btn.textContent = 'Slanje...';
-      setTimeout(() => {
-        e.target.reset();
-        btn.innerHTML = originalText;
-        document.getElementById('form-success').style.display = 'block';
-        setTimeout(() => { document.getElementById('form-success').style.display = 'none'; }, 3000);
-      }, 1000);
-    });
-    
-    const particlesContainer = document.getElementById('particles');
-    if(particlesContainer){
-        for(let i=0; i<30; i++) {
-            let p = document.createElement('div');
-            p.className = 'particle';
-            p.style.left = Math.random() * 100 + 'vw';
-            p.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            p.style.animationDelay = (Math.random() * 5) + 's';
-            particlesContainer.appendChild(p);
-        }
     }
   </script>
+  <script src="js/common.js"></script>
 </body>
 </html>
