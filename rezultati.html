@@ -56,6 +56,25 @@
 
 .results-empty { text-align: center; padding: 4rem 0; color: var(--text-faint); font-family: var(--font-head); text-transform: uppercase; letter-spacing: 0.05em; }
 
+/* ── DETALJI MEČEVA ── */
+.match-details { grid-column: 1 / -1; margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border); }
+.match-toggle { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 0.5rem 1rem; border-radius: 50px; font-family: var(--font-accent); font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer !important; transition: all 0.25s; display: inline-flex; align-items: center; gap: 0.5rem; }
+.match-toggle:hover { border-color: var(--primary); color: var(--text); }
+.match-toggle .match-toggle-icon { transition: transform 0.25s; font-size: 0.8rem; }
+.match-toggle.open .match-toggle-icon { transform: rotate(180deg); }
+.match-list { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.match-list-inner { display: flex; flex-direction: column; gap: 0.6rem; padding-top: 1rem; }
+.match-row { display: grid; grid-template-columns: 110px 1fr auto; align-items: center; gap: 1rem; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 0.7rem 1rem; }
+.match-faza { font-family: var(--font-accent); font-size: 0.55rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); }
+.match-protivnik { color: var(--text); font-size: 0.9rem; font-weight: 500; }
+.match-score { font-family: var(--font-head); font-size: 0.95rem; font-weight: 800; padding: 0.25rem 0.8rem; border-radius: 6px; white-space: nowrap; }
+.match-score.win { color: #4ade80; background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.3); }
+.match-score.loss { color: var(--primary); background: rgba(255, 30, 56, 0.1); border: 1px solid rgba(255, 30, 56, 0.3); }
+
+@media (max-width: 900px) {
+  .match-row { grid-template-columns: 1fr; text-align: left; gap: 0.4rem; }
+}
+
 @media (max-width: 900px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .result-row { grid-template-columns: 1fr; text-align: left; gap: 0.8rem; }
@@ -167,6 +186,8 @@
       list.forEach(r => {
         const medalClass = r.medalja || 'none';
         const medalGlyph = r.medalja === 'zlato' ? '1.' : r.medalja === 'srebro' ? '2.' : r.medalja === 'bronca' ? '3.' : '—';
+        const hasMatches = Array.isArray(r.mecevi) && r.mecevi.length > 0;
+
         const row = document.createElement('div');
         row.className = 'result-row';
         row.innerHTML = `
@@ -183,8 +204,35 @@
           <div class="result-plasman">
             <span class="plasman-tag ${medalClass}">${r.plasman}</span>
           </div>
+          ${hasMatches ? `
+          <div class="match-details">
+            <button class="match-toggle" type="button">
+              <span class="match-toggle-icon">&#9660;</span>
+              Detalji mečeva (${r.mecevi.length})
+            </button>
+            <div class="match-list">
+              <div class="match-list-inner">
+                ${r.mecevi.map(m => `
+                  <div class="match-row">
+                    <span class="match-faza">${m.faza || ''}</span>
+                    <span class="match-protivnik">${m.protivnik}</span>
+                    <span class="match-score ${m.pobjeda ? 'win' : 'loss'}">${m.rezultat}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>` : ''}
         `;
         timeline.appendChild(row);
+
+        if (hasMatches) {
+          const toggleBtn = row.querySelector('.match-toggle');
+          const matchList = row.querySelector('.match-list');
+          toggleBtn.addEventListener('click', () => {
+            const isOpen = toggleBtn.classList.toggle('open');
+            matchList.style.maxHeight = isOpen ? matchList.scrollHeight + 'px' : null;
+          });
+        }
       });
     }
 

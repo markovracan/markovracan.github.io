@@ -15,6 +15,16 @@
 // plasman     - tekst plasmana, npr. "1. mjesto", "Osmina finala"
 // medalja     - "zlato" | "srebro" | "bronca" | null
 // opis        - kratka rečenica konteksta
+// mecevi      - (opcionalno) niz pojedinačnih mečeva unutar tog nastupa.
+//               Ako se doda, na rezultati.html se pojavljuje gumb
+//               "Detalji mečeva" koji otvara popis. Ako se izostavi
+//               ili ostavi prazan niz [], gumb se jednostavno ne prikazuje.
+//               Svaki meč ima:
+//                 faza       - naziv faze, npr. "Skupina", "Osmina finala", "Finale"
+//                 protivnik  - ime protivnika (po želji i zemlja u zagradi)
+//                 rezultat   - točan rezultat, npr. "3:1", "2:3"
+//                 pobjeda    - true ako je Marko pobijedio, false ako je izgubio
+//                              (određuje boju: zelena za pobjedu, crvena za poraz)
 // ============================================================
 
 const REZULTATI = [
@@ -38,7 +48,12 @@ const REZULTATI = [
     partner: null,
     plasman: "Osmina finala",
     medalja: null,
-    opis: "Prolazak skupine (kategorija 8, 23 igrača), poraz u osmini finala od budućeg finalista turnira."
+    opis: "Prolazak skupine (kategorija 8, 23 igrača), poraz u osmini finala od budućeg finalista turnira.",
+    mecevi: [
+      { faza: "Skupina", protivnik: "Ledoux (Belgija)", rezultat: "0:3", pobjeda: false },
+      { faza: "Skupina", protivnik: "Johansen (Norveška)", rezultat: "3:1", pobjeda: true },
+      { faza: "Osmina finala", protivnik: "Weinan Peng (Kina)", rezultat: "2:3", pobjeda: false }
+    ]
   },
   {
     dateSort: "2026-05-12",
@@ -49,7 +64,12 @@ const REZULTATI = [
     partner: "Borna Zohil",
     plasman: "Četvrtfinale",
     medalja: null,
-    opis: "Pobjede protiv Čilea (3:0) i Crne Gore (3:2) u skupini, poraz u četvrtfinalu 2:3."
+    opis: "Pobjede protiv Čilea (3:0) i Crne Gore (3:2) u skupini, poraz u četvrtfinalu 2:3.",
+    mecevi: [
+      { faza: "Skupina", protivnik: "Čile", rezultat: "3:0", pobjeda: true },
+      { faza: "Skupina", protivnik: "Crna Gora", rezultat: "3:2", pobjeda: true },
+      { faza: "Četvrtfinale", protivnik: "Kazahstan", rezultat: "2:3", pobjeda: false }
+    ]
   },
   {
     dateSort: "2026-03-03",
