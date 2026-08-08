@@ -114,7 +114,7 @@
         card.className = 'news-card';
         card.innerHTML = `
           <a href="clanak.html?slug=${n.slug}" style="text-decoration:none;color:inherit;display:block;">
-            <div class="news-img" data-tag="${n.tag}"></div>
+            <div class="news-img${n.slika ? ' has-photo' : ''}" data-tag="${n.tag}" style="${n.slika ? `background-image:url('${n.slika}')` : ''}"></div>
           </a>
           <div class="news-content">
               <div class="news-meta"><span class="news-date">${n.date}</span></div>

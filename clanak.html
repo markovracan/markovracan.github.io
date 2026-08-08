@@ -25,6 +25,7 @@
 .article-body { padding: 5rem 5%; background: var(--bg); }
 .article-content { max-width: 780px; margin: 0 auto; }
 .article-content p { color: var(--text-muted); font-size: 1.08rem; font-weight: 300; line-height: 1.9; margin-bottom: 1.8rem; }
+.article-hero-img { width: 100%; max-height: 480px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 2.5rem; display: block; }
 .article-quote { border-left: 2px solid var(--primary); padding: 1.5rem 2rem; background: linear-gradient(90deg, rgba(255,30,56,0.05) 0%, transparent 100%); margin: 2.5rem 0; font-style: italic; font-size: 1.2rem; color: var(--text); }
 .article-share { display: flex; align-items: center; gap: 1rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
 .article-share span { font-family: var(--font-accent); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); }
@@ -125,7 +126,8 @@
         <div class="article-date">${article.date}</div>
       `;
 
-      let bodyHtml = article.content.map(p => `<p>${p}</p>`).join('');
+      let bodyHtml = article.slika ? `<img class="article-hero-img" src="${article.slika}" alt="${article.title}">` : '';
+      bodyHtml += article.content.map(p => `<p>${p}</p>`).join('');
       if (article.quote) {
         bodyHtml += `<div class="article-quote">"${article.quote}"</div>`;
       }
@@ -151,7 +153,7 @@
           card.href = `clanak.html?slug=${n.slug}`;
           card.className = 'news-card';
           card.innerHTML = `
-            <div class="news-img" data-tag="${n.tag}"></div>
+            <div class="news-img${n.slika ? ' has-photo' : ''}" data-tag="${n.tag}" style="${n.slika ? `background-image:url('${n.slika}')` : ''}"></div>
             <div class="news-content">
               <div class="news-meta"><span class="news-date">${n.date}</span></div>
               <h3 class="news-title">${n.title}</h3>

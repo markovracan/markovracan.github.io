@@ -12,6 +12,11 @@
 // date        - datum za prikaz (npr. "12. svibnja 2026.")
 // dateSort    - datum u formatu GGGG-MM-DD radi ispravnog sortiranja
 // excerpt     - kratki opis za kartice
+// slika       - (opcionalno) naziv/putanja fotografije, npr. "slike/lignano.jpg".
+//               Ako se doda, fotografija se automatski prikazuje na kartici
+//               (naslovnica, novosti.html, povezane vijesti) i kao velika
+//               naslovna fotografija na vrhu samog članka. Ako se izostavi,
+//               prikazuje se postojeći placeholder s oznakom kategorije.
 // content     - niz odlomaka (HTML dopušten unutar odlomka)
 // quote       - (opcionalno) istaknuti citat
 // ============================================================
