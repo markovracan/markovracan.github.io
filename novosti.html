@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Novosti i blog - Marko Vračan. Pratite zadnje rezultate, intervjue i najave turnira.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novosti i Rezultati | Marko Vračan</title>
+
+<!-- OG / Meta podaci -->
+<meta property="og:title" content="Novosti | Marko Vračan">
+<meta property="og:description" content="Zadnji rezultati i vijesti iz karijere Marka Vračana.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@700;800;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+<style>
+/* CSS Reset i Varijable su preuzete iz glavne stranice radi konzistentnosti */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --primary: #ff1e38; --bg: #030303; --bg-surface: #0a0a0a; --bg-elevated: #111111; --text: #ffffff; --text-muted: #a3a3a3; --text-faint: #555555; --border: #222222; --font-head: 'Outfit', sans-serif; --font-accent: 'Syncopate', sans-serif; --font-body: 'Montserrat', sans-serif; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.8; overflow-x: hidden; }
+
+/* Cursor & Navigacija */
+*, *::before, *::after { cursor: none !important; }
+#cursor { position: fixed; width: 4px; height: 4px; background: var(--primary); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s, width 0.2s, height 0.2s; }
+#cursor-ring { position: fixed; width: 30px; height: 30px; border: 1px solid var(--primary); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background 0.2s; }
+body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width: 50px; height: 50px; background: rgba(255, 30, 56, 0.1); border-width: 2px; }
+@media (pointer: coarse) { #cursor, #cursor-ring { display: none !important; } *, *::before, *::after { cursor: auto !important; } }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 4%; background: rgba(3, 3, 3, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: all 0.3s ease; }
+nav.scrolled { background: rgba(3, 3, 3, 0.98); border-bottom: 1px solid var(--border); padding: 1rem 4%; }
+.nav-logo { font-family: var(--font-head); font-size: 1.5rem; font-weight: 900; color: var(--text); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
+.nav-logo span { color: var(--primary); }
+.nav-links { display: flex; gap: 3rem; list-style: none; align-items: center; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; transition: color 0.2s; position: relative; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-links a::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease; }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); transform-origin: left; }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 5px; z-index: 101;}
+.hamburger span { display: block; width: 28px; height: 2px; background: var(--text); transition: 0.3s;}
+
+/* ── ZAGLAVLJE PODSTRANICE ── */
+.page-header { padding: 200px 5% 80px; background: var(--bg-surface); text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden;}
+.header-bg-glow { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60vw; height: 300px; background: radial-gradient(circle, rgba(255,30,56,0.1) 0%, transparent 70%); z-index: 0; filter: blur(40px); }
+.page-header h1 { font-family: var(--font-head); font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; color: var(--text); position: relative; z-index: 2;}
+.page-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; position: relative; z-index: 2;}
+
+/* ── NOVOSTI GRID ── */
+.all-news-section { padding: 6rem 5%; background: var(--bg); min-height: 60vh;}
+.news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1400px; margin: 0 auto; }
+.news-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; display: flex; flex-direction: column;}
+.news-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.4);}
+.news-img { width: 100%; height: 220px; background: var(--bg-elevated); object-fit: cover; border-bottom: 1px solid var(--border);}
+.news-content { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1;}
+.news-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.news-date { font-family: var(--font-accent); font-size: 0.65rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.1em; }
+.news-title { font-family: var(--font-head); font-size: 1.4rem; color: var(--text); margin-bottom: 1rem; line-height: 1.3; }
+.news-excerpt { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; margin-bottom: 1.5rem; flex-grow: 1; }
+.news-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: auto;}
+.read-more { color: var(--text); font-family: var(--font-accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s; }
+.read-more:hover { color: var(--primary); }
+.share-links { display: flex; gap: 0.8rem; }
+.share-links a { color: var(--text-faint); transition: color 0.2s; display: flex; align-items: center; justify-content: center;}
+.share-links a svg { width: 16px; height: 16px; fill: currentColor; }
+.share-links a:hover { color: var(--primary); }
+
+footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; }
+.footer-logo { font-family: var(--font-head); font-size: 2rem; font-weight: 900; margin-bottom: 2rem; text-transform: uppercase; }
+.footer-logo span { color: var(--primary); }
+.footer-links { display: flex; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; justify-content: center; }
+.footer-links a { color: var(--text-faint); text-decoration: none; font-family: var(--font-accent); font-weight: 700; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em; transition: color 0.2s; }
+.footer-links a:hover { color: var(--text); }
+.footer-bottom { width: 100%; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-faint); font-size: 0.8rem; text-align: center; display: flex; flex-direction: column; gap: 0.5rem;}
+.footer-bottom a { color: var(--primary); text-decoration: none; font-weight: 600; transition: color 0.2s;}
+.footer-bottom a:hover { color: white; }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 5%; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #000; padding: 2rem; border-bottom: 1px solid var(--border); gap: 1.5rem; }
+}
+</style>
+</head>
+<body>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- NAVIGACIJA (Linkovi vode nazad na index) -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">M<span>V</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#o-meni">O meni</a></li>
+      <li><a href="index.html#karijera">Klubovi</a></li>
+      <li><a href="novosti.html" class="active">Novosti</a></li>
+      <li><a href="galerija.html">Galerija</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header">
+    <div class="header-bg-glow"></div>
+    <h1>Novosti & Blog</h1>
+    <p>Pregled najnovijih mečeva, rezultata i najava turnira.</p>
+  </header>
+
+  <section class="all-news-section">
+    <div class="news-grid reveal">
+      
+      <article class="news-card">
+        <div class="news-img"></div>
+        <div class="news-content">
+            <div class="news-meta"><span class="news-date">12. Svibnja 2026.</span></div>
+            <h3 class="news-title">Uspješan nastup na turniru u Podgorici</h3>
+            <p class="news-excerpt">Završen je jak međunarodni turnir na kojem smo ostvarili zapažene rezultate, prolazak grupne faze i odličan nastup u igri parova...</p>
+            <div class="news-footer">
+                <a href="#" class="read-more">Pročitaj članak &rarr;</a>
+                <div class="share-links">
+                    <a href="#" title="Podijeli na Facebooku"><svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+                    <a href="#" title="Podijeli na X (Twitter)"><svg viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+                </div>
+            </div>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-img"></div>
+        <div class="news-content">
+            <div class="news-meta"><span class="news-date">3. Ožujka 2026.</span></div>
+            <h3 class="news-title">Srebro s Prvenstva Hrvatske u Prelogu</h3>
+            <p class="news-excerpt">Nakon napetih mečeva i odlične atmosfere u Prelogu, osigurao sam drugo mjesto i srebrnu medalju. Forma se diže pred nadolazeća prvenstva...</p>
+            <div class="news-footer">
+                <a href="#" class="read-more">Pročitaj članak &rarr;</a>
+                <div class="share-links">
+                    <a href="#" title="Podijeli na Facebooku"><svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+                    <a href="#" title="Podijeli na X (Twitter)"><svg viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+                </div>
+            </div>
+        </div>
+      </article>
+      
+      <article class="news-card">
+        <div class="news-img"></div>
+        <div class="news-content">
+            <div class="news-meta"><span class="news-date">15. Veljače 2026.</span></div>
+            <h3 class="news-title">Nova Sezona: Potpis za talijanski klub</h3>
+            <p class="news-excerpt">S velikim ponosom mogu objaviti da je službeno pao potpis za ugledni talijanski tim sa Sardinije. Preda mnom su novi izazovi...</p>
+            <div class="news-footer">
+                <a href="#" class="read-more">Pročitaj članak &rarr;</a>
+                <div class="share-links">
+                    <a href="#" title="Podijeli na Facebooku"><svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+                    <a href="#" title="Podijeli na X (Twitter)"><svg viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+                </div>
+            </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">M<span>V</span></div>
+    <div class="footer-links">
+      <a href="index.html#hero">Početna</a>
+      <a href="index.html#o-meni">Tko sam ja</a>
+      <a href="index.html#karijera">Klubovi</a>
+      <a href="novosti.html">Novosti</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Marko Vračan. Sva prava pridržana.</p>
+      <p>Dizajn i izrada: <a href="https://kezicvizuali.com/" target="_blank">Kezić Vizuali</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animateCursor() {
+      if (cursor && ring) {
+        cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+        rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      }
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 10); });
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
