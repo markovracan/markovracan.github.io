@@ -1,0 +1,149 @@
+/* ============================================================
+   MARKO VRAČAN — ZAJEDNIČKI STILOVI
+   Dijeljeno preko svih stranica: index, novosti, clanak, rezultati, galerija
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #ff1e38;
+  --primary-dim: #a3001b;
+  --bg: #030303;
+  --bg-surface: #0a0a0a;
+  --bg-elevated: #111111;
+  --text: #ffffff;
+  --text-muted: #a3a3a3;
+  --text-faint: #555555;
+  --border: #222222;
+
+  --gold: #ffca3a;
+  --silver: #c9ccd1;
+  --bronze: #d98a4a;
+
+  --font-head: 'Outfit', sans-serif;
+  --font-accent: 'Syncopate', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--primary); color: #fff; }
+
+/* ── CURSOR ── */
+*, *::before, *::after { cursor: none !important; }
+#cursor { position: fixed; width: 4px; height: 4px; background: var(--primary); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s, width 0.2s, height 0.2s; }
+#cursor-ring { position: fixed; width: 30px; height: 30px; border: 1px solid var(--primary); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background 0.2s; }
+body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width: 50px; height: 50px; background: rgba(255, 30, 56, 0.1); border-width: 2px; }
+@media (pointer: coarse) { #cursor, #cursor-ring { display: none !important; } *, *::before, *::after { cursor: auto !important; } }
+
+/* ── PARTICLES ── */
+#particles { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+.particle { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 10px 2px rgba(255,30,56,0.4); animation: float-up linear infinite; opacity: 0; }
+@keyframes float-up { 0% { opacity: 0; transform: translateY(100vh) scale(0.5); } 20% { opacity: 0.8; } 80% { opacity: 0.4; } 100% { opacity: 0; transform: translateY(-20vh) scale(1.5); } }
+
+/* ── NAVIGACIJA ── */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4%; background: rgba(3, 3, 3, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: all 0.3s ease; }
+nav.scrolled { background: rgba(3, 3, 3, 0.98); border-bottom: 1px solid var(--border); padding: 0.8rem 4%; }
+
+/* Brend / logo MV */
+.brand-mark { display: inline-flex; align-items: center; gap: 0.8rem; text-decoration: none; }
+.brand-badge {
+  position: relative; width: 46px; height: 46px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dim) 100%);
+  clip-path: polygon(18% 0, 100% 0, 100% 82%, 82% 100%, 0 100%, 0 18%);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 18px rgba(255, 30, 56, 0.35);
+  overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.brand-badge svg { width: 26px; height: 26px; position: relative; z-index: 2; }
+.brand-badge::after { content: ''; position: absolute; top: -60%; left: -60%; width: 220%; height: 220%; background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%); transform: translateX(-100%); transition: transform 0.6s ease; }
+.brand-mark:hover .brand-badge::after { transform: translateX(100%); }
+.brand-mark:hover .brand-badge { transform: rotate(-4deg) scale(1.05); box-shadow: 0 6px 24px rgba(255, 30, 56, 0.5); }
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-text b { font-family: var(--font-head); font-size: 1.05rem; font-weight: 900; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text); }
+.brand-text small { font-family: var(--font-accent); font-size: 0.55rem; letter-spacing: 0.18em; color: var(--text-faint); text-transform: uppercase; }
+
+.nav-links { display: flex; gap: 2.6rem; list-style: none; align-items: center; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-family: var(--font-head); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; transition: color 0.2s; position: relative; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-links a::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px; background: var(--primary); transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease; }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); transform-origin: left; }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 5px; z-index: 101; }
+.hamburger span { display: block; width: 28px; height: 2px; background: var(--text); transition: 0.3s; }
+
+/* ── ZAJEDNIČKI NASLOVI SEKCIJA ── */
+section { padding: 8rem 5%; position: relative; z-index: 2; border-bottom: 1px solid var(--border); }
+.section-header { display: flex; flex-direction: column; align-items: flex-end; text-align: right; margin-bottom: 4rem; }
+.section-label { color: var(--primary); font-family: var(--font-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.8rem; }
+.section-title { font-family: var(--font-head); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; text-transform: uppercase; line-height: 0.95; letter-spacing: -0.02em; color: var(--border); }
+.section-title span { color: var(--text); display: block; }
+
+/* ── GUMBI ── */
+.btn-primary { background: var(--primary); color: white; padding: 1rem 2.5rem; font-family: var(--font-accent); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em; transition: all 0.3s; clip-path: polygon(0 0, 100% 0, 92% 100%, 0% 100%); display: inline-block; border: none; }
+.btn-primary:hover { background: white; color: var(--bg); transform: translateX(5px); }
+.btn-outline { background: transparent; color: var(--text); padding: 1rem 2.5rem; border: 1px solid var(--border); font-family: var(--font-accent); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em; transition: all 0.3s; clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%); display: inline-block; }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+/* ── PAGE HEADER (podstranice) ── */
+.page-header { padding: 200px 5% 80px; background: var(--bg-surface); text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+.header-bg-glow { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60vw; height: 300px; background: radial-gradient(circle, rgba(255,30,56,0.12) 0%, transparent 70%); z-index: 0; filter: blur(40px); }
+.page-header h1 { font-family: var(--font-head); font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; color: var(--text); position: relative; z-index: 2; }
+.page-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; position: relative; z-index: 2; }
+.breadcrumb { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-accent); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 1.5rem; }
+.breadcrumb a { color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--primary); }
+
+/* ── NOVOSTI KARTICE (dijeljeno index / novosti) ── */
+.news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1400px; margin: 0 auto; }
+.news-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+.news-card:hover { transform: translateY(-6px); border-color: var(--primary); box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
+.news-img { width: 100%; height: 220px; background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-surface) 100%); object-fit: cover; border-bottom: 1px solid var(--border); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.news-img::before { content: attr(data-tag); font-family: var(--font-accent); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,30,56,0.5); border: 1px solid rgba(255,30,56,0.3); padding: 0.5rem 1rem; border-radius: 50px; background: rgba(255,30,56,0.05); }
+.news-content { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; }
+.news-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.news-date { font-family: var(--font-accent); font-size: 0.65rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.1em; }
+.news-title { font-family: var(--font-head); font-size: 1.4rem; color: var(--text); margin-bottom: 1rem; line-height: 1.3; }
+.news-excerpt { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; margin-bottom: 1.5rem; flex-grow: 1; }
+.news-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: auto; }
+.read-more { color: var(--text); font-family: var(--font-accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em; transition: color 0.2s; }
+.news-card:hover .read-more { color: var(--primary); }
+.share-links { display: flex; gap: 0.7rem; }
+.share-links a { width: 30px; height: 30px; border-radius: 8px; background: var(--bg-elevated); border: 1px solid var(--border); color: var(--text-faint); transition: all 0.25s; display: flex; align-items: center; justify-content: center; text-decoration: none; }
+.share-links a svg { width: 14px; height: 14px; fill: currentColor; }
+.share-links a:hover { color: var(--primary); border-color: var(--primary); transform: translateY(-2px); }
+
+/* ── FOOTER ── */
+footer { background: #000; padding: 5rem 5% 2rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; }
+.footer-brand { margin-bottom: 2rem; }
+.footer-links { display: flex; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; justify-content: center; }
+.footer-links a { color: var(--text-faint); text-decoration: none; font-family: var(--font-accent); font-weight: 700; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.1em; transition: color 0.2s; }
+.footer-links a:hover { color: var(--text); }
+.footer-bottom { width: 100%; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-faint); font-size: 0.8rem; text-align: center; display: flex; flex-direction: column; gap: 0.5rem; }
+.footer-bottom a { color: var(--primary); text-decoration: none; font-weight: 600; transition: color 0.2s; }
+.footer-bottom a:hover { color: white; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ── RESPONSIVE (zajedničko) ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 5%; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #000; padding: 2rem; border-bottom: 1px solid var(--border); gap: 1.5rem; }
+  .section-header { align-items: flex-start; text-align: left; margin-bottom: 2.5rem; }
+}

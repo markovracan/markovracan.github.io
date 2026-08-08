@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Svi rezultati Marka Vračana, državna prvenstva, međunarodni turniri i klupska natjecanja u parastolnom tenisu.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rezultati | Marko Vračan</title>
+
+<meta property="og:title" content="Rezultati | Marko Vračan">
+<meta property="og:description" content="Pregled svih rezultata i medalja Marka Vračana u parastolnom tenisu.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@700;800;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+.stats-section { padding: 5rem 5% 3rem; background: var(--bg); }
+.stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.stat-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem 1.5rem; text-align: center; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+.stat-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+.stat-card .stat-num { font-family: var(--font-head); font-size: 2.6rem; font-weight: 900; margin-bottom: 0.4rem; }
+.stat-card .stat-label { font-family: var(--font-accent); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); }
+.stat-card.gold .stat-num { color: var(--gold); }
+.stat-card.silver .stat-num { color: var(--silver); }
+.stat-card.bronze .stat-num { color: var(--bronze); }
+.stat-card.total .stat-num { color: var(--primary); }
+
+.results-section { padding: 3rem 5% 8rem; background: var(--bg); }
+.results-wrap { max-width: 1100px; margin: 0 auto; }
+.filter-bar { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.filter-btn { background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-muted); padding: 0.6rem 1.3rem; border-radius: 50px; font-family: var(--font-accent); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer !important; transition: all 0.25s; }
+.filter-btn:hover { border-color: var(--primary); color: var(--text); }
+.filter-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+.result-timeline { position: relative; display: flex; flex-direction: column; gap: 1.2rem; }
+.result-row { display: grid; grid-template-columns: 130px 60px 1fr auto; align-items: center; gap: 1.5rem; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem 1.8rem; transition: all 0.3s; position: relative; }
+.result-row:hover { border-color: var(--primary); transform: translateX(6px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+.result-date { font-family: var(--font-accent); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); }
+.medal-icon { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-weight: 900; font-size: 0.85rem; flex-shrink: 0; }
+.medal-icon.zlato { background: radial-gradient(circle at 30% 30%, #fff2b8, var(--gold)); color: #3a2900; box-shadow: 0 0 18px rgba(255,202,58,0.4); }
+.medal-icon.srebro { background: radial-gradient(circle at 30% 30%, #f4f5f7, var(--silver)); color: #2a2a2a; box-shadow: 0 0 18px rgba(201,204,209,0.3); }
+.medal-icon.bronca { background: radial-gradient(circle at 30% 30%, #f0c295, var(--bronze)); color: #3a1e00; box-shadow: 0 0 18px rgba(217,138,74,0.35); }
+.medal-icon.none { background: var(--bg-elevated); border: 1px solid var(--border); color: var(--text-faint); font-size: 0.6rem; }
+.result-info h3 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 800; text-transform: uppercase; color: var(--text); margin-bottom: 0.3rem; }
+.result-info .result-meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 300; margin-bottom: 0.5rem; }
+.result-info .result-meta b { color: var(--text-muted); font-weight: 500; }
+.result-info p.opis { color: var(--text-faint); font-size: 0.85rem; font-weight: 300; }
+.result-plasman { text-align: right; }
+.result-plasman .plasman-tag { display: inline-block; padding: 0.5rem 1.1rem; border-radius: 50px; font-family: var(--font-accent); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
+.plasman-tag.zlato { background: rgba(255,202,58,0.12); color: var(--gold); border: 1px solid rgba(255,202,58,0.35); }
+.plasman-tag.srebro { background: rgba(201,204,209,0.1); color: var(--silver); border: 1px solid rgba(201,204,209,0.3); }
+.plasman-tag.bronca { background: rgba(217,138,74,0.12); color: var(--bronze); border: 1px solid rgba(217,138,74,0.35); }
+.plasman-tag.none { background: rgba(255,255,255,0.03); color: var(--text-faint); border: 1px solid var(--border); }
+.disciplina-tag { color: var(--primary); font-family: var(--font-accent); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.results-empty { text-align: center; padding: 4rem 0; color: var(--text-faint); font-family: var(--font-head); text-transform: uppercase; letter-spacing: 0.05em; }
+
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .result-row { grid-template-columns: 1fr; text-align: left; gap: 0.8rem; }
+  .result-plasman { text-align: left; }
+  .medal-icon { margin-bottom: 0.3rem; }
+}
+</style>
+</head>
+<body>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <nav id="navbar">
+    <a href="index.html" class="brand-mark">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20L14 10" stroke="white" stroke-width="2.4" stroke-linecap="round"/><circle cx="17.5" cy="6.5" r="3" fill="white"/><path d="M4 15L9 20" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-text"><b>Marko Vračan</b><small>Parastolni tenis</small></span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Izbornik">
+      <span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#o-meni">O meni</a></li>
+      <li><a href="index.html#karijera">Klubovi</a></li>
+      <li><a href="rezultati.html" class="active">Rezultati</a></li>
+      <li><a href="novosti.html">Novosti</a></li>
+      <li><a href="galerija.html">Galerija</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header">
+    <div class="header-bg-glow"></div>
+    <h1>Rezultati</h1>
+    <p>Pregled svih nastupa, plasmana i osvojenih medalja, od domaćih prvenstava do međunarodnih turnira i klupskih liga.</p>
+  </header>
+
+  <section class="stats-section">
+    <div class="stats-grid reveal" id="stats-grid"></div>
+  </section>
+
+  <section class="results-section">
+    <div class="results-wrap">
+      <div class="filter-bar reveal" id="filter-bar"></div>
+      <div class="result-timeline reveal" id="result-timeline"></div>
+      <div class="results-empty" id="results-empty" style="display:none;">Za odabranu disciplinu trenutno nema unesenih rezultata.</div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="index.html" class="brand-mark footer-brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20L14 10" stroke="white" stroke-width="2.4" stroke-linecap="round"/><circle cx="17.5" cy="6.5" r="3" fill="white"/><path d="M4 15L9 20" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-text"><b>Marko Vračan</b><small>Parastolni tenis</small></span>
+    </a>
+    <div class="footer-links">
+      <a href="index.html#hero">Početna</a>
+      <a href="index.html#o-meni">Tko sam ja</a>
+      <a href="index.html#karijera">Klubovi</a>
+      <a href="rezultati.html">Rezultati</a>
+      <a href="novosti.html">Novosti</a>
+      <a href="galerija.html">Galerija</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Marko Vračan. Sva prava pridržana.</p>
+      <p>Dizajn i izrada: <a href="https://kezicvizuali.com/" target="_blank">Kezić Vizuali</a></p>
+    </div>
+  </footer>
+
+  <script src="js/rezultati-data.js"></script>
+  <script>
+    // Statistika medalja
+    const statsGrid = document.getElementById('stats-grid');
+    const counts = { zlato: 0, srebro: 0, bronca: 0 };
+    REZULTATI.forEach(r => { if (r.medalja) counts[r.medalja]++; });
+    const totalMedals = counts.zlato + counts.srebro + counts.bronca;
+    statsGrid.innerHTML = `
+      <div class="stat-card gold"><div class="stat-num">${counts.zlato}</div><div class="stat-label">Zlatnih medalja</div></div>
+      <div class="stat-card silver"><div class="stat-num">${counts.srebro}</div><div class="stat-label">Srebrnih medalja</div></div>
+      <div class="stat-card bronze"><div class="stat-num">${counts.bronca}</div><div class="stat-label">Brončanih medalja</div></div>
+      <div class="stat-card total"><div class="stat-num">${totalMedals}</div><div class="stat-label">Ukupno medalja</div></div>
+    `;
+
+    // Filtriranje po disciplini
+    const timeline = document.getElementById('result-timeline');
+    const filterBar = document.getElementById('filter-bar');
+    const emptyState = document.getElementById('results-empty');
+    const disciplineLabels = { 'sve': 'Sve', 'pojedinačno': 'Pojedinačno', 'parovi': 'Parovi', 'ekipno': 'Ekipno' };
+    let activeFilter = 'sve';
+
+    function renderFilters() {
+      filterBar.innerHTML = '';
+      Object.keys(disciplineLabels).forEach(key => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn' + (key === activeFilter ? ' active' : '');
+        btn.textContent = disciplineLabels[key];
+        btn.addEventListener('click', () => { activeFilter = key; renderFilters(); renderResults(); });
+        filterBar.appendChild(btn);
+      });
+    }
+
+    function renderResults() {
+      timeline.innerHTML = '';
+      const list = REZULTATI.filter(r => activeFilter === 'sve' || r.disciplina === activeFilter);
+      emptyState.style.display = list.length ? 'none' : 'block';
+      list.forEach(r => {
+        const medalClass = r.medalja || 'none';
+        const medalGlyph = r.medalja === 'zlato' ? '1.' : r.medalja === 'srebro' ? '2.' : r.medalja === 'bronca' ? '3.' : '—';
+        const row = document.createElement('div');
+        row.className = 'result-row';
+        row.innerHTML = `
+          <div class="result-date">${r.date}</div>
+          <div class="medal-icon ${medalClass}">${medalGlyph}</div>
+          <div class="result-info">
+            <h3>${r.natjecanje}</h3>
+            <div class="result-meta">
+              <span><b>${r.mjesto}</b></span>
+              <span class="disciplina-tag">${disciplineLabels[r.disciplina]}${r.partner ? ' · ' + r.partner : ''}</span>
+            </div>
+            <p class="opis">${r.opis}</p>
+          </div>
+          <div class="result-plasman">
+            <span class="plasman-tag ${medalClass}">${r.plasman}</span>
+          </div>
+        `;
+        timeline.appendChild(row);
+      });
+    }
+
+    renderFilters();
+    renderResults();
+  </script>
+  <script src="js/common.js"></script>
+</body>
+</html>
