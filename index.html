@@ -144,6 +144,10 @@
 #prijava-poruka { display: none; margin-bottom: 2rem; font-size: 0.9rem; font-weight: 500; color: var(--primary); }
 #prijava-poruka.show { display: block; }
 #prijava-poruka.error { color: #ff6b6b; }
+.prijava-already { display: flex; align-items: center; gap: 1rem; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.3rem 1.6rem; margin-bottom: 1rem; }
+.prijava-already .icon { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,30,56,0.1); border: 1px solid rgba(255,30,56,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem; color: var(--primary); }
+.prijava-already p { color: var(--text-muted); font-size: 0.9rem; font-weight: 300; margin: 0; }
+.prijava-already p b { color: var(--text); font-weight: 600; }
 
 .prijava-table-wrap { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-top: 2.5rem; }
 .prijava-table-header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.8rem; border-bottom: 1px solid var(--border); font-family: var(--font-accent); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); }
@@ -362,6 +366,11 @@
 
     <div class="prijava-wrap reveal">
       <p class="prijava-info">Turniri se održavaju svake nedjelje. Upiši svoje ime i prezime kako bi se prijavio/la na sljedeći turnir. Popis se automatski prazni svakog ponedjeljka i kreće ispočetka za novi tjedan.</p>
+
+      <div id="prijava-vec" class="prijava-already" style="display:none;">
+        <span class="icon">&#10003;</span>
+        <p>Već si se prijavio/la ovaj tjedan kao <b id="prijava-vec-ime"></b>. Vidimo se na turniru!</p>
+      </div>
 
       <form id="prijava-form" class="prijava-form">
         <div class="form-group-line">
@@ -622,6 +631,25 @@
       const poruka = document.getElementById('prijava-poruka');
       const lista = document.getElementById('prijava-lista');
       const brojac = document.getElementById('prijava-brojac');
+      const vecPrijavljen = document.getElementById('prijava-vec');
+      const vecPrijavljenIme = document.getElementById('prijava-vec-ime');
+
+      // Normalizira ime za usporedbu (mala slova, bez suvišnih razmaka)
+      // kako bi "Petar Perić", "petar perić" i "PETAR PERIĆ" brojali kao isto ime.
+      function normalizirajIme(ime) {
+        return ime.trim().replace(/\s+/g, ' ').toLowerCase();
+      }
+
+      // Provjeri je li OVAJ preglednik već poslao prijavu za tekući tjedan
+      // (spremljeno lokalno, u ovom pregledniku). Ne sprječava zloupotrebu
+      // preko drugog preglednika/uređaja, samo slučajno dvostruko slanje.
+      const lsKljuc = 'prijavaTjedan_' + tjedan;
+      const vecPoslano = localStorage.getItem(lsKljuc);
+      if (vecPoslano) {
+        prijavaForm.style.display = 'none';
+        vecPrijavljenIme.textContent = vecPoslano;
+        vecPrijavljen.style.display = 'flex';
+      }
 
       // Uživo prati popis prijava za tekući tjedan (ažurira se automatski
       // svima koji gledaju stranicu, bez potrebe za refreshanjem).
@@ -653,30 +681,57 @@
         e.preventDefault();
         const ime = imeInput.value.trim();
         if (!ime) return;
+        const imeLower = normalizirajIme(ime);
 
         const btn = prijavaForm.querySelector('button');
         btn.disabled = true;
         const originalText = btn.innerHTML;
-        btn.textContent = 'Slanje...';
+        btn.textContent = 'Provjera...';
 
-        db.collection('prijave-turnir').add({
-          ime: ime,
-          tjedan: tjedan,
-          created: firebase.firestore.FieldValue.serverTimestamp()
-        }).then(() => {
-          prijavaForm.reset();
-          poruka.textContent = 'Uspješno si se prijavio/la na turnir!';
-          poruka.classList.remove('error');
-          poruka.classList.add('show');
-          setTimeout(() => poruka.classList.remove('show'), 3500);
-        }).catch(err => {
-          poruka.textContent = 'Greška pri prijavi. Pokušaj ponovno.';
-          poruka.classList.add('show', 'error');
-          console.error(err);
-        }).finally(() => {
-          btn.disabled = false;
-          btn.innerHTML = originalText;
-        });
+        // Prvo provjeri postoji li već isto ime prijavljeno ovaj tjedan
+        // (provjera u samoj bazi, radi za sve posjetitelje, ne samo lokalno).
+        db.collection('prijave-turnir')
+          .where('tjedan', '==', tjedan)
+          .where('imeLower', '==', imeLower)
+          .get()
+          .then(snapshot => {
+            if (!snapshot.empty) {
+              poruka.textContent = 'To ime je već prijavljeno za ovaj tjedan.';
+              poruka.classList.add('show', 'error');
+              btn.disabled = false;
+              btn.innerHTML = originalText;
+              return null;
+            }
+
+            btn.textContent = 'Slanje...';
+            return db.collection('prijave-turnir').add({
+              ime: ime,
+              imeLower: imeLower,
+              tjedan: tjedan,
+              created: firebase.firestore.FieldValue.serverTimestamp()
+            });
+          })
+          .then(result => {
+            if (!result) return; // zaustavljeno gore zbog duplikata
+            localStorage.setItem(lsKljuc, ime);
+            prijavaForm.reset();
+            prijavaForm.style.display = 'none';
+            vecPrijavljenIme.textContent = ime;
+            vecPrijavljen.style.display = 'flex';
+            poruka.textContent = 'Uspješno si se prijavio/la na turnir!';
+            poruka.classList.remove('error');
+            poruka.classList.add('show');
+            setTimeout(() => poruka.classList.remove('show'), 3500);
+          })
+          .catch(err => {
+            poruka.textContent = 'Greška pri prijavi. Pokušaj ponovno.';
+            poruka.classList.add('show', 'error');
+            console.error(err);
+          })
+          .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+          });
       });
     } else if (prijavaForm) {
       // Firebase konfiguracija još nije postavljena
