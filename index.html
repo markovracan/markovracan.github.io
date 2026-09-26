@@ -134,6 +134,31 @@
 .submit-btn-line:hover { color: var(--primary); border-bottom-color: var(--primary); letter-spacing: 0.2em; }
 #form-success { display: none; margin-top: 1rem; color: var(--primary); font-size: 0.9rem; font-weight: 500; }
 
+/* ── PRIJAVA ZA TURNIR ── */
+#prijave { background: var(--bg-elevated); }
+.prijava-wrap { max-width: 700px; margin: 0 auto; }
+.prijava-info { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; text-align: center; margin-bottom: 2.5rem; line-height: 1.7; }
+.prijava-form { display: flex; gap: 1.5rem; align-items: flex-end; margin-bottom: 1rem; }
+.prijava-form .form-group-line { flex-grow: 1; }
+.prijava-form .submit-btn-line { white-space: nowrap; margin-top: 0; }
+#prijava-poruka { display: none; margin-bottom: 2rem; font-size: 0.9rem; font-weight: 500; color: var(--primary); }
+#prijava-poruka.show { display: block; }
+#prijava-poruka.error { color: #ff6b6b; }
+
+.prijava-table-wrap { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-top: 2.5rem; }
+.prijava-table-header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.8rem; border-bottom: 1px solid var(--border); font-family: var(--font-accent); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); }
+.prijava-table-header #prijava-brojac { background: rgba(255,30,56,0.1); color: var(--primary); border: 1px solid rgba(255,30,56,0.3); border-radius: 50px; padding: 0.2rem 0.8rem; font-size: 0.7rem; }
+.prijava-lista { display: flex; flex-direction: column; max-height: 420px; overflow-y: auto; }
+.prijava-row { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.8rem; border-bottom: 1px solid var(--border); }
+.prijava-row:last-child { border-bottom: none; }
+.prijava-broj { font-family: var(--font-head); font-weight: 900; color: var(--text-faint); width: 28px; flex-shrink: 0; }
+.prijava-ime { color: var(--text); font-weight: 500; }
+.prijava-empty, .prijava-loading { text-align: center; padding: 2.5rem 1.8rem; color: var(--text-faint); font-family: var(--font-head); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; }
+
+@media (max-width: 600px) {
+  .prijava-form { flex-direction: column; align-items: stretch; gap: 1.5rem; }
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .omeni-grid { grid-template-columns: 1fr; }
@@ -174,6 +199,7 @@
       <li><a href="rezultati.html">Rezultati</a></li>
       <li><a href="novosti.html">Novosti</a></li>
       <li><a href="galerija.html">Galerija</a></li>
+      <li><a href="index.html#prijave">Prijave</a></li>
       <li><a href="index.html#kontakt">Kontakt</a></li>
     </ul>
   </nav>
@@ -325,6 +351,36 @@
 
     <div class="reveal" style="text-align: center; margin-top: 3rem;">
         <a href="galerija.html" class="btn-outline">Pogledaj sve fotografije u galeriji</a>
+    </div>
+  </section>
+
+  <section id="prijave">
+    <div class="section-header reveal">
+      <div class="section-label">Sljedeći Turnir</div>
+      <h2 class="section-title">Prijava<span>Za Turnir</span></h2>
+    </div>
+
+    <div class="prijava-wrap reveal">
+      <p class="prijava-info">Turniri se održavaju svake nedjelje. Upiši svoje ime i prezime kako bi se prijavio/la na sljedeći turnir. Popis se automatski prazni svakog ponedjeljka i kreće ispočetka za novi tjedan.</p>
+
+      <form id="prijava-form" class="prijava-form">
+        <div class="form-group-line">
+          <input type="text" id="prijava-ime" required maxlength="60" autocomplete="name" placeholder=" ">
+          <label>Ime i prezime</label>
+        </div>
+        <button type="submit" class="submit-btn-line">Prijavi se &rarr;</button>
+      </form>
+      <div id="prijava-poruka"></div>
+
+      <div class="prijava-table-wrap">
+        <div class="prijava-table-header">
+          <span>Prijavljeni igrači ovaj tjedan</span>
+          <span id="prijava-brojac">0</span>
+        </div>
+        <div id="prijava-lista" class="prijava-lista">
+          <div class="prijava-loading">Učitavanje popisa...</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -524,6 +580,112 @@
       });
     }
   </script>
+  <!-- ============================================================
+       PRIJAVA ZA TURNIR — Firebase (Firestore)
+       VAŽNO: prije objave, ispod upiši svoju Firebase konfiguraciju
+       (dobiješ je u Firebase konzoli kad registriraš web aplikaciju).
+       Upute korak po korak poslane su ti odvojeno.
+       ============================================================ -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+  <script>
+    // 1) OVDJE UBACI SVOJU FIREBASE KONFIGURACIJU (iz Firebase konzole)
+    const firebaseConfig = {
+      apiKey: "AIzaSyDa_Z-L2z71jw5H6hvXlZvSaeeodgFWwwc",
+      authDomain: "marko-vracan-web.firebaseapp.com",
+      projectId: "marko-vracan-web",
+      storageBucket: "marko-vracan-web.firebasestorage.app",
+      messagingSenderId: "234864052956",
+      appId: "1:234864052956:web:201924a0d68dfe30f90219"
+    };
+
+    const prijavaForm = document.getElementById('prijava-form');
+
+    if (prijavaForm && firebaseConfig.apiKey !== "UBACI_SVOJ_API_KEY") {
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      // Vraća datum ponedjeljka tekućeg tjedna u formatu GGGG-MM-DD.
+      // Time se popis prijava automatski "resetira" svaki ponedjeljak,
+      // bez ikakvog ručnog brisanja.
+      function getMondayKey(d = new Date()) {
+        const date = new Date(d);
+        const day = date.getDay(); // 0 = nedjelja, 1 = ponedjeljak...
+        const diff = (day === 0 ? -6 : 1) - day;
+        date.setDate(date.getDate() + diff);
+        date.setHours(0, 0, 0, 0);
+        return date.toISOString().slice(0, 10);
+      }
+
+      const tjedan = getMondayKey();
+      const imeInput = document.getElementById('prijava-ime');
+      const poruka = document.getElementById('prijava-poruka');
+      const lista = document.getElementById('prijava-lista');
+      const brojac = document.getElementById('prijava-brojac');
+
+      // Uživo prati popis prijava za tekući tjedan (ažurira se automatski
+      // svima koji gledaju stranicu, bez potrebe za refreshanjem).
+      db.collection('prijave-turnir')
+        .where('tjedan', '==', tjedan)
+        .orderBy('created', 'asc')
+        .onSnapshot(snapshot => {
+          lista.innerHTML = '';
+          let i = 0;
+          snapshot.forEach(doc => {
+            i++;
+            const podaci = doc.data();
+            const row = document.createElement('div');
+            row.className = 'prijava-row';
+            row.innerHTML = `<span class="prijava-broj">${i}.</span><span class="prijava-ime"></span>`;
+            row.querySelector('.prijava-ime').textContent = podaci.ime || '';
+            lista.appendChild(row);
+          });
+          brojac.textContent = i;
+          if (i === 0) {
+            lista.innerHTML = '<div class="prijava-empty">Još nema prijava za ovaj tjedan. Budi prvi!</div>';
+          }
+        }, err => {
+          lista.innerHTML = '<div class="prijava-empty">Greška pri učitavanju popisa. Pokušaj kasnije.</div>';
+          console.error(err);
+        });
+
+      prijavaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const ime = imeInput.value.trim();
+        if (!ime) return;
+
+        const btn = prijavaForm.querySelector('button');
+        btn.disabled = true;
+        const originalText = btn.innerHTML;
+        btn.textContent = 'Slanje...';
+
+        db.collection('prijave-turnir').add({
+          ime: ime,
+          tjedan: tjedan,
+          created: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
+          prijavaForm.reset();
+          poruka.textContent = 'Uspješno si se prijavio/la na turnir!';
+          poruka.classList.remove('error');
+          poruka.classList.add('show');
+          setTimeout(() => poruka.classList.remove('show'), 3500);
+        }).catch(err => {
+          poruka.textContent = 'Greška pri prijavi. Pokušaj ponovno.';
+          poruka.classList.add('show', 'error');
+          console.error(err);
+        }).finally(() => {
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+        });
+      });
+    } else if (prijavaForm) {
+      // Firebase konfiguracija još nije postavljena
+      document.getElementById('prijava-lista').innerHTML =
+        '<div class="prijava-empty">Prijave uskoro dostupne.</div>';
+      prijavaForm.addEventListener('submit', (e) => e.preventDefault());
+    }
+  </script>
+
   <script src="common.js"></script>
 </body>
 </html>
