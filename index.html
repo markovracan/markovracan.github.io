@@ -243,6 +243,42 @@
     </div>
   </div>
 
+  <section id="prijave">
+    <div class="section-header reveal">
+      <div class="section-label">Sljedeći Turnir</div>
+      <h2 class="section-title">Prijava<span>Za Turnir</span></h2>
+    </div>
+
+    <div class="prijava-wrap reveal">
+      <p class="prijava-info">Turniri se održavaju svake nedjelje. Upiši svoje ime i prezime kako bi se prijavio/la na sljedeći turnir. Popis se automatski prazni svakog ponedjeljka i kreće ispočetka za novi tjedan.</p>
+
+      <div id="prijava-vec" class="prijava-already" style="display:none;">
+        <span class="icon">&#10003;</span>
+        <p>Već si se prijavio/la ovaj tjedan kao <b id="prijava-vec-ime"></b>. Vidimo se na turniru!</p>
+      </div>
+
+      <form id="prijava-form" class="prijava-form">
+        <div class="form-group-line">
+          <input type="text" id="prijava-ime" required maxlength="60" autocomplete="name" placeholder=" ">
+          <label>Ime i prezime</label>
+        </div>
+        <button type="submit" class="submit-btn-line">Prijavi se &rarr;</button>
+      </form>
+      <div id="prijava-poruka"></div>
+
+      <div class="prijava-table-wrap">
+        <div class="prijava-table-header">
+          <span>Prijavljeni igrači ovaj tjedan</span>
+          <span id="prijava-brojac">0</span>
+        </div>
+        <div id="prijava-lista" class="prijava-lista">
+          <div class="prijava-loading">Učitavanje popisa...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <section id="o-meni">
     <div class="section-header reveal">
       <div class="section-label">Tko sam ja</div>
@@ -359,41 +395,6 @@ Kruna karijere je nastup na Europskom prvenstvu u Helsinborgu 2025. godine - če
 
     <div class="reveal" style="text-align: center; margin-top: 3rem;">
         <a href="galerija.html" class="btn-outline">Pogledaj sve fotografije u galeriji</a>
-    </div>
-  </section>
-
-  <section id="prijave">
-    <div class="section-header reveal">
-      <div class="section-label">Sljedeći Turnir</div>
-      <h2 class="section-title">Prijava<span>Za Turnir</span></h2>
-    </div>
-
-    <div class="prijava-wrap reveal">
-      <p class="prijava-info">Turniri se održavaju svake nedjelje. Upiši svoje ime i prezime kako bi se prijavio/la na sljedeći turnir. Popis se automatski prazni svakog ponedjeljka i kreće ispočetka za novi tjedan.</p>
-
-      <div id="prijava-vec" class="prijava-already" style="display:none;">
-        <span class="icon">&#10003;</span>
-        <p>Već si se prijavio/la ovaj tjedan kao <b id="prijava-vec-ime"></b>. Vidimo se na turniru!</p>
-      </div>
-
-      <form id="prijava-form" class="prijava-form">
-        <div class="form-group-line">
-          <input type="text" id="prijava-ime" required maxlength="60" autocomplete="name" placeholder=" ">
-          <label>Ime i prezime</label>
-        </div>
-        <button type="submit" class="submit-btn-line">Prijavi se &rarr;</button>
-      </form>
-      <div id="prijava-poruka"></div>
-
-      <div class="prijava-table-wrap">
-        <div class="prijava-table-header">
-          <span>Prijavljeni igrači ovaj tjedan</span>
-          <span id="prijava-brojac">0</span>
-        </div>
-        <div id="prijava-lista" class="prijava-lista">
-          <div class="prijava-loading">Učitavanje popisa...</div>
-        </div>
-      </div>
     </div>
   </section>
 
