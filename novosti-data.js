@@ -41,14 +41,12 @@ const NOVOSTI = [
     slug: "podgorica-turnir",
     tag: "Turnir",
     title: "Uspješan nastup na turniru u Podgorici",
-    date: "12. svibnja 2026.",
-    dateSort: "2026-05-12",
-    excerpt: "Na jakom međunarodnom turniru u Podgorici Marko je u pojedinačnoj konkurenciji prošao skupinu, a s Bornom Zohilom stigao do četvrtfinala parova.",
+    date: "18. lipnja 2026.",
+    dateSort: "2026-07-18",
+    excerpt: "Ostrava!!! Još jedan turnir, još jedna lekcija. Završio je i moj šesti turnir u zadnja tri mjeseca.",
     content: [
-      "Marko Vračan zabilježio je zapažen nastup na međunarodnom turniru u Podgorici, gdje se u dresu hrvatske reprezentacije natjecao u kategoriji 8, jednoj od najjačih i najbrojnijih na ovogodišnjem izdanju turnira.",
-      "U pojedinačnoj konkurenciji, u kojoj je nastupilo ukupno 23 igrača, Marko je skupinu otvorio porazom od belgijskog igrača Ledouxa rezultatom 0:3, no odmah je pokazao karakter i taj rezultat okrenuo u svoju korist pobjedom protiv norveškog reprezentativca Johansena. Prolazak skupine odveo ga je u osminu finala, gdje je nakon borbenog meča 2:3 bolji bio kineski igrač Weinan Peng, koji je na kraju turnir završio na drugom mjestu.",
-      "Još bolje rezultate Marko je ostvario u konkurenciji parova, gdje je zaigrao s dugogodišnjim reprezentativnim partnerom Bornom Zohilom. Hrvatski dvojac uvjerljivo je proveo skupnu fazu, pobjedama protiv Čilea i Norveške rezultatom 3:0 te tijesnom pobjedom protiv Crne Gore 3:2. Kao nositelji turnira, Marko i Borna su bili slobodni u osmini finala, a u četvrtfinalu su nakon velike borbe s 3:2 svladali reprezentaciju Kazahstana.",
-      "Turnir u Podgorici još je jednom potvrdio da Marko pripada samom vrhu svoje kategorije u regiji te da je spreman parirati suparnicima iz snažnijih parastolnoteniskih sustava poput Belgije, Kine i Norveške."
+      "U Ostravi sam prošao skupinu s tri teške pobjede, ali me u osmini finala zaustavio mladi Poljak Zielinski. Nije bio moj najbolji dan, no sport je takav ; nekad ide, nekad ne.
+Najvažnije je nastaviti raditi, učiti i rasti. Treba mi malo odmora od turnira, ali treninzi i usavršavanje tehnike idu dalje. Svaki udarac, svaki detalj, svaka sitnica čini razliku.Ogromno hvala mom timu. Oni su ti koji mi omogućuju vrhunske uvjete i stoje uz mene u svakom trenutku. Bez njih ovo putovanje ne bi imalo isti smjer."
     ]
   },
   {
