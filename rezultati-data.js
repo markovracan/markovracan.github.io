@@ -80,7 +80,7 @@ const REZULTATI = [
     partner: null,
     plasman: "2. mjesto",
     medalja: "srebro",
-    opis: "Srebrna medalja u kategoriji 8 na prvenstvu koje je klub Uspon završio na 3. mjestu poretka klubova."
+    opis: "Srebrna medalja u kategoriji 8 na prvenstvu koje je PSTK Uspon završio na 3. mjestu poretka klubova."
   },
   {
     dateSort: "2026-02-15",
@@ -89,20 +89,20 @@ const REZULTATI = [
     mjesto: "Sardinija, Italija",
     disciplina: "parovi",
     partner: "Alexandros Diakoumakos",
-    plasman: "Vrh ljestvice",
+    plasman: "1. mjesto",
     medalja: null,
-    opis: "Tri uzastopne pobjede 3:0 za klub Santa Tecla Nulvi u borbi za promociju u Serie A1."
+    opis: "Prvo mjesto u drugoj talijanskoj ligi i ulazak u 1. ligu s klubom Santa Tecla Nulvi."
   },
   {
     dateSort: "2026-01-20",
     date: "Sezona 2025/2026",
-    natjecanje: "Hrvatska prva liga",
-    mjesto: "Kukuljanovo, Hrvatska",
+    natjecanje: "1. hrvatska liga",
+    mjesto: "Velika Gorica, Hrvatska",
     disciplina: "ekipno",
     partner: null,
-    plasman: "2 pobjede",
+    plasman: "Nastupi u sezoni",
     medalja: null,
-    opis: "Pobjede protiv trećeg juniora Hrvatske Andreja Mrkića i Antonija Goje za STK Kukuljanovo."
+    opis: "Redoviti nastupi za HSTK Velika Gorica u 1. hrvatskoj ligi za osobe bez invaliditeta."
   },
   {
     dateSort: "2023-07-01",

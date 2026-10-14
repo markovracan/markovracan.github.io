@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="Marko Vračan, službeni portfolio hrvatskog parastolnotenisača. Pratite novosti, rezultate i galerije s natjecanja.">
-<meta name="keywords" content="Marko Vračan, parastolni tenis, parasport, Santa Tecla Nulvi, PSK Synergia, Uspon, klasa 8, novosti, rezultati">
+<meta name="keywords" content="Marko Vračan, parastolni tenis, parasport, Santa Tecla Nulvi, PSTK Uspon, HSTK Velika Gorica, klasa 8, novosti, rezultati">
 <meta name="author" content="Kezić Vizuali">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marko Vračan | Službena Stranica Parastolnotenisača</title>
@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="styles.css">
 <style>
 /* ── HERO ── */
-#hero { min-height: 100vh; display: flex; align-items: center; padding: 150px 5% 60px; position: relative; overflow: hidden; }
+#hero { min-height: 100vh; display: flex; align-items: center; padding: 100px 5% 60px; position: relative; overflow: hidden; }
 .hero-bg { position: absolute; right: -20%; top: -10%; width: 70vw; height: 100vh; background: radial-gradient(circle at center, rgba(255,30,56,0.15) 0%, transparent 70%); z-index: 0; filter: blur(50px); }
 .hero-lines { position: absolute; inset: 0; z-index: 0; background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0); background-size: 26px 26px; -webkit-mask-image: radial-gradient(ellipse 80% 60% at 70% 40%, black 30%, transparent 85%); mask-image: radial-gradient(ellipse 80% 60% at 70% 40%, black 30%, transparent 85%); }
 .hero-orbit { position: absolute; top: 8%; right: 3%; width: 620px; height: 620px; border: 1px dashed rgba(255,30,56,0.25); border-radius: 50%; z-index: 0; animation: spin-slow 46s linear infinite; }
@@ -135,7 +135,8 @@
 #form-success { display: none; margin-top: 1rem; color: var(--primary); font-size: 0.9rem; font-weight: 500; }
 
 /* ── PRIJAVA ZA TURNIR ── */
-#prijave { background: var(--bg-elevated); }
+#prijave { background: var(--bg-elevated); padding-top: 11rem; }
+#prijave .section-title { color: var(--text); }
 .prijava-wrap { max-width: 700px; margin: 0 auto; }
 .prijava-info { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; text-align: center; margin-bottom: 2.5rem; line-height: 1.7; }
 .prijava-form { display: flex; gap: 1.5rem; align-items: flex-end; margin-bottom: 1rem; }
@@ -208,41 +209,6 @@
     </ul>
   </nav>
 
-  <header id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-lines"></div>
-    <div class="hero-orbit"></div>
-    <div class="hero-orbit small"></div>
-    <div class="kinetic-text">FOKUS I RAD</div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">Klasa 8 &middot; Hrvatska Reprezentacija</div>
-      <h1 class="hero-title">
-        <span>Marko</span>
-        <span class="outline">Vračan</span>
-      </h1>
-      <p class="hero-sub">
-        Hrvatski sam reprezentativac i 3x prvak države u parastolnom tenisu. Iza sebe imam nastup na Europskom prvenstvu u Švedskoj te bogato iskustvo igranja na više od 20 međunarodnih turnira. Aktivni sam član HSTK Velika Gorica s kojim se natječem u 1. ligi za OSI (osobe s invaliditetom) te član PSTK Uspon 🇭🇷. Također, svoju karijeru uspješno gradim i u inozemstvu nastupajući u Talijanskoj ligi za klub Tennistavolo Norbello.
-      </p>
-      <div class="hero-btns">
-        <a href="rezultati.html" class="btn-primary">Rezultati i klubovi</a>
-        <a href="novosti.html" class="btn-outline">Zadnje Novosti</a>
-      </div>
-    </div>
-  </header>
-
-  <div class="marquee-wrapper">
-    <div class="marquee-track">
-      <div class="marquee-item">Državni Prvak 2023</div>
-      <div class="marquee-item">Reprezentacija Hrvatske</div>
-      <div class="marquee-item">Tennistavolo Norbello 🇮🇹</div>
-      <div class="marquee-item">Klasa 8</div>
-      <div class="marquee-item">PSK Uspon</div>
-      <div class="marquee-item">Državni Prvak 2023</div>
-      <div class="marquee-item">Reprezentacija Hrvatske</div>
-      <div class="marquee-item">HSTK Velika gorica</div>
-    </div>
-  </div>
-
   <section id="prijave">
     <div class="section-header reveal">
       <div class="section-label">Sljedeći Turnir</div>
@@ -278,6 +244,40 @@
     </div>
   </section>
 
+  <header id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-orbit"></div>
+    <div class="hero-orbit small"></div>
+    <div class="kinetic-text">FOKUS I RAD</div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Klasa 8 &middot; Hrvatska Reprezentacija</div>
+      <h1 class="hero-title">
+        <span>Marko</span>
+        <span class="outline">Vračan</span>
+      </h1>
+      <p class="hero-sub">
+        Hrvatski sam reprezentativac i 3x prvak države u parastolnom tenisu. Iza sebe imam nastup na Europskom prvenstvu u Švedskoj te bogato iskustvo igranja na više od 20 međunarodnih turnira. Član sam PSTK Uspon 🇭🇷 (Parastolnoteniski klub Uspon), kluba za osobe s invaliditetom, dok za HSTK Velika Gorica nastupam u 1. hrvatskoj ligi za osobe bez invaliditeta. Također, svoju karijeru uspješno gradim i u inozemstvu nastupajući u Talijanskoj ligi za klub Tennistavolo Norbello.
+      </p>
+      <div class="hero-btns">
+        <a href="rezultati.html" class="btn-primary">Rezultati i klubovi</a>
+        <a href="novosti.html" class="btn-outline">Zadnje Novosti</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="marquee-wrapper">
+    <div class="marquee-track">
+      <div class="marquee-item">Državni Prvak 2023</div>
+      <div class="marquee-item">Reprezentacija Hrvatske</div>
+      <div class="marquee-item">Tennistavolo Norbello 🇮🇹</div>
+      <div class="marquee-item">Klasa 8</div>
+      <div class="marquee-item">PSTK Uspon</div>
+      <div class="marquee-item">Državni Prvak 2023</div>
+      <div class="marquee-item">Reprezentacija Hrvatske</div>
+      <div class="marquee-item">HSTK Velika Gorica</div>
+    </div>
+  </div>
 
   <section id="o-meni">
     <div class="section-header reveal">
@@ -299,9 +299,9 @@ Moj cilj je svakim danom biti bolji, ostvarivati nove sportske uspjehe i jednog 
         </div>
 
         <h3>Reprezentacija i klupski ponos</h3>
-        <p>Matični klub mi je PSTK Uspon i HSTK Velika Gorica.
+        <p>Matični klub mi je PSTK Uspon, klub za osobe s invaliditetom, a za HSTK Velika Gorica nastupam u 1. hrvatskoj ligi za osobe bez invaliditeta.
 
-Kruna karijere je nastup na Europskom prvenstvu u Helsinborgu 2025. godine - četvrtfinale.</p>
+Kruna karijere je nastup na Europskom prvenstvu u Helsingborgu 2025. godine, četvrtfinale.</p>
 
         <h3>Gledajući naprijed</h3>
         <p>Nakon što sam s klubom Santa Tecla Nulvi uspješno izborio ulazak u 1. talijansku ligu, uslijedio je novi izazov. Prešao sam u klub Tennistavolo Norbello s vrlo jasnim zadatkom, doveli su me kako bih pomogao ekipi da se ekspresno vrati u prvu ligu iz koje su nedavno ispali. Uz te klupske ambicije, marljivo radim i na reprezentativnim ciljevima. Najveća mi je želja i plan izboriti nastup na Europskom prvenstvu sljedeće godine u Ženevi (Švicarska), kao i predstavljati Hrvatsku na svim budućim velikim natjecanjima.</p>
@@ -327,23 +327,23 @@ Kruna karijere je nastup na Europskom prvenstvu u Helsinborgu 2025. godine - če
         <div class="career-year">2024.</div>
         <div class="career-details">
           <h3>Santa Tecla Nulvi</h3>
-          <p>Dolaskom u klub sa Sardinije pomogao sam ekipi osvojiti 1. mjesto i izboriti ulazak u prvu ligu. Nakon tog sjajnog uspjeha, odlučio sam se za novi izazov. Promijenio sam klub i prešao u Tennistavolo Norbello s jasnim ciljem – pomoći i njima da se vrate u prvu ligu!</p>
+          <p>Dolaskom u klub sa Sardinije pomogao sam ekipi osvojiti 1. mjesto i izboriti ulazak u prvu ligu. Nakon tog sjajnog uspjeha, odlučio sam se za novi izazov. Promijenio sam klub i prešao u Tennistavolo Norbello s jasnim ciljem, pomoći i njima da se vrate u prvu ligu!</p>
         </div>
         <div class="career-badge">Italija</div>
       </div>
       <div class="career-card">
-        <div class="career-year">2023.</div>
+        <div class="career-year">2025. i 2026.</div>
         <div class="career-details">
           <h3>Hrvatska Reprezentacija</h3>
-          <p>Kao stalni član nacionalne vrste u Klasi 8, branim boje Hrvatske na brojnim međunarodnim turnirima. Do sada sam nastupao na jakim natjecanjima u Podgorici, Helsingborgu (Švedska), Władysławowu (Poljska), Lignanu (Italija), Ostravi (Češka), kao i na turnirima u Sloveniji i Srbiji. Od dosadašnjih rezultata posebno izdvajam brončano odličje u igri parova osvojeno u Podgorici.</p>
+          <p>Kao stalni član nacionalne vrste u Klasi 8, branim boje Hrvatske na brojnim međunarodnim turnirima. Na Europskom prvenstvu u Helsingborgu (Švedska) nastupio sam 2025. godine, a 2026. godine nastupao sam na jakim natjecanjima u Podgorici, Władysławowu (Poljska), Lignanu (Italija), Ostravi (Češka), kao i na turnirima u Sloveniji i Srbiji. Od dosadašnjih rezultata posebno izdvajam brončano odličje u igri parova osvojeno u Podgorici.</p>
         </div>
         <div class="career-badge">Nacionalni tim</div>
       </div>
       <div class="career-card">
         <div class="career-year">2023.</div>
         <div class="career-details">
-          <h3>PSK Synergia / Uspon</h3>
-          <p>Moji domaći klubovi u kojima gradim formu. Vrhunac domaćih natjecanja je uvjerljivo osvajanje prvog mjesta i titule državnog prvaka u pojedinačnoj konkurenciji u Slavonskom Brodu (2023.), uz nedavno srebro u Prelogu (2026.).</p>
+          <h3>PSTK Uspon</h3>
+          <p>Parastolnoteniski klub Uspon, klub za osobe s invaliditetom i moj matični klub u kojem gradim formu. Za HSTK Velika Gorica nastupam u 1. hrvatskoj ligi za osobe bez invaliditeta. Vrhunac domaćih natjecanja je uvjerljivo osvajanje prvog mjesta i titule državnog prvaka u pojedinačnoj konkurenciji u Slavonskom Brodu (2023.), uz nedavno srebro u Prelogu (2026.).</p>
         </div>
         <div class="career-badge">Hrvatska</div>
       </div>
@@ -524,7 +524,7 @@ Kruna karijere je nastup na Europskom prvenstvu u Helsinborgu 2025. godine - če
       <span class="brand-text"><b>Marko Vračan</b><small>Parastolni tenis</small></span>
     </a>
     <div class="footer-links">
-      <a href="#hero">Početna</a>
+      <a href="#">Početna</a>
       <a href="#o-meni">Tko sam ja</a>
       <a href="#karijera">Klubovi</a>
       <a href="rezultati.html">Rezultati</a>
