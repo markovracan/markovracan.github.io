@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rezultati Turnira Savska | Marko Vračan</title>
+
+<!-- Ostavljeni isti fontovi kao na index.html -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@700;800;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  /* Specifični stilovi za stranicu s rezultatima i tablice */
+  body { padding-top: 100px; }
+  
+  .results-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .results-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+    margin-bottom: 6rem;
+  }
+
+  .table-section {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .table-section h3 {
+    font-family: var(--font-head);
+    color: var(--primary);
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+  
+  .table-section h4 {
+      color: var(--text);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+  }
+
+  /* Responzivni kontejner za tablice */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 2rem;
+  }
+
+  /* Osnovni stil tablice (izgleda kao Excel) */
+  table.tournament-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    min-width: 800px; /* Osigurava da se ne skupi previše na mobitelu */
+    color: var(--text);
+  }
+
+  table.tournament-table th, 
+  table.tournament-table td {
+    border: 1px solid var(--border);
+    padding: 0.5rem;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  table.tournament-table th {
+    background: var(--bg-elevated);
+    font-family: var(--font-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    letter-spacing: 0.05em;
+  }
+
+  /* Poravnanje imena ulijevo */
+  table.tournament-table td.player-name {
+    text-align: left;
+    font-weight: 500;
+    color: var(--text);
+  }
+  
+  /* Specifične boje iz slika (Ranking) */
+  .bg-yellow { background-color: #ffff00; color: #000; font-weight: bold;}
+  .bg-red { background-color: #ff0000; color: #fff; font-weight: bold;}
+  .bg-green { background-color: #00b050; color: #fff; font-weight: bold;}
+  .bg-purple { background-color: #7030a0; color: #fff; font-weight: bold;}
+  
+  .table-title-blue {
+      background-color: #00b0f0 !important;
+      color: #000 !important;
+      font-weight: bold !important;
+      text-align: left !important;
+      font-size: 1rem;
+  }
+
+  /* Hover efekt za retke */
+  table.tournament-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Navigacija (ista kao na index.html) -->
+  <nav id="navbar">
+    <a href="index.html" class="brand-mark">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20L14 10" stroke="white" stroke-width="2.4" stroke-linecap="round"/><circle cx="17.5" cy="6.5" r="3" fill="white"/><path d="M4 15L9 20" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-text"><b>Marko Vračan</b><small>Parastolni tenis</small></span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Izbornik">
+      <span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#o-meni">O meni</a></li>
+      <li><a href="index.html#karijera">Klubovi</a></li>
+      <li><a href="rezultati.html">Rezultati</a></li>
+      <li><a href="novosti.html">Novosti</a></li>
+      <li><a href="galerija.html">Galerija</a></li>
+      <li><a href="index.html#prijave">Prijave</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <div class="results-container">
+    
+    <div class="results-header reveal">
+      <div class="section-label">Rezultati Natjecanja</div>
+      <h2 class="section-title">Turnir Savska</h2>
+    </div>
+
+    <!-- BLOCK 1 (Slike 7, 10, 11) -->
+    <div class="table-section reveal">
+      <h3>Block 1 Stage</h3>
+      
+      <h4>Grupa A</h4>
+      <div class="table-responsive">
+        <table class="tournament-table">
+          <thead>
+            <tr>
+              <th colspan="2" class="table-title-blue">GROUP STAGE TABLE</th>
+              <th colspan="3">Match</th>
+              <th colspan="3">Set</th>
+              <th colspan="3">Point</th>
+              <th rowspan="2">Place</th>
+            </tr>
+            <tr>
+              <th>Pot</th>
+              <th>Group A</th>
+              <th>Wins</th>
+              <th>Play</th>
+              <th>Win %</th>
+              <th>Setw</th>
+              <th>Sets</th>
+              <th>Set %</th>
+              <th>Pointw</th>
+              <th>Points</th>
+              <th>Point %</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td class="player-name">Ivica Dobrinjkić</td>
+              <td>3</td>
+              <td>4</td>
+              <td>75%</td>
+              <td>11</td>
+              <td>15</td>
+              <td>73%</td>
+              <td>155</td>
+              <td>274</td>
+              <td>57%</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td class="player-name">Luka Krijan</td>
+              <td>4</td>
+              <td>4</td>
+              <td>100%</td>
+              <td>12</td>
+              <td>16</td>
+              <td>75%</td>
+              <td>164</td>
+              <td>300</td>
+              <td>55%</td>
+              <td>1</td>
+            </tr>
+            <!-- Ovdje dodaj ostale igrače iz Grupe A -->
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Grupa A - Mečevi (S1-S5)</h4>
+      <div class="table-responsive">
+        <table class="tournament-table">
+          <thead>
+            <tr>
+              <th colspan="2" class="table-title-blue">GROUP STAGE MATCHES</th>
+              <th rowspan="2">S1</th>
+              <th rowspan="2">S2</th>
+              <th rowspan="2">S3</th>
+              <th rowspan="2">S4</th>
+              <th rowspan="2">S5</th>
+              <th rowspan="2">Rez</th>
+            </tr>
+            <tr>
+              <th>Pot</th>
+              <th>Group A</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td class="player-name">Ivica Dobrinjkić</td>
+              <td>11</td>
+              <td>11</td>
+              <td>11</td>
+              <td></td>
+              <td></td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td class="player-name">Dragutin Kasapović</td>
+              <td>5</td>
+              <td>4</td>
+              <td>8</td>
+              <td></td>
+              <td></td>
+              <td>0</td>
+            </tr>
+            <!-- Ovdje dodaj ostale mečeve za Grupu A -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- BLOCK 2 (Slike 2, 3, 4, 5) -->
+    <div class="table-section reveal">
+      <h3>Block 2 Stage</h3>
+      
+      <h4>Grupa 1.-2. (Slike 9)</h4>
+      <div class="table-responsive">
+        <table class="tournament-table">
+          <thead>
+            <tr>
+              <th colspan="12" class="table-title-blue">BLOCK 1 STAGE TABLE</th>
+            </tr>
+            <tr>
+              <th>Group</th>
+              <th>1.-2.</th>
+              <th>Wins</th>
+              <th>Play</th>
+              <th>Win %</th>
+              <th>Setw</th>
+              <th>Sets</th>
+              <th>Set %</th>
+              <th>Pointw</th>
+              <th>Points</th>
+              <th>Point %</th>
+              <th>Place</th>
+            </tr>
+          </thead>
+          <tbody>
+             <tr>
+              <td>A</td>
+              <td class="player-name">Luka Krijan</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0%</td>
+              <td>1</td>
+              <td>4</td>
+              <td>25%</td>
+              <td>29</td>
+              <td>69</td>
+              <td>42%</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>B</td>
+              <td class="player-name">Roman Rodić</td>
+              <td>1</td>
+              <td>1</td>
+              <td>100%</td>
+              <td>3</td>
+              <td>4</td>
+              <td>75%</td>
+              <td>40</td>
+              <td>69</td>
+              <td>58%</td>
+              <td>1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FINAL STAGE (Slika 6) -->
+    <div class="table-section reveal">
+      <h3>Final Stage</h3>
+      
+      <h4>Završni Mečevi</h4>
+      <div class="table-responsive">
+        <table class="tournament-table">
+          <thead>
+            <tr>
+              <th colspan="8" class="table-title-blue">FINAL STAGE MATCHES</th>
+            </tr>
+            <tr>
+              <th>Match</th>
+              <th>Players</th>
+              <th>S1</th>
+              <th>S2</th>
+              <th>S3</th>
+              <th>S4</th>
+              <th>S5</th>
+              <th>Rez</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>B1-1</td>
+              <td class="player-name">Roman Rodić</td>
+              <td>10</td>
+              <td>11</td>
+              <td>11</td>
+              <td>9</td>
+              <td>13</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>B2-1</td>
+              <td class="player-name">Adrijan Jakšić</td>
+              <td>12</td>
+              <td>6</td>
+              <td>9</td>
+              <td>11</td>
+              <td>11</td>
+              <td>2</td>
+            </tr>
+             <!-- Ovdje dodaj ostale finalne mečeve -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ZAVRŠNI POREDAK (Slika 7) -->
+    <div class="table-section reveal">
+      <h3>Final Standings</h3>
+      
+      <div class="table-responsive">
+        <table class="tournament-table">
+          <thead>
+            <tr>
+              <th colspan="2" class="table-title-blue">FINAL STANDINGS</th>
+              <th colspan="3">Match</th>
+              <th colspan="3">Set</th>
+              <th colspan="3">Point</th>
+              <th>Tour</th>
+            </tr>
+            <tr>
+              <th>Place</th>
+              <th>Players</th>
+              <th>Win</th>
+              <th>Play</th>
+              <th>Win %</th>
+              <th>Win</th>
+              <th>Play</th>
+              <th>Win %</th>
+              <th>Win</th>
+              <th>Play</th>
+              <th>Win %</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td class="player-name">Roman Rodić</td>
+              <td>5</td>
+              <td>5</td>
+              <td>100%</td>
+              <td>15</td>
+              <td>19</td>
+              <td>79%</td>
+              <td>208</td>
+              <td>345</td>
+              <td>60%</td>
+              <td>100</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td class="player-name">Adrijan Jakšić</td>
+              <td>5</td>
+              <td>6</td>
+              <td>83%</td>
+              <td>17</td>
+              <td>21</td>
+              <td>81%</td>
+              <td>227</td>
+              <td>377</td>
+              <td>60%</td>
+              <td>95</td>
+            </tr>
+            <!-- Ovdje nastavi dodavati igrače u poretku -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RANKING TABLICA (Slike 10, 11) -->
+    <div class="table-section reveal">
+      <h3>Ukupni Poredak / Ranking</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Ova tablica sadrži kompletnu statistiku sa svih turnira.</p>
+      
+      <div class="table-responsive">
+        <table class="tournament-table">
+          <thead>
+            <tr>
+              <th colspan="2">Ranking</th>
+              <th colspan="4">Tournaments</th>
+              <th colspan="3">Matches</th>
+              <th colspan="3">Sets</th>
+              <th colspan="3">Points</th>
+              <th colspan="3">KPI Ranking</th>
+              <th colspan="2">Seed Rank</th>
+              <th colspan="3">Power Rank</th>
+              <th colspan="6">Standings</th>
+            </tr>
+            <tr>
+              <th>No.</th>
+              <th>Player</th>
+              <th>Point</th>
+              <th>Play</th>
+              <th>P/T</th>
+              <th>Won</th>
+              <th>Play</th>
+              <th>Win %</th>
+              <th>Won</th>
+              <th>Play</th>
+              <th>Win %</th>
+              <th>Won</th>
+              <th>Play</th>
+              <th>Win %</th>
+              <th>Rnk</th>
+              <th>P/T</th>
+              <th>BW</th>
+              <th>Pnt</th>
+              <th>Avg</th>
+              <th>Pwr</th>
+              <th>Rnk</th>
+              <th>Pwr</th>
+              <th>Rnk</th>
+              <th>Best</th>
+              <th>Wrst</th>
+              <th>1st</th>
+              <th>2nd</th>
+              <th>3rd</th>
+              <th>1.-3.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td class="player-name">Goran Jagodić</td>
+              <td>861</td>
+              <td>11</td>
+              <td class="bg-yellow">78,29</td>
+              <td>42</td>
+              <td>61</td>
+              <td>68,85%</td>
+              <td>151</td>
+              <td>234</td>
+              <td>64,53%</td>
+              <td>2296</td>
+              <td>4302</td>
+              <td>53,37%</td>
+              <td>1</td>
+              <td>13</td>
+              <td>18</td>
+              <td>9</td>
+              <td>14</td>
+              <td>11,7</td>
+              <td>10</td>
+              <td class="bg-yellow">77,78</td>
+              <td>9</td>
+              <td class="bg-yellow">74,08</td>
+              <td>12</td>
+              <td>2</td>
+              <td>10</td>
+              <td>4</td>
+              <td>1</td>
+              <td>1</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td class="player-name">Adrijan Jakšić</td>
+              <td>733</td>
+              <td>10</td>
+              <td class="bg-yellow">73,30</td>
+              <td>35</td>
+              <td>56</td>
+              <td>62,50%</td>
+              <td>121</td>
+              <td>204</td>
+              <td>59,31%</td>
+              <td>1961</td>
+              <td>3731</td>
+              <td>52,56%</td>
+              <td>2</td>
+              <td>19</td>
+              <td>22</td>
+              <td>15</td>
+              <td>19</td>
+              <td>19</td>
+              <td>18</td>
+              <td class="bg-yellow">73,69</td>
+              <td>13</td>
+              <td class="bg-yellow">69,54</td>
+              <td>15</td>
+              <td>2</td>
+              <td>8</td>
+              <td></td>
+              <td>1</td>
+              <td>1</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td class="player-name">Krešimir Martinčić</td>
+              <td>562</td>
+              <td>6</td>
+              <td class="bg-red">93,67</td>
+              <td>28</td>
+              <td>32</td>
+              <td>87,50%</td>
+              <td>88</td>
+              <td>116</td>
+              <td>75,86%</td>
+              <td>1195</td>
+              <td>2063</td>
+              <td>57,93%</td>
+              <td>3</td>
+              <td>5</td>
+              <td>6</td>
+              <td>3</td>
+              <td>3</td>
+              <td>5</td>
+              <td>4,3</td>
+              <td>2</td>
+              <td class="bg-purple">91,11</td>
+              <td>3</td>
+              <td class="bg-purple">90,12</td>
+              <td>4</td>
+              <td>1</td>
+              <td>5</td>
+              <td>3</td>
+              <td>1</td>
+              <td>1</td>
+              <td>5</td>
+            </tr>
+             <!-- Ovdje nastavi dodavati ostale igrače iz velikih slika -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 2rem;">
+        <a href="index.html" class="btn-primary">&larr; Natrag na početnu</a>
+    </div>
+
+  </div>
+
+  <!-- Footer (isti kao na index.html) -->
+  <footer>
+    <a href="index.html" class="brand-mark footer-brand">
+      <span class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20L14 10" stroke="white" stroke-width="2.4" stroke-linecap="round"/><circle cx="17.5" cy="6.5" r="3" fill="white"/><path d="M4 15L9 20" stroke="white" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-text"><b>Marko Vračan</b><small>Parastolni tenis</small></span>
+    </a>
+    <div class="footer-links">
+      <a href="index.html">Početna</a>
+      <a href="index.html#o-meni">Tko sam ja</a>
+      <a href="index.html#karijera">Klubovi</a>
+      <a href="rezultati.html">Rezultati</a>
+      <a href="novosti.html">Novosti</a>
+      <a href="galerija.html">Galerija</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Marko Vračan. Sva prava pridržana.</p>
+      <p>Dizajn i izrada: <a href="https://kezicvizuali.com/" target="_blank">Kezić Vizuali</a></p>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+</body>
+</html>
